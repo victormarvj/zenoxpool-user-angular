@@ -1,0 +1,73 @@
+<main>
+  <section class="grid grid-2">
+    <section class="navigation drop-shadow-y-1">
+      <div
+        class="navigation-overlay"
+        [class.hidden]="isNavbarHidden"
+        (click)="toggleNav()"
+      ></div>
+      <header class="header">
+        <h1>Overview</h1>
+        <ion-icon name="menu" (click)="toggleNav()" class="menu"></ion-icon>
+      </header>
+      <nav class="navbar drop-shadow-x-1" [class.hidden]="isNavbarHidden">
+        <header class="header">
+          <h2>ZenoxPool</h2>
+          <ion-icon name="close-outline" (click)="toggleNav()"></ion-icon>
+        </header>
+        <div class="profile-div">
+          <img src="avatar.png" alt="profile img" class="profile-img" />
+          <p class="fullname">Victor Marvj</p>
+          <p class="email">{{ "victormarvj@gmail.com" }}</p>
+        </div>
+        <ul class="navbar-nav">
+          <li class="nav-item" routerLinkActive="active">
+            <ion-icon name="grid-outline"></ion-icon>
+            <a routerLink="/overview" class="nav-link">Overview</a>
+          </li>
+          <li class="nav-item" routerLinkActive="active">
+            <ion-icon name="magnet-outline"></ion-icon>
+            <a routerLink="/zp-zone" class="nav-link">ZenoxPool Zone</a>
+          </li>
+          <li class="nav-item" routerLinkActive="active">
+            <ion-icon name="card-outline"></ion-icon>
+            <a routerLink="/deposits" class="nav-link">Deposits</a>
+          </li>
+          <li class="nav-item" routerLinkActive="active">
+            <ion-icon name="swap-horizontal-outline"></ion-icon>
+            <a routerLink="/swap" class="nav-link">Swap</a>
+          </li>
+          <li class="nav-item" routerLinkActive="active">
+            <ion-icon name="swap-vertical-outline"></ion-icon>
+            <a routerLink="/transfer" class="nav-link">Transfer</a>
+          </li>
+          <li class="nav-item" routerLinkActive="active">
+            <ion-icon name="cog-outline"></ion-icon>
+            <a routerLink="/settings" class="nav-link">Settings</a>
+          </li>
+          <li class="nav-item" routerLinkActive="active">
+            <ion-icon name="person-circle-outline"></ion-icon>
+            <a routerLink="/profile" class="nav-link">Profile</a>
+          </li>
+        </ul>
+
+        <div
+          class="toggle-div border-radius-5"
+          [class.light]="!isDarkMode"
+          [class.dark]="isDarkMode"
+          (click)="toggleTheme()"
+        >
+          @if(isDarkMode) {
+          <ion-icon name="moon-outline" class="border-radius-5"></ion-icon>
+          }@else {
+          <ion-icon name="sunny-outline" class="border-radius-5"></ion-icon>
+          }
+          <label>{{ isDarkMode ? "Dark" : "Light" }}</label>
+        </div>
+      </nav>
+    </section>
+    <section class="main">
+      <router-outlet />
+    </section>
+  </section>
+</main>

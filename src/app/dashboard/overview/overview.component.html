@@ -1,0 +1,198 @@
+<section>
+  <div class="container-fluid flex justify-content-space align-items-center">
+    <p>Welcome, victormarvj</p>
+    <div class="bg-primary-1 padding-1 border-radius">
+      <small>May 13, 2025 12:16 pm</small>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container-fluid margin-top">
+    <div
+      class="main-balance-overview bg-gradient-1 padding border-radius drop-shadow-1"
+    >
+      <span>Overview</span>
+      <h2>$17,835.55</h2>
+      <span>Total available balance</span>
+      <div class="flex gap-2 justify-content-center margin-top">
+        <a routerLink="#" class="btn flex">
+          <ion-icon name="arrow-up-outline"></ion-icon>
+          <p>Transfer</p>
+        </a>
+        <a routerLink="#" class="btn flex">
+          <ion-icon name="arrow-down-outline"></ion-icon>
+          <p>Receive</p>
+        </a>
+      </div>
+    </div>
+
+    <div class="balance-options margin-top">
+      <div class="card drop-shadow-2">
+        <span>Bitcoin BTC</span>
+        <div class="flex justify-content-space">
+          <img src="btc.png" alt="btc logo" class="balance-logo" />
+          <div>
+            <h3>0.003 BTC</h3>
+            <span class="text-right">$311.14</span>
+          </div>
+        </div>
+      </div>
+      <div class="card drop-shadow-2">
+        <span>Ethereum ETH</span>
+        <div class="flex justify-content-space">
+          <img src="eth.png" alt="btc logo" class="balance-logo" />
+          <div>
+            <h3>5.870 ETH</h3>
+            <span class="text-right">$14,727.83</span>
+          </div>
+        </div>
+      </div>
+      <div class="card drop-shadow-2">
+        <span>Tether USDT</span>
+        <div class="flex justify-content-space">
+          <img src="usdt-eth.png" alt="btc logo" class="balance-logo" />
+          <div>
+            <h3>53.980 USDT</h3>
+            <span class="text-right">$53.98</span>
+          </div>
+        </div>
+      </div>
+      <div class="card drop-shadow-2">
+        <span>Binance BNB</span>
+        <div class="flex justify-content-space">
+          <img src="bnb.png" alt="btc logo" class="balance-logo" />
+          <div>
+            <h3>4.200 BTC</h3>
+            <span class="text-right">$2,742.60</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+    <div class="assets-display border-radius margin-top">
+      <form>
+        <input
+          type="search"
+          name="search"
+          class="border-radius-5 w-100"
+          id=""
+          placeholder="Search Assets ..."
+        />
+      </form>
+      <p class="margin-top fw-600">Available Assets</p>
+
+      <hr />
+
+      <nav class="navbar">
+        <ul class="navbar-nav">
+          <li class="nav-item flex flex-column" style="align-items: start">
+            <div class="flex w-100">
+              <div class="flex align-items-center">
+                <img src="btc.png" alt="btc logo" class="assets-logo" />
+                <span class="margin-left">Bitcoin BTC</span>
+              </div>
+              <div class="ms-auto">
+                <h3>0.003 BTC</h3>
+                <span class="text-right">$311.14</span>
+              </div>
+            </div>
+            <span>$103,731.30</span>
+          </li>
+          <li class="nav-item flex flex-column" style="align-items: start">
+            <div class="flex w-100">
+              <div class="flex align-items-center">
+                <img src="eth.png" alt="btc logo" class="assets-logo" />
+                <span class="margin-left">Ethereum ETH</span>
+              </div>
+              <div class="ms-auto">
+                <h3>5.870 ETH</h3>
+                <span class="text-right">$14,727.83</span>
+              </div>
+            </div>
+            <span>$2,545.71</span>
+          </li>
+          <li class="nav-item flex flex-column" style="align-items: start">
+            <div class="flex w-100">
+              <div class="flex align-items-center">
+                <img src="usdt-eth.png" alt="btc logo" class="assets-logo" />
+                <span class="margin-left">Tether USDT</span>
+              </div>
+              <div class="ms-auto">
+                <h3>53.980 BTC</h3>
+                <span class="text-right">$53.98</span>
+              </div>
+            </div>
+            <span>$1.00</span>
+          </li>
+          <li class="nav-item flex flex-column" style="align-items: start">
+            <div class="flex w-100">
+              <div class="flex align-items-center">
+                <img src="bnb.png" alt="btc logo" class="assets-logo" />
+                <span class="margin-left">Binance BNB</span>
+              </div>
+              <div class="ms-auto">
+                <h3>4.200 BTC</h3>
+                <span class="text-right">$2,742.60</span>
+              </div>
+            </div>
+            <span>$653.06</span>
+          </li>
+        </ul>
+      </nav>
+
+      <hr />
+
+      <div class="learn-more-div margin-top">
+        <a routerLink="#" class="learn-more">Load More</a>
+        <ion-icon name="arrow-forward-outline"></ion-icon>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+    <div class="transaction-div card margin-top">
+      <p>Recent Transactions</p>
+
+      <!-- <table datatable [dtOptions]="dtOptions" class="row-border hover"> -->
+      <div class="table-responsive">
+        <table datatable class="row-border hover">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Description</th>
+              <th>Amount</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="fw-600">1</td>
+              <td>
+                <div class="flex flex-column color-danger">
+                  <p class="fw-600">1 ETH</p>
+                  <p>0xsldjflkd89slidjflsdjfs89</p>
+                </div>
+              </td>
+              <td class="color-danger fw-600">$2,545.71</td>
+              <td class="text-truncate">Sunday 11 Mar, 2025</td>
+            </tr>
+            <tr>
+              <td class="fw-600">2</td>
+              <td>
+                <div class="flex flex-column color-success">
+                  <p class="fw-600">1 ETH</p>
+                  <p>0xsldjflkd89slidjflsdjfs89</p>
+                </div>
+              </td>
+              <td class="color-success fw-600">$2,545.71</td>
+              <td class="text-truncate">Sunday 11 Mar, 2025</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>

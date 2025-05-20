@@ -1,0 +1,50 @@
+.main-balance-overview {
+  color: var(--color-white);
+}
+
+.balance-options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.6rem;
+}
+
+.balance-logo {
+  max-width: 3rem;
+  max-height: 3rem;
+}
+
+.assets-display {
+  padding: 3rem 2rem;
+  background-color: var(--color-white);
+
+  .flex {
+    gap: 0.1rem;
+  }
+}
+
+.assets-logo {
+  max-width: 2.4rem;
+  max-height: 2.4rem;
+}
+
+.learn-more-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  a.learn-more {
+    display: inline-block;
+  }
+
+  ion-icon {
+    font-size: 1.4rem;
+  }
+}
+
+table.dataTable > tbody > tr:nth-child(odd) {
+  background-color: var(--color-grey-1);
+}
+
+// tr:nth-child(even) {
+//   background-color: var(--color-grey-1);
+// }

@@ -1,0 +1,236 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
+
+:root {
+  --color-primary-1: #341565;
+  --color-primary-2: #6c35b5;
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-grey-1: #e3e3e3;
+  --color-danger: #eb2020;
+  --color-success: #50af95;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  // font-size: 62.5%;
+  // font-size: 71.4%;
+  font-size: 83.3%;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: "Rubik", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.5;
+  background-color: var(--color-grey-1);
+  color: var(--color-primary-1);
+  overflow-x: hidden;
+}
+
+// h1,
+// h2,
+// h3,
+// h4,
+// h5,
+// h6,
+// p,
+// a,
+// label {
+//   font-size: 1.4rem;
+// }
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 2.4rem;
+}
+
+a:link,
+a:visited {
+  text-decoration: none;
+  color: var(--color-primary-1);
+}
+
+input {
+  color: var(--color-primary-1);
+  padding: 1rem 1.6rem;
+  border: 0.85px solid var(--color-primary-1);
+  outline: none;
+}
+
+input:focus {
+  border: 2px solid var(--color-primary-1);
+  outline: none;
+}
+
+input::placeholder {
+  color: var(--color-primary-1);
+}
+
+hr {
+  border: 1px solid var(--color-grey-1);
+  margin-top: 1rem;
+}
+
+ion-icon {
+  font-size: 2.4rem;
+}
+
+.grid {
+  display: grid;
+}
+
+.grid > * {
+  min-width: 0;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.justify-content-space {
+  justify-content: space-between;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+.grid-2,
+.grid-3 {
+  grid-template-columns: 1fr;
+}
+
+.gap-0 {
+  gap: 0;
+}
+
+.gap-1 {
+  gap: 1rem;
+}
+
+.gap-2 {
+  gap: 1.6rem;
+}
+
+.container {
+  max-width: 90%;
+  margin: 0 auto;
+  overflow-x: hidden;
+}
+.container-fluid {
+  max-width: 90%;
+  margin: 0 auto;
+  overflow-x: hidden;
+}
+
+.drop-shadow-y-1 {
+  box-shadow: 0px 4px 4px rgba($color: #000000, $alpha: 0.2);
+}
+
+.drop-shadow-x-1 {
+  box-shadow: 2px 0px 2px rgba($color: #000000, $alpha: 0.2);
+}
+
+.drop-shadow-1 {
+  box-shadow: 0px 3.47px 3.47px 0.5px rgba($color: #000000, $alpha: 0.2);
+}
+
+.drop-shadow-2 {
+  box-shadow: 0px 0.56px 2.25px 0.56px rgba($color: #000000, $alpha: 0.2);
+}
+
+.bg-primary-1 {
+  background-color: var(--color-primary-1);
+  color: var(--color-white);
+}
+
+.bg-gradient-1 {
+  background-image: linear-gradient(
+    to bottom right,
+    var(--color-primary-2) 11%,
+    var(--color-primary-1) 56%
+  );
+}
+
+.padding {
+  padding: 2rem;
+}
+
+.padding-0 {
+  padding: 0;
+}
+
+.padding-1 {
+  padding: 0.6rem 1rem;
+}
+
+.padding-2 {
+  padding: 1rem 2rem;
+}
+
+.margin-top {
+  margin-top: 1.6rem;
+}
+
+.margin-left {
+  margin-inline-start: 1rem;
+}
+
+.border-radius {
+  border-radius: 0.5rem;
+}
+
+.border-radius-5 {
+  border-radius: 5rem;
+}
+
+.text-right {
+  display: block;
+  text-align: right;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.fw-600 {
+  font-weight: 600;
+}
+
+.ms-auto {
+  margin-inline-start: auto;
+}
+
+.text-truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  // max-width: 150px; /* or some fixed width */
+  // display: block; /* or inline-block */
+}
+
+.color-danger {
+  color: var(--color-danger);
+}
+
+.color-success {
+  color: var(--color-success);
+}
