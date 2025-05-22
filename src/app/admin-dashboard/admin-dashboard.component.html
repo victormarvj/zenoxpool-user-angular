@@ -106,7 +106,7 @@
         <ul class="navbar-nav">
           <li class="nav-item" (click)="toggleNav()">
             <a
-              routerLink="/dashboard/overview"
+              routerLink="/admin/dashboard/overview"
               routerLinkActive="active"
               ariaCurrentWhenActive="page"
               class="nav-link"
@@ -117,51 +117,51 @@
           </li>
           <li class="nav-item" (click)="toggleNav()">
             <a
-              routerLink="/dashboard/zone"
+              routerLink="/admin/dashboard/users"
               routerLinkActive="active"
               ariaCurrentWhenActive="page"
               class="nav-link"
             >
-              <fa-icon [icon]="['far', 'compass']"></fa-icon>
-              <span>ZenoxPool Zone</span>
+              <fa-icon [icon]="['fas', 'users']"></fa-icon>
+              <span>Users</span>
             </a>
           </li>
           <li class="nav-item" (click)="toggleNav()">
             <a
-              routerLink="/dashboard/deposit"
+              routerLink="/admin/dashboard/zones"
               routerLinkActive="active"
               ariaCurrentWhenActive="page"
               class="nav-link"
             >
-              <fa-icon [icon]="['far', 'credit-card']"></fa-icon>
-              <span>Deposits</span>
+              <fa-icon [icon]="['fas', 'globe']"></fa-icon>
+              <span>Zones</span>
             </a>
           </li>
           <li class="nav-item" (click)="toggleNav()">
             <a
-              routerLink="/dashboard/swap"
+              routerLink="/admin/dashboard/bitcoin"
               routerLinkActive="active"
               ariaCurrentWhenActive="page"
               class="nav-link"
             >
-              <fa-icon [icon]="['fas', 'arrows-rotate']"></fa-icon>
-              <span>Swap</span>
+              <fa-icon [icon]="['fas', 'bitcoin-sign']"></fa-icon>
+              <span>Bitcoin Payment</span>
             </a>
           </li>
           <li class="nav-item" (click)="toggleNav()">
             <a
-              routerLink="/dashboard/transfer"
+              routerLink="/admin/dashboard/bank"
               routerLinkActive="active"
               ariaCurrentWhenActive="page"
               class="nav-link"
             >
-              <fa-icon [icon]="['fas', 'right-left']"></fa-icon>
-              <span>Transfer</span>
+              <fa-icon [icon]="['fas', 'building-columns']"></fa-icon>
+              <span>Bank Payment</span>
             </a>
           </li>
           <li class="nav-item" (click)="toggleNav()">
             <a
-              routerLink="/dashboard/settings"
+              routerLink="/admin/dashboard/settings"
               routerLinkActive="active"
               ariaCurrentWhenActive="page"
               class="nav-link"
@@ -172,7 +172,7 @@
           </li>
           <li class="nav-item" (click)="toggleNav()">
             <a
-              routerLink="/dashboard/profile"
+              routerLink="/admin/dashboard/profile"
               routerLinkActive="active"
               ariaCurrentWhenActive="page"
               class="nav-link"

@@ -12,8 +12,28 @@ import { SwapComponent } from './dashboard/swap/swap.component';
 import { TransferComponent } from './dashboard/transfer/transfer.component';
 import { SettingsComponent } from './dashboard/settings/settings.component';
 import { ProfileComponent } from './dashboard/profile/profile.component';
+import { SignupComponent } from './signup/signup.component';
+import { LoginComponent } from './login/login.component';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { UsersComponent } from './admin-dashboard/users/users.component';
+import { AdminOverviewComponent } from './admin-dashboard/admin-overview/admin-overview.component';
+import { AdminZonesComponent } from './admin-dashboard/admin-zones/admin-zones.component';
+import { BitcoinComponent } from './admin-dashboard/bitcoin/bitcoin.component';
+import { BankComponent } from './admin-dashboard/bank/bank.component';
 
 export const routes: Routes = [
+  {
+    path: 'signup',
+    component: SignupComponent,
+    title: 'Sign Up | ZenoxPool',
+    data: { title: 'Sign Up | ZenoxPool' },
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+    title: 'Login | ZenoxPool',
+    data: { title: 'Login | ZenoxPool' },
+  },
   {
     path: 'dashboard',
     component: DashboardComponent,
@@ -92,8 +112,49 @@ export const routes: Routes = [
     ],
   },
   {
+    path: 'admin/dashboard',
+    component: AdminDashboardComponent,
+    children: [
+      {
+        path: '',
+        redirectTo: 'overview',
+        pathMatch: 'full',
+      },
+      {
+        path: 'overview',
+        component: AdminOverviewComponent,
+        title: 'Overview | ZenoxPool',
+        data: { title: 'Overview | ZenoxPool' },
+      },
+      {
+        path: 'users',
+        component: UsersComponent,
+        title: 'Users | ZenoxPool',
+        data: { title: 'Users | ZenoxPool' },
+      },
+      {
+        path: 'zones',
+        component: AdminZonesComponent,
+        title: 'Zones | ZenoxPool',
+        data: { title: 'Zones | ZenoxPool' },
+      },
+      {
+        path: 'bitcoin',
+        component: BitcoinComponent,
+        title: 'Bitcoin | ZenoxPool',
+        data: { title: 'Bitcoin | ZenoxPool' },
+      },
+      {
+        path: 'bank',
+        component: BankComponent,
+        title: 'Bank | ZenoxPool',
+        data: { title: 'Bank | ZenoxPool' },
+      },
+    ],
+  },
+  {
     path: '',
-    redirectTo: 'dashboard',
+    redirectTo: 'signup',
     pathMatch: 'full',
   },
 ];

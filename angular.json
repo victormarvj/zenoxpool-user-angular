@@ -97,43 +97,12 @@
             "styles": ["src/styles.scss"],
             "scripts": []
           }
-        },
-        "ionic-cordova-serve": {
-          "builder": "@ionic/angular-toolkit:cordova-serve",
-          "options": {
-            "cordovaBuildTarget": "zenoxpool:ionic-cordova-build",
-            "devServerTarget": "zenoxpool:serve"
-          },
-          "configurations": {
-            "production": {
-              "cordovaBuildTarget": "zenoxpool:ionic-cordova-build:production",
-              "devServerTarget": "zenoxpool:serve:production"
-            }
-          }
-        },
-        "ionic-cordova-build": {
-          "builder": "@ionic/angular-toolkit:cordova-build",
-          "options": {
-            "browserTarget": "zenoxpool:build"
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "zenoxpool:build:production"
-            }
-          }
         }
       }
     }
   },
   "cli": {
-    "schematicCollections": ["@ionic/angular-toolkit"]
+    "schematicCollections": []
   },
-  "schematics": {
-    "@ionic/angular-toolkit:component": {
-      "styleext": "scss"
-    },
-    "@ionic/angular-toolkit:page": {
-      "styleext": "scss"
-    }
-  }
+  "schematics": {}
 }

@@ -1,0 +1,88 @@
+<section class="bg-shape">
+  <div class="container-fluid">
+    <div class="grid grid-2">
+      <div class="form-grid">
+        <form class="form-100">
+          <header class="text-center">
+            <h1>Sign Up</h1>
+            <h3>Join us in our amazing adventure</h3>
+          </header>
+          <div class="body">
+            <div class="form-group flex gap-1">
+              <input
+                type="text"
+                name="fullname"
+                class="border-radius-5 bg-transparent w-100"
+                placeholder="Fullname"
+                id="fullname"
+              />
+              <input
+                type="text"
+                name="username"
+                class="border-radius-5 bg-transparent w-100"
+                placeholder="Username"
+                id="username"
+              />
+            </div>
+
+            <div class="form-group margin-top-2">
+              <input
+                type="text"
+                name="email"
+                class="border-radius-5 bg-transparent w-100"
+                placeholder="Email"
+                id="email"
+              />
+            </div>
+
+            <div class="form-group margin-top-2">
+              <input
+                type="text"
+                name="phone"
+                class="border-radius-5 bg-transparent w-100"
+                placeholder="Phone"
+                id="phone"
+              />
+            </div>
+
+            <div class="form-group flex gap-1 margin-top-2">
+              <input
+                type="text"
+                name="password"
+                class="border-radius-5 bg-transparent w-100"
+                placeholder="Password"
+                id="password"
+              />
+              <input
+                type="text"
+                name="password_confirmation"
+                class="border-radius-5 bg-transparent w-100"
+                placeholder="Confirm Password"
+                id="password_confirmation"
+              />
+            </div>
+
+            <button
+              routerLink="/login"
+              type="button"
+              class="btn btn-pill btn-primary margin-top-2 w-100"
+            >
+              Sign Up
+            </button>
+          </div>
+          <p class="text-center margin-top-2">
+            Already have an account?
+            <a routerLink="/login" class="fw-600">Login</a>
+          </p>
+        </form>
+
+        <p class="text-center">
+          &copy; Copyright ZenoxPool 2024 - {{ date }}. All Rights Reserved
+        </p>
+      </div>
+      <div class="bg-grid">
+        <div class="particle-1"></div>
+      </div>
+    </div>
+  </div>
+</section>

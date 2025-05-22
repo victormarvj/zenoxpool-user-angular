@@ -106,7 +106,7 @@
   display: inline-block;
   background-color: var(--color-white);
   border-radius: 0.5rem;
-  padding: 0.6rem 2rem;
+  padding: 1.2rem 2rem;
   border: none;
   cursor: pointer;
 
@@ -217,6 +217,16 @@ table.dataTable > tbody > tr {
   border: 0.85px solid var(--color-success);
 }
 
+.label.bg-warning {
+  color: var(--color-warning);
+  border: 0.85px solid var(--color-warning);
+}
+
+.label.bg-danger {
+  color: var(--color-danger);
+  border: 0.85px solid var(--color-danger);
+}
+
 // Modal component
 .modal {
   display: none;
@@ -267,7 +277,7 @@ table.dataTable > tbody > tr {
 input {
   color: var(--color-primary-1);
   padding: 1rem 1.6rem;
-  outline: 0.85px solid var(--color-primary-1);
+  outline: 1px solid var(--color-primary-1);
   border: none;
 }
 
@@ -290,6 +300,11 @@ input::placeholder {
     top: 0;
     right: 0;
   }
+}
+
+input[type="checkbox"] {
+  padding: initial;
+  accent-color: var(--color-primary-1);
 }
 
 // Assets display component
@@ -339,5 +354,11 @@ input::placeholder {
   label {
     font-size: 1.2rem;
     margin-right: 1rem;
+  }
+}
+
+@media (min-width: 56.2em) {
+  table.dataTable > tbody > tr {
+    font-size: 1rem;
   }
 }

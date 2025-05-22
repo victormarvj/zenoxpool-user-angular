@@ -1,0 +1,64 @@
+<section class="bg-shape">
+  <div class="container-fluid">
+    <div class="grid grid-2">
+      <div class="bg-grid">
+        <div class="particle-1"></div>
+      </div>
+      <div class="form-grid">
+        <form class="form-100">
+          <header class="text-center">
+            <h1>Login</h1>
+            <h3>Welcome back. Login to continue</h3>
+
+            <p class="margin-top-2">
+              Having troubles signing in?
+              <a routerLink="/signup" class="fw-600">Forget Password</a>
+            </p>
+          </header>
+          <div class="body">
+            <div class="form-group margin-top-2">
+              <input
+                type="text"
+                name="email"
+                class="border-radius-5 bg-transparent w-100"
+                placeholder="Email / Username"
+                id="email"
+              />
+            </div>
+
+            <div class="form-group margin-top-2">
+              <input
+                type="password"
+                name="password"
+                class="border-radius-5 bg-transparent w-100"
+                placeholder="Password"
+                id="password"
+              />
+            </div>
+
+            <div class="flex align-items-center gap-1 margin-top">
+              <input type="checkbox" name="remember_me" id="remember_me" />
+              <label for="remember_me">Remember me</label>
+            </div>
+
+            <button
+              routerLink="/dashboard"
+              type="button"
+              class="btn btn-pill btn-primary margin-top-2 w-100"
+            >
+              Login
+            </button>
+          </div>
+          <p class="text-center margin-top-2">
+            Don't have an account?
+            <a routerLink="/signup" class="fw-600">Sign Up</a>
+          </p>
+        </form>
+
+        <p class="text-center">
+          &copy; Copyright ZenoxPool 2024 - {{ date }}. All Rights Reserved
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

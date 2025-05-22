@@ -1,28 +1,22 @@
-import {
-  Component,
-  CUSTOM_ELEMENTS_SCHEMA,
-  HostListener,
-  OnInit,
-} from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import {
   ActivatedRoute,
   NavigationEnd,
   Router,
   RouterModule,
 } from '@angular/router';
-import { TitleService } from '../Services/title.service';
-import { AsyncPipe } from '@angular/common';
-import { filter, map } from 'rxjs';
 import { FontAwesomeModuleModule } from '../Modules/font-awesome-module/font-awesome-module.module';
+import { TitleService } from '../Services/title.service';
+import { filter, map } from 'rxjs';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
-  selector: 'app-dashboard',
+  selector: 'app-admin-dashboard',
   imports: [RouterModule, FontAwesomeModuleModule, AsyncPipe],
-  templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.scss',
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  templateUrl: './admin-dashboard.component.html',
+  styleUrls: ['./admin-dashboard.component.scss'],
 })
-export class DashboardComponent implements OnInit {
+export class AdminDashboardComponent implements OnInit {
   isDarkMode: boolean = false;
   isNavbarHidden: boolean = true;
   isDropdown: boolean = false;
