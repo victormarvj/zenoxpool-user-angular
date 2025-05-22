@@ -1,0 +1,43 @@
+.navigation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  background-color: var(--color-white);
+}
+
+.navigation-overlay {
+  display: block;
+  position: fixed;
+  background-color: rgba($color: #000000, $alpha: 0.5);
+  width: 100%;
+  height: 100%;
+}
+
+.navigation-overlay.hidden {
+  display: none;
+}
+
+.create-space {
+  margin: 0 auto 10rem auto;
+}
+
+.main {
+  margin-top: 7rem;
+}
+
+// Tablets above: 900px and above
+@media (min-width: 56.2em) {
+  .grid-2 {
+    grid-template-columns: 20rem 1fr;
+  }
+
+  .navigation {
+    position: relative;
+  }
+
+  .navigation-overlay {
+    display: none;
+  }
+}

@@ -1,0 +1,37 @@
+.grid-2 {
+  grid-template-columns: 1fr 1fr;
+}
+
+.crypto,
+.bank {
+  text-align: center;
+
+  fa-icon {
+    font-size: 4rem;
+  }
+}
+
+.note {
+  font-size: 0.8rem;
+}
+
+.summary {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 56.2em) {
+  .grid-2-desktop {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .icon {
+    margin: 0 auto;
+    width: 8rem;
+    height: 6rem;
+  }
+
+  .card p {
+    margin-top: 1rem;
+  }
+}

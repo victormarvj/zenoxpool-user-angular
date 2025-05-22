@@ -1,0 +1,124 @@
+<section>
+  <div class="container-fluid grid-2-desktop">
+    <div class="card assets-display border-radius">
+      <form>
+        <input
+          type="search"
+          name="search"
+          class="border-radius-5 w-100"
+          id=""
+          placeholder="Search Assets ..."
+        />
+      </form>
+      <p class="margin-top fw-600">Available Assets</p>
+
+      <hr />
+
+      <nav class="navbar">
+        <ul class="navbar-nav">
+          <li class="nav-item flex flex-column" (click)="toggleModal()">
+            <div class="flex w-100">
+              <div class="flex align-items-center">
+                <img src="btc.png" alt="btc logo" class="assets-logo" />
+                <span class="margin-left">Bitcoin BTC</span>
+              </div>
+              <div class="ms-auto">
+                <h3>0.003 BTC</h3>
+                <span class="text-right">$311.14</span>
+              </div>
+            </div>
+            <span>$103,731.30</span>
+          </li>
+          <li class="nav-item flex flex-column" (click)="toggleModal()">
+            <div class="flex w-100">
+              <div class="flex align-items-center">
+                <img src="eth.png" alt="btc logo" class="assets-logo" />
+                <span class="margin-left">Ethereum ETH</span>
+              </div>
+              <div class="ms-auto">
+                <h3>5.870 ETH</h3>
+                <span class="text-right">$14,727.83</span>
+              </div>
+            </div>
+            <span>$2,545.71</span>
+          </li>
+          <li class="nav-item flex flex-column" (click)="toggleModal()">
+            <div class="flex w-100">
+              <div class="flex align-items-center">
+                <img src="usdt-eth.png" alt="btc logo" class="assets-logo" />
+                <span class="margin-left">Tether USDT</span>
+              </div>
+              <div class="ms-auto">
+                <h3>53.980 BTC</h3>
+                <span class="text-right">$53.98</span>
+              </div>
+            </div>
+            <span>$1.00</span>
+          </li>
+          <li class="nav-item flex flex-column" (click)="toggleModal()">
+            <div class="flex w-100">
+              <div class="flex align-items-center">
+                <img src="bnb.png" alt="btc logo" class="assets-logo" />
+                <span class="margin-left">Binance BNB</span>
+              </div>
+              <div class="ms-auto">
+                <h3>4.200 BTC</h3>
+                <span class="text-right">$2,742.60</span>
+              </div>
+            </div>
+            <span>$653.06</span>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</section>
+
+<div class="modal" [class.show]="isModal">
+  <div class="overlay" (click)="toggleModal()"></div>
+  <div class="modal-content border-radius">
+    <div class="modal-header">
+      <h3>Send USDT</h3>
+      <fa-icon
+        [icon]="['fas', 'circle-xmark']"
+        (click)="toggleModal()"
+      ></fa-icon>
+    </div>
+    <hr />
+    <div class="modal-body margin-top">
+      <form class="margin-top">
+        <div class="group">
+          <label for="address" class="fw-600">Address or Domain Name</label>
+          <input
+            type="amount"
+            name="amount"
+            id=""
+            class="border-radius-5 w-100"
+            placeholder="Search or paste ..."
+          />
+        </div>
+
+        <div class="group margin-top">
+          <label for="address" class="fw-600">Amount</label>
+          <input
+            type="amount"
+            name="amount"
+            id=""
+            class="border-radius-5 w-100"
+            placeholder="USDT Amount"
+          />
+        </div>
+
+        <button
+          type="button"
+          (click)="toggleConfirmationDialog()"
+          class="btn btn-primary btn-pill margin-top w-100 margin-bottom-1"
+        >
+          Continue
+        </button>
+
+        <app-confirmation-dialog [(isOpen)]="isConfirm" />
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,78 @@
+<section>
+  <div class="container-fluid">
+    <div class="grid grid-2 gap-1 grid-2-desktop">
+      <div class="crypto card padding-2" routerLink="crypto">
+        <div class="icon border-radius">
+          <fa-icon [icon]="['fas', 'bitcoin-sign']"></fa-icon>
+        </div>
+        <p class="fw-600">Crypto</p>
+      </div>
+      <div class="bank card padding-2" (click)="toggleModal()">
+        <div class="icon border-radius">
+          <fa-icon [icon]="['fas', 'building-columns']"></fa-icon>
+        </div>
+        <p class="fw-600">Bank</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="modal" [class.show]="isModal">
+  <div class="overlay" (click)="toggleModal()"></div>
+  <div class="modal-content border-radius">
+    <div class="modal-header">
+      <h3>Bank Deposit</h3>
+      <fa-icon
+        [icon]="['fas', 'circle-xmark']"
+        (click)="toggleModal()"
+      ></fa-icon>
+    </div>
+    <hr />
+    <div class="modal-body margin-top text-center">
+      <div class="bg-warning padding-2 border-radius">
+        <small
+          >This is your designated P2P account. Please use the account details
+          below to complete your transaction</small
+        >
+      </div>
+
+      <div class="margin-top">
+        <p class="fw-600">Bank Name: Bank of Spain</p>
+        <p class="fw-600">Account Name: John Doe</p>
+        <h2>3118938768</h2>
+      </div>
+
+      <div class="note margin-top color-danger text-left">
+        <p>Note</p>
+        <p>Please enter the amount you want to deposit</p>
+        <p>Only click the pay button after making deposit</p>
+      </div>
+
+      <form class="margin-top">
+        <div
+          class="flex align-items-center justify-content-space gap loop-content"
+        >
+          <small>Amount</small>
+          <small>Balance: 100.00 USDT</small>
+          <button class="btn btn-outline btn-primary btn-sm">Max</button>
+        </div>
+
+        <div class="input-group">
+          <input
+            type="amount"
+            name="amount"
+            id=""
+            class="border-radius-5 w-100"
+            placeholder="Enter amount"
+          />
+          <button class="btn btn-primary btn-pill">Circulate</button>
+        </div>
+
+        <div class="summary flex align-items-center justify-content-space">
+          <small>Value</small>
+          <small class="fw-600">104 USDT</small>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

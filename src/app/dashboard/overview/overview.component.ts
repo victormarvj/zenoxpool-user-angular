@@ -1,10 +1,11 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { DatatablesModule } from '../../Modules/datatables/datatables.module';
+import { FontAwesomeModuleModule } from '../../Modules/font-awesome-module/font-awesome-module.module';
 
 @Component({
   selector: 'app-overview',
-  imports: [RouterModule, DatatablesModule],
+  imports: [RouterModule, DatatablesModule, FontAwesomeModuleModule],
   templateUrl: './overview.component.html',
   styleUrl: './overview.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

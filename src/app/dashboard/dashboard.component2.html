@@ -1,0 +1,19 @@
+<main>
+  <section class="grid grid-2">
+    <section class="navigation drop-shadow-y-1">
+      <div
+        class="navigation-overlay"
+        [class.hidden]="isNavbarHidden"
+        (click)="toggleNav()"
+      ></div>
+      <app-header />
+    </section>
+    <section class="main">
+      <router-outlet />
+
+      <p class="text-center margin-top">
+        &copy; Copyright 2024 - {{ date }}. All Rights Reserved
+      </p>
+    </section>
+  </section>
+</main>

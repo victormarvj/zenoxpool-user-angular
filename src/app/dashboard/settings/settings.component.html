@@ -1,0 +1,56 @@
+<section>
+  <div class="container-fluid grid-2-desktop">
+    <div class="card">
+      <div class="card-header">
+        <p class="fw-600">Password Manager</p>
+      </div>
+
+      <hr />
+
+      <form class="margin-top">
+        <div class="group">
+          <label for="old_password" class="fw-600">Old Password</label>
+          <input
+            type="text"
+            name="old_password"
+            id="old_password"
+            class="border-radius-5 w-100"
+            placeholder="Enter old password"
+          />
+        </div>
+
+        <div class="group margin-top">
+          <label for="new_password" class="fw-600">New Password</label>
+          <input
+            type="text"
+            name="new_password"
+            id="new_password"
+            class="border-radius-5 w-100"
+            placeholder="Enter new password"
+          />
+        </div>
+
+        <div class="group margin-top">
+          <label for="old_password" class="fw-600">Confirm Password</label>
+          <input
+            type="text"
+            name="confirm_password"
+            id="confirm_password"
+            class="border-radius-5 w-100"
+            placehconfirmer="Enter confirm password"
+          />
+        </div>
+
+        <button
+          type="button"
+          (click)="toggleConfirmationDialog()"
+          class="btn btn-primary btn-pill margin-top w-100 margin-bottom-1"
+        >
+          Update
+        </button>
+
+        <app-confirmation-dialog [(isOpen)]="isConfirm" />
+      </form>
+    </div>
+  </div>
+</section>

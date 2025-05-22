@@ -1,0 +1,201 @@
+<main>
+  <section class="grid grid-2">
+    <section class="navigation drop-shadow-y-1">
+      <div
+        class="navigation-overlay"
+        [class.hidden]="isNavbarHidden"
+        (click)="toggleNav()"
+      ></div>
+      <header class="header">
+        <!-- <h1 class="title">{{ titleService.title$ | async }}</h1> -->
+        <h1 class="title">Overview</h1>
+        <!-- <ion-icon name="menu" (click)="toggleNav()" class="menu"></ion-icon> -->
+
+        <div class="group flex align-items-center gap-1">
+          <div
+            class="toggle-div border-radius-5"
+            [class.light]="!isDarkMode"
+            [class.dark]="isDarkMode"
+            (click)="toggleTheme()"
+          >
+            @if(isDarkMode) {
+            <!-- <ion-icon name="moon-outline" class="border-radius-5"></ion-icon> -->
+
+            <fa-icon [icon]="['fas', 'moon']"></fa-icon>
+            }@else {
+            <!-- <ion-icon name="sunny-outline" class="border-radius-5"></ion-icon> -->
+
+            <fa-icon [icon]="['fas', 'sun']"></fa-icon>
+            }
+            <label>{{ isDarkMode ? "Dark" : "Light" }}</label>
+          </div>
+
+          <fa-icon
+            [icon]="isNavbarHidden ? 'bars' : 'xmark'"
+            (click)="toggleNav()"
+            class="menu-toggle"
+          ></fa-icon>
+
+          <div
+            class="profile-div desktop border-radius padding-1"
+            (click)="toggleDropdown()"
+          >
+            <img src="avatar.png" alt="profile img" class="profile-img" />
+            <div>
+              <p class="fullname">Victor Marvj</p>
+              <p class="email">{{ "victormarvj@gmail.com" }}</p>
+            </div>
+
+            <fa-icon [icon]="['fas', 'caret-down']"></fa-icon>
+
+            <div class="dropdown" [class.show]="isDropdown">
+              <div class="dropdown-overlay" [class.hidden]="!isDropdown"></div>
+              <nav class="navbar border-radius drop-shadow-1">
+                <ul class="navbar-nav">
+                  <li
+                    class="nav-item"
+                    routerLinkActive="active"
+                    ariaCurrentWhenActive="page"
+                  >
+                    <fa-icon [icon]="['fas', 'gear']"></fa-icon>
+                    <a routerLink="/dashboard/settings" class="nav-link"
+                      >Settings</a
+                    >
+                  </li>
+                  <li
+                    class="nav-item"
+                    routerLinkActive="active"
+                    ariaCurrentWhenActive="page"
+                  >
+                    <fa-icon [icon]="['fas', 'user']"></fa-icon>
+                    <a routerLink="/dashboard/profile" class="nav-link"
+                      >Profile</a
+                    >
+                  </li>
+                </ul>
+
+                <div class="create-space" routerLink="#">
+                  <div class="logout border-radius-5 color-danger">
+                    <fa-icon [icon]="['fas', 'right-from-bracket']"></fa-icon>
+                    <label>Log out</label>
+                  </div>
+                </div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <nav class="navbar" [class.hidden]="isNavbarHidden">
+        <header class="modal-header">
+          <h2>ZenoxPool</h2>
+          <!-- <ion-icon name="close-outline" (click)="toggleNav()"></ion-icon> -->
+
+          <fa-icon
+            icon="xmark"
+            (click)="toggleNav()"
+            class="closeModal"
+          ></fa-icon>
+        </header>
+        <div class="profile-div">
+          <img src="avatar.png" alt="profile img" class="profile-img" />
+          <p class="fullname">Victor Marvj</p>
+          <p class="email">{{ "victormarvj@gmail.com" }}</p>
+        </div>
+        <ul class="navbar-nav">
+          <li
+            class="nav-item"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            (click)="toggleNav()"
+          >
+            <!-- <ion-icon name="grid-outline"></ion-icon> -->
+
+            <fa-icon [icon]="['fas', 'gauge']"></fa-icon>
+            <a routerLink="/dashboard/overview" class="nav-link">Overview</a>
+          </li>
+          <li
+            class="nav-item"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            (click)="toggleNav()"
+          >
+            <!-- <ion-icon name="magnet-outline"></ion-icon> -->
+
+            <fa-icon [icon]="['far', 'compass']"></fa-icon>
+            <a routerLink="/dashboard/zone" class="nav-link">ZenoxPool Zone</a>
+          </li>
+          <li
+            class="nav-item"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            (click)="toggleNav()"
+          >
+            <!-- <ion-icon name="card-outline"></ion-icon> -->
+
+            <fa-icon [icon]="['far', 'credit-card']"></fa-icon>
+            <a routerLink="/dashboard/deposit" class="nav-link">Deposits</a>
+          </li>
+          <li
+            class="nav-item"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            (click)="toggleNav()"
+          >
+            <!-- <ion-icon name="swap-horizontal-outline"></ion-icon> -->
+
+            <fa-icon [icon]="['fas', 'arrows-rotate']"></fa-icon>
+            <a routerLink="/dashboard/swap" class="nav-link">Swap</a>
+          </li>
+          <li
+            class="nav-item"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            (click)="toggleNav()"
+          >
+            <!-- <ion-icon name="swap-vertical-outline"></ion-icon> -->
+
+            <fa-icon [icon]="['fas', 'right-left']"></fa-icon>
+            <a routerLink="/dashboard/transfer" class="nav-link">Transfer</a>
+          </li>
+          <li
+            class="nav-item"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            (click)="toggleNav()"
+          >
+            <!-- <ion-icon name="cog-outline"></ion-icon> -->
+
+            <fa-icon [icon]="['fas', 'gear']"></fa-icon>
+            <a routerLink="/dashboard/settings" class="nav-link">Settings</a>
+          </li>
+          <li
+            class="nav-item"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            (click)="toggleNav()"
+          >
+            <!-- <ion-icon name="person-circle-outline"></ion-icon> -->
+
+            <fa-icon [icon]="['fas', 'user']"></fa-icon>
+            <a routerLink="/dashboard/profile" class="nav-link">Profile</a>
+          </li>
+        </ul>
+
+        <div class="create-space" routerLink="#">
+          <div class="logout border-radius-5 color-danger">
+            <fa-icon [icon]="['fas', 'right-from-bracket']"></fa-icon>
+            <label>Log out</label>
+          </div>
+        </div>
+      </nav>
+    </section>
+    <section class="main">
+      <router-outlet />
+
+      <p class="text-center margin-top">
+        &copy; Copyright 2024 - {{ date }}. All Rights Reserved
+      </p>
+    </section>
+  </section>
+</main>

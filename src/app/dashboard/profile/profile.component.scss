@@ -1,0 +1,10 @@
+@media (min-width: 75em) {
+  .grid-2-desktop {
+    display: grid;
+    grid-template-columns: 20rem 1fr;
+  }
+
+  .btn.w-100 {
+    width: 50%;
+  }
+}

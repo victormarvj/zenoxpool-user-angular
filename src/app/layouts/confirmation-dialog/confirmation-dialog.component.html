@@ -1,0 +1,35 @@
+<div class="modal" [class.show]="isOpen()">
+  <div class="overlay" (click)="toggleModal()"></div>
+  <div class="modal-content border-radius">
+    <div class="modal-header">
+      <h3>Confirmation Dialog</h3>
+      <fa-icon
+        [icon]="['fas', 'circle-xmark']"
+        (click)="toggleModal()"
+      ></fa-icon>
+    </div>
+    <div class="modal-body margin-top text-center">
+      <fa-icon
+        [icon]="['far', 'calendar-check']"
+        class="color-warning"
+      ></fa-icon>
+      <small class="fw-600 d-block">Confirmation</small>
+
+      <div class="content margin-top">
+        <p>Are you certain you want to proceed with this action?</p>
+      </div>
+
+      <div class="actions margin-top grid grid-2 gap-1">
+        <button
+          (click)="toggleModal()"
+          type="button"
+          class="btn btn-outline btn-primary btn-pill"
+        >
+          No
+        </button>
+
+        <button class="btn btn-primary btn-pill">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>

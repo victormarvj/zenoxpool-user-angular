@@ -8,6 +8,12 @@
   --color-grey-1: #e3e3e3;
   --color-danger: #eb2020;
   --color-success: #50af95;
+  --color-warning: #bba867;
+  --color-gradient-1: linear-gradient(
+    to bottom right,
+    var(--color-primary-2) 11%,
+    var(--color-primary-1) 60%
+  );
 }
 
 * {
@@ -17,9 +23,7 @@
 }
 
 html {
-  // font-size: 62.5%;
-  // font-size: 71.4%;
-  font-size: 83.3%;
+  font-size: 87.5%;
   overflow-x: hidden;
 }
 
@@ -60,28 +64,13 @@ a:visited {
   color: var(--color-primary-1);
 }
 
-input {
-  color: var(--color-primary-1);
-  padding: 1rem 1.6rem;
-  border: 0.85px solid var(--color-primary-1);
-  outline: none;
-}
-
-input:focus {
-  border: 2px solid var(--color-primary-1);
-  outline: none;
-}
-
-input::placeholder {
-  color: var(--color-primary-1);
-}
-
 hr {
   border: 1px solid var(--color-grey-1);
   margin-top: 1rem;
 }
 
-ion-icon {
+ion-icon,
+fa-icon {
   font-size: 2.4rem;
 }
 
@@ -109,6 +98,10 @@ ion-icon {
   align-items: center;
 }
 
+.align-items-start {
+  align-items: start;
+}
+
 .justify-content-center {
   justify-content: center;
 }
@@ -130,11 +123,7 @@ ion-icon {
   gap: 1.6rem;
 }
 
-.container {
-  max-width: 90%;
-  margin: 0 auto;
-  overflow-x: hidden;
-}
+.container,
 .container-fluid {
   max-width: 90%;
   margin: 0 auto;
@@ -163,11 +152,7 @@ ion-icon {
 }
 
 .bg-gradient-1 {
-  background-image: linear-gradient(
-    to bottom right,
-    var(--color-primary-2) 11%,
-    var(--color-primary-1) 56%
-  );
+  background-image: var(--color-gradient-1);
 }
 
 .padding {
@@ -233,4 +218,77 @@ ion-icon {
 
 .color-success {
   color: var(--color-success);
+}
+
+.color-white {
+  color: var(--color-white);
+}
+
+.color-warning {
+  color: var(--color-warning);
+  opacity: 0.5;
+}
+
+.bg-warning {
+  background-color: var(--color-warning);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.balance-logo {
+  max-width: 3rem;
+  max-height: 3rem;
+}
+
+.assets-logo {
+  max-width: 2.4rem;
+  max-height: 2.4rem;
+}
+
+.icon {
+  border: 0.85px solid var(--color-primary-1);
+  display: grid;
+  place-content: center;
+}
+
+.note {
+  font-size: 0.8rem;
+}
+
+.d-block {
+  display: block;
+}
+
+.bg-grey-1 {
+  background-color: var(--color-grey-1);
+}
+
+.bg-transparent {
+  background-color: transparent;
+}
+
+.justify-content-end {
+  justify-content: end;
+}
+
+.align-items-end {
+  align-items: end;
+}
+
+.margin-top-1 {
+  margin-top: 1rem;
+}
+
+.margin-bottom-1 {
+  margin-bottom: 1rem;
+}
+
+.margin-block-1 {
+  margin-block: 1rem;
 }

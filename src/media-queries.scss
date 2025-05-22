@@ -1,19 +1,25 @@
-// 600px and above
-@media (min-width: 37.5em) {
+// Mobile above: 600px and above
+// @media (min-width: 37.5em) {
+//   .grid-2 {
+//     grid-template-columns: 1fr;
+//   }
+
+//   .grid-3 {
+//     grid-template-columns: repeat(3, 1fr);
+//   }
+// }
+
+// Tablets above: 900px and above
+@media (min-width: 56.2em) {
+  .container-fluid {
+    max-width: 98%;
+  }
+
   .grid-2 {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .grid-3 {
     grid-template-columns: repeat(3, 1fr);
-  }
-
-  .container {
-    max-width: 80vw;
-    margin: 0 auto;
-  }
-
-  .container-fluid {
-    max-width: 100%;
   }
 }

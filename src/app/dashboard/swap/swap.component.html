@@ -1,0 +1,79 @@
+<section>
+  <div class="container-fluid grid-2-desktop">
+    <div class="card">
+      <p class="fw-600">You Pay</p>
+
+      <hr />
+
+      <form>
+        <div class="content grid grid-2 grid-2-desktop gap-1 margin-top">
+          <div class="from bg-grey-1 border-radius padding-2">
+            <div class="flex justify-content-space align-items-center">
+              <small>From: BTC</small>
+              <div>
+                <fa-icon [icon]="['fas', 'wallet']"></fa-icon>
+                <span>4.043</span>
+              </div>
+              <button class="btn btn-outline btn-primary btn-sm">Max</button>
+            </div>
+            <div class="option flex justify-content-space align-items-start">
+              <div class="flex align-items-center">
+                <img src="btc.png" alt="" class="assets-logo" />
+                <span class="margin-left">BTC</span>
+              </div>
+              <div class="flex flex-column align-items-end">
+                <input
+                  type="amount"
+                  name="amount"
+                  id=""
+                  class="border-radius-5 bg-transparent"
+                  placeholder="Enter amount"
+                />
+                <small class="fw-600 equavalent">BTC</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="to bg-grey-1 border-radius padding-2">
+            <div class="flex justify-content-space align-items-center">
+              <small>From: BTC</small>
+              <div>
+                <fa-icon [icon]="['fas', 'wallet']"></fa-icon>
+                <span>4.043</span>
+              </div>
+              <button class="btn btn-outline btn-primary btn-sm">Max</button>
+            </div>
+            <div class="option flex justify-content-space align-items-start">
+              <div class="flex align-items-center">
+                <img src="btc.png" alt="" class="assets-logo" />
+                <span class="margin-left">BTC</span>
+              </div>
+              <div class="flex flex-column align-items-end">
+                <input
+                  type="amount"
+                  name="amount"
+                  id=""
+                  class="border-radius-5 bg-transparent"
+                  placeholder="Enter amount"
+                />
+                <small class="fw-600 equavalent">BTC</small>
+              </div>
+            </div>
+          </div>
+          <div class="icon border-radius-5 bg-primary-1">
+            <fa-icon [icon]="['fas', 'right-left']"></fa-icon>
+          </div>
+        </div>
+        <button
+          type="button"
+          class="btn btn-pill btn-primary margin-block-1 w-100"
+          (click)="toggleConfirmationDialoq()"
+        >
+          Swap Now
+        </button>
+
+        <app-confirmation-dialog [(isOpen)]="isConfirm" />
+      </form>
+    </div>
+  </div>
+</section>

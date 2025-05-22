@@ -1,0 +1,62 @@
+fa-icon {
+  font-size: 1rem;
+}
+
+.btn-sm {
+  padding: 0.2rem 1rem;
+}
+
+.option {
+  margin-top: 0.6rem;
+
+  input {
+    padding: 0.6rem 1rem;
+    width: 80%;
+  }
+
+  .equavalent {
+    margin-top: 0.2rem;
+  }
+}
+
+.content {
+  position: relative;
+
+  .icon {
+    width: 2.6rem;
+    height: 2.6rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    fa-icon {
+      font-size: 1.4rem;
+      transform: rotate(90deg);
+    }
+  }
+}
+
+.content.gap-1 {
+  gap: 0.4rem;
+}
+
+@media (min-width: 37.5em) {
+  .content.grid-2-desktop {
+    grid-template-columns: 1fr;
+  }
+}
+
+// @media (min-width: 56.2em) {
+//   .grid-2-desktop {
+//     display: grid;
+//     grid-template-columns: repeat(1, 1fr);
+//   }
+// }
+
+@media (min-width: 75em) {
+  .grid-2-desktop {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

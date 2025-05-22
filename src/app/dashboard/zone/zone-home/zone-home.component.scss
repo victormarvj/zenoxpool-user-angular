@@ -1,0 +1,17 @@
+.zone-menu {
+  .col {
+    text-align: center;
+
+    .icon {
+      width: 3.7rem;
+      height: 3.7rem;
+      border: 0.85px solid var(--color-primary-1);
+      display: grid;
+      place-content: center;
+
+      fa-icon {
+        font-size: 2rem;
+      }
+    }
+  }
+}
