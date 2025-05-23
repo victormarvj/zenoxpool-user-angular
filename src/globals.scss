@@ -255,6 +255,12 @@ fa-icon {
   border: 0.85px solid var(--color-primary-1);
   display: grid;
   place-content: center;
+  cursor: pointer;
+}
+
+.icon:hover {
+  background-color: var(--color-primary-1);
+  color: var(--color-white);
 }
 
 .note {

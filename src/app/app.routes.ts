@@ -18,8 +18,13 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { UsersComponent } from './admin-dashboard/users/users.component';
 import { AdminOverviewComponent } from './admin-dashboard/admin-overview/admin-overview.component';
 import { AdminZonesComponent } from './admin-dashboard/admin-zones/admin-zones.component';
-import { BitcoinComponent } from './admin-dashboard/bitcoin/bitcoin.component';
 import { BankComponent } from './admin-dashboard/bank/bank.component';
+import { TransactionsComponent } from './dashboard/transactions/transactions.component';
+import { AdminTransactionsComponent } from './admin-dashboard/admin-transactions/admin-transactions.component';
+import { AdminSettingsComponent } from './admin-dashboard/admin-settings/admin-settings.component';
+import { AdminProfileComponent } from './admin-dashboard/admin-profile/admin-profile.component';
+import { AdminCryptoComponent } from './admin-dashboard/admin-crypto/admin-crypto.component';
+import { GasFeeComponent } from './admin-dashboard/gas-fee/gas-fee.component';
 
 export const routes: Routes = [
   {
@@ -98,6 +103,12 @@ export const routes: Routes = [
         data: { title: 'Transfer | ZenoxPool' },
       },
       {
+        path: 'transactions',
+        component: TransactionsComponent,
+        title: 'Transactions | ZenoxPool',
+        data: { title: 'Transactions | ZenoxPool' },
+      },
+      {
         path: 'settings',
         component: SettingsComponent,
         title: 'Settings | ZenoxPool',
@@ -139,16 +150,40 @@ export const routes: Routes = [
         data: { title: 'Zones | ZenoxPool' },
       },
       {
-        path: 'bitcoin',
-        component: BitcoinComponent,
-        title: 'Bitcoin | ZenoxPool',
-        data: { title: 'Bitcoin | ZenoxPool' },
+        path: 'crypto',
+        component: AdminCryptoComponent,
+        title: 'Crypto | ZenoxPool',
+        data: { title: 'Crypto | ZenoxPool' },
       },
       {
         path: 'bank',
         component: BankComponent,
         title: 'Bank | ZenoxPool',
         data: { title: 'Bank | ZenoxPool' },
+      },
+      {
+        path: 'gas-fee',
+        component: GasFeeComponent,
+        title: 'Gas Fee | ZenoxPool',
+        data: { title: 'Gas Fee | ZenoxPool' },
+      },
+      {
+        path: 'transactions',
+        component: AdminTransactionsComponent,
+        title: 'Transactions | ZenoxPool',
+        data: { title: 'Transactions | ZenoxPool' },
+      },
+      {
+        path: 'settings',
+        component: AdminSettingsComponent,
+        title: 'Settings | ZenoxPool',
+        data: { title: 'Settings | ZenoxPool' },
+      },
+      {
+        path: 'profile',
+        component: AdminProfileComponent,
+        title: 'Profile | ZenoxPool',
+        data: { title: 'Profile | ZenoxPool' },
       },
     ],
   },

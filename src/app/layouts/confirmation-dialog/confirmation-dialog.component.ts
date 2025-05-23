@@ -9,13 +9,13 @@ import { FontAwesomeModuleModule } from '../../Modules/font-awesome-module/font-
   styleUrls: ['./confirmation-dialog.component.scss'],
 })
 export class ConfirmationDialogComponent implements OnInit {
-  isOpen = model(false);
+  isConfirm = model(false);
 
   constructor() {}
 
   ngOnInit() {}
 
   toggleModal() {
-    this.isOpen.update((value) => !value);
+    this.isConfirm.update((value) => !value);
   }
 }

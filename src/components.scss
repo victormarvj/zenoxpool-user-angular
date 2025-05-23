@@ -154,9 +154,20 @@
   background-color: var(--color-primary-1);
 }
 
+.btn.btn-primary:disabled {
+  opacity: 0.5;
+}
+
 .btn.btn-primary:hover {
   color: var(--color-white);
+  background-color: var(--color-primary-2);
+}
+
+.btn.btn-primary:hover:disabled {
+  color: var(--color-white);
+  outline: 0.85px solid var(--color-primary-1);
   background-color: var(--color-primary-1);
+  cursor: default;
 }
 
 .btn.btn-outline.btn-primary {
@@ -220,6 +231,7 @@ table.dataTable > tbody > tr {
 .label.bg-warning {
   color: var(--color-warning);
   border: 0.85px solid var(--color-warning);
+  background-color: transparent;
 }
 
 .label.bg-danger {

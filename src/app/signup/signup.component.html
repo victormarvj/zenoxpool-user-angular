@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="grid grid-2">
       <div class="form-grid">
-        <form class="form-100">
+        <form class="form-100" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
           <header class="text-center">
             <h1>Sign Up</h1>
             <h3>Join us in our amazing adventure</h3>
@@ -15,6 +15,7 @@
                 class="border-radius-5 bg-transparent w-100"
                 placeholder="Fullname"
                 id="fullname"
+                formControlName="fullname"
               />
               <input
                 type="text"
@@ -22,6 +23,7 @@
                 class="border-radius-5 bg-transparent w-100"
                 placeholder="Username"
                 id="username"
+                formControlName="username"
               />
             </div>
 
@@ -32,6 +34,7 @@
                 class="border-radius-5 bg-transparent w-100"
                 placeholder="Email"
                 id="email"
+                formControlName="email"
               />
             </div>
 
@@ -42,6 +45,7 @@
                 class="border-radius-5 bg-transparent w-100"
                 placeholder="Phone"
                 id="phone"
+                formControlName="phone"
               />
             </div>
 
@@ -52,6 +56,7 @@
                 class="border-radius-5 bg-transparent w-100"
                 placeholder="Password"
                 id="password"
+                formControlName="password"
               />
               <input
                 type="text"
@@ -59,12 +64,14 @@
                 class="border-radius-5 bg-transparent w-100"
                 placeholder="Confirm Password"
                 id="password_confirmation"
+                formControlName="password_confirmation"
               />
             </div>
 
             <button
-              routerLink="/login"
+              [disabled]="!signupForm.valid"
               type="button"
+              (click)="this.toggleConfirmModal()"
               class="btn btn-pill btn-primary margin-top-2 w-100"
             >
               Sign Up
@@ -74,6 +81,8 @@
             Already have an account?
             <a routerLink="/login" class="fw-600">Login</a>
           </p>
+
+          <app-confirmation-dialog [(isConfirm)]="isConfirm" />
         </form>
 
         <p class="text-center">

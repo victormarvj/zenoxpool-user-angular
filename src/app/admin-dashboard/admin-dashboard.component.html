@@ -139,13 +139,13 @@
           </li>
           <li class="nav-item" (click)="toggleNav()">
             <a
-              routerLink="/admin/dashboard/bitcoin"
+              routerLink="/admin/dashboard/crypto"
               routerLinkActive="active"
               ariaCurrentWhenActive="page"
               class="nav-link"
             >
               <fa-icon [icon]="['fas', 'bitcoin-sign']"></fa-icon>
-              <span>Bitcoin Payment</span>
+              <span>Crypto Payment</span>
             </a>
           </li>
           <li class="nav-item" (click)="toggleNav()">
@@ -157,6 +157,28 @@
             >
               <fa-icon [icon]="['fas', 'building-columns']"></fa-icon>
               <span>Bank Payment</span>
+            </a>
+          </li>
+          <li class="nav-item" (click)="toggleNav()">
+            <a
+              routerLink="/admin/dashboard/gas-fee"
+              routerLinkActive="active"
+              ariaCurrentWhenActive="page"
+              class="nav-link"
+            >
+              <fa-icon [icon]="['fas', 'gas-pump']"></fa-icon>
+              <span>Gas Fee</span>
+            </a>
+          </li>
+          <li class="nav-item" (click)="toggleNav()">
+            <a
+              routerLink="/admin/dashboard/gas"
+              routerLinkActive="active"
+              ariaCurrentWhenActive="page"
+              class="nav-link"
+            >
+              <fa-icon [icon]="['fas', 'clock-rotate-left']"></fa-icon>
+              <span>Transactions</span>
             </a>
           </li>
           <li class="nav-item" (click)="toggleNav()">
