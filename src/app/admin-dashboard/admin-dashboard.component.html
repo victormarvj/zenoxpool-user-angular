@@ -41,8 +41,8 @@
           >
             <img src="avatar.png" alt="profile img" class="profile-img" />
             <div>
-              <p class="fullname">Victor Marvj</p>
-              <p class="email">{{ "victormarvj@gmail.com" }}</p>
+              <p class="fullname">{{ authUser?.fullname }}</p>
+              <p class="email">{{ authUser?.email }}</p>
             </div>
 
             <fa-icon [icon]="['fas', 'caret-down']"></fa-icon>
@@ -75,8 +75,8 @@
                   </li>
                 </ul>
 
-                <div class="create-space" routerLink="#">
-                  <div class="logout border-radius-5 color-danger">
+                <div class="create-space" (click)="logOut()">
+                  <div class="logout border-radius-5 color-danger margin-top">
                     <fa-icon [icon]="['fas', 'right-from-bracket']"></fa-icon>
                     <label>Log out</label>
                   </div>
@@ -205,7 +205,7 @@
           </li>
         </ul>
 
-        <div class="create-space" routerLink="#">
+        <div class="create-space" (click)="logOut()">
           <div class="logout border-radius-5 color-danger" routerLink="/login">
             <fa-icon [icon]="['fas', 'right-from-bracket']"></fa-icon>
             <label>Log out</label>

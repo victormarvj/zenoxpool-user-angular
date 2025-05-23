@@ -5,7 +5,7 @@
         <div class="particle-1"></div>
       </div>
       <div class="form-grid">
-        <form class="form-100">
+        <form class="form-100" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
           <header class="text-center">
             <h1>Login</h1>
             <h3>Welcome back. Login to continue</h3>
@@ -18,11 +18,12 @@
           <div class="body">
             <div class="form-group margin-top-2">
               <input
-                type="text"
+                type="email"
                 name="email"
                 class="border-radius-5 bg-transparent w-100"
-                placeholder="Email / Username"
+                placeholder="Email"
                 id="email"
+                formControlName="email"
               />
             </div>
 
@@ -33,6 +34,7 @@
                 class="border-radius-5 bg-transparent w-100"
                 placeholder="Password"
                 id="password"
+                formControlName="password"
               />
             </div>
 
@@ -42,7 +44,8 @@
             </div>
 
             <button
-              routerLink="/dashboard"
+              (click)="toggleConfirmModal()"
+              [disabled]="loginForm.invalid"
               type="button"
               class="btn btn-pill btn-primary margin-top-2 w-100"
             >
@@ -53,6 +56,8 @@
             Don't have an account?
             <a routerLink="/signup" class="fw-600">Sign Up</a>
           </p>
+
+          <app-confirmation-dialog [(isConfirm)]="isConfirm" />
         </form>
 
         <p class="text-center">

@@ -140,8 +140,35 @@ export const routes: Routes = [
       {
         path: 'users',
         component: UsersComponent,
-        title: 'Users | ZenoxPool',
-        data: { title: 'Users | ZenoxPool' },
+        children: [
+          {
+            path: '',
+            loadComponent: () =>
+              import(
+                './admin-dashboard/users/user-overview/user-overview.component'
+              ).then((c) => c.UserOverviewComponent),
+            title: 'Users | ZenoxPool',
+            data: { title: 'Users | ZenoxPool' },
+          },
+          {
+            path: 'new-user',
+            loadComponent: () =>
+              import(
+                './admin-dashboard/users/new-user/new-user.component'
+              ).then((c) => c.NewUserComponent),
+            title: 'New User | ZenoxPool',
+            data: { title: 'New User | ZenoxPool' },
+          },
+          {
+            path: 'new-user',
+            loadComponent: () =>
+              import(
+                './admin-dashboard/users/edit-user/edit-user.component'
+              ).then((c) => c.EditUserComponent),
+            title: 'Edit User | ZenoxPool',
+            data: { title: 'Edit User | ZenoxPool' },
+          },
+        ],
       },
       {
         path: 'zones',

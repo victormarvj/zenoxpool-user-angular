@@ -1,0 +1,99 @@
+<section>
+  <div class="container-fluid">
+    <div class="card transaction-div">
+      <div class="flex gap-2 align-items-center">
+        <p class="fw-600">All Users</p>
+        <a routerLink="new-user" class="btn btn-sm btn-outline btn-primary"
+          >New User</a
+        >
+      </div>
+
+      <hr />
+
+      <!-- <table datatable [dtOptions]="dtOptions" class="row-border hover"> -->
+      <div class="table-responsive">
+        @if (!isFetching && users !== null) {
+        <table datatable class="row-border hover">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Fullname</th>
+              <th>Email</th>
+              <th>Username</th>
+              <th>Password</th>
+              <th>Status</th>
+              <th>Date</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (user of users; track $index) {
+            <tr>
+              <td>{{ $index + 1 }}</td>
+              <td>{{ user.fullname }}</td>
+              <td>{{ user.email }}</td>
+              <td>{{ user.username }}</td>
+              <td>{{ user.pass }}</td>
+              <td>
+                <span
+                  class="label"
+                  [ngClass]="{
+                    'bg-success': user.status === 1,
+                    'bg-warning': user.status === 0
+                  }"
+                  >{{ user.status == 1 ? "Active" : "Inactive" }}</span
+                >
+              </td>
+              <td class="text-truncate">23 May, 2025 4:34 pm</td>
+              <td>
+                @if (!isLoading) {
+                <div class="flex gap-1 align-items-center">
+                  <div class="status" (click)="changeStatus(user.id)">
+                    @if (user.status === 0) {
+                    <fa-icon
+                      [icon]="['fas', 'toggle-off']"
+                      class="color-warning"
+                    ></fa-icon>
+                    }@else {
+                    <fa-icon
+                      [icon]="['fas', 'toggle-on']"
+                      class="color-success"
+                    ></fa-icon>
+                    }
+                  </div>
+                  <fa-icon
+                    [icon]="['far', 'pen-to-square']"
+                    class="color-primary"
+                  ></fa-icon>
+
+                  <fa-icon
+                    [icon]="['far', 'trash-can']"
+                    class="color-danger"
+                    (click)="toggleConfirmModal(user.id)"
+                  ></fa-icon>
+                </div>
+                }@else {
+                <fa-icon
+                  [icon]="['fas', 'spinner']"
+                  class="load-spinner"
+                ></fa-icon>
+                }
+              </td>
+            </tr>
+            }
+          </tbody>
+        </table>
+        }@else {
+        <p class="text-center">
+          {{ isFetching ? "Loading data..." : "No record found!" }}
+        </p>
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<form (ngSubmit)="onSubmit()" #form="ngForm">
+  <input type="hidden" name="user_id" id="user_id" [(ngModel)]="user_id" />
+  <app-confirmation-dialog [(isConfirm)]="isConfirm" />
+</form>

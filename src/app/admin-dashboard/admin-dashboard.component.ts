@@ -9,6 +9,12 @@ import { FontAwesomeModuleModule } from '../Modules/font-awesome-module/font-awe
 import { TitleService } from '../Services/title.service';
 import { filter, map } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
+import { LocalStorageService } from '../Services/local-storage.service';
+import { UsersService } from '../Services/users.service';
+import { ErrorService } from '../Services/error.service';
+import { LoaderService } from '../Services/loader.service';
+import { SuccessService } from '../Services/success.service';
+import { LogoutService } from '../Services/logout.service';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -24,13 +30,18 @@ export class AdminDashboardComponent implements OnInit {
 
   date: number = new Date().getFullYear();
 
+  authUser: any;
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    public titleService: TitleService
+    public titleService: TitleService,
+    private userService: UsersService,
+    private logoutService: LogoutService
   ) {}
 
   ngOnInit(): void {
+    this.userService.authUser$.subscribe((user) => (this.authUser = user));
     this.router.events
       .pipe(
         filter((event) => event instanceof NavigationEnd),
@@ -67,5 +78,9 @@ export class AdminDashboardComponent implements OnInit {
 
   checkScreenSize() {
     this.isMobile = window.innerWidth <= 900;
+  }
+
+  logOut() {
+    this.logoutService.logOut();
   }
 }

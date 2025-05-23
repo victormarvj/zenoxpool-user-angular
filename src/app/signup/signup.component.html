@@ -57,6 +57,7 @@
                 placeholder="Password"
                 id="password"
                 formControlName="password"
+                (input)="checkPasswordLength()"
               />
               <input
                 type="text"
@@ -67,6 +68,10 @@
                 formControlName="password_confirmation"
               />
             </div>
+            <small
+              [ngClass]="!passwordMinLength ? 'color-danger' : 'color-success'"
+              >Minimum of 6 characters</small
+            >
 
             <button
               [disabled]="!signupForm.valid"

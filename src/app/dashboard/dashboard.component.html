@@ -75,8 +75,8 @@
                   </li>
                 </ul>
 
-                <div class="create-space" routerLink="#">
-                  <div class="logout border-radius-5 color-danger">
+                <div class="create-space" (click)="logOut()">
+                  <div class="logout border-radius-5 color-danger margin-top">
                     <fa-icon [icon]="['fas', 'right-from-bracket']"></fa-icon>
                     <label>Log out</label>
                   </div>
@@ -194,8 +194,8 @@
           </li>
         </ul>
 
-        <div class="create-space" routerLink="#">
-          <div class="logout border-radius-5 color-danger" routerLink="/login">
+        <div class="create-space" (click)="logOut()">
+          <div class="logout border-radius-5 color-danger">
             <fa-icon [icon]="['fas', 'right-from-bracket']"></fa-icon>
             <label>Log out</label>
           </div>

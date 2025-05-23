@@ -10,7 +10,9 @@ export class ErrorService {
 
   constructor() {}
 
-  setError(message: string) {
+  setError(
+    message = 'Error: There was an error processing this request. Try again!'
+  ) {
     this.errorMessageSubject.next(message);
   }
 

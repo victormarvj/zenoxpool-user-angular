@@ -252,7 +252,7 @@ table.dataTable > tbody > tr {
   height: 100vh;
   display: grid;
   place-content: center;
-  z-index: 30;
+  z-index: 50;
   overflow: hidden;
   padding: 0 1rem;
 
@@ -300,6 +300,15 @@ input:focus {
 
 input::placeholder {
   color: var(--color-primary-1);
+}
+
+.ng-invalid:not(form) {
+  outline: 1px solid var(--color-danger);
+}
+
+.ng-valid:not(form),
+.ng-untouched:not(form) {
+  outline: 1px solid var(--color-primary-1);
 }
 
 .input-group {

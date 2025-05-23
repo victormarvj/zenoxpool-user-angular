@@ -14,6 +14,12 @@ import { TitleService } from '../Services/title.service';
 import { AsyncPipe } from '@angular/common';
 import { filter, map } from 'rxjs';
 import { FontAwesomeModuleModule } from '../Modules/font-awesome-module/font-awesome-module.module';
+import { LoaderService } from '../Services/loader.service';
+import { UsersService } from '../Services/users.service';
+import { ErrorService } from '../Services/error.service';
+import { LocalStorageService } from '../Services/local-storage.service';
+import { SuccessService } from '../Services/success.service';
+import { LogoutService } from '../Services/logout.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -27,13 +33,16 @@ export class DashboardComponent implements OnInit {
   isNavbarHidden: boolean = true;
   isDropdown: boolean = false;
   isMobile: boolean = false;
+  authUser: any;
 
   date: number = new Date().getFullYear();
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    public titleService: TitleService
+    public titleService: TitleService,
+    private userService: UsersService,
+    private logoutService: LogoutService
   ) {}
 
   ngOnInit(): void {
@@ -51,6 +60,8 @@ export class DashboardComponent implements OnInit {
       .subscribe((title) => {
         this.titleService.setTitle(title);
       });
+
+    this.userService.authUser$.subscribe((user) => (this.authUser = user));
   }
 
   toggleTheme() {
@@ -73,5 +84,9 @@ export class DashboardComponent implements OnInit {
 
   checkScreenSize() {
     this.isMobile = window.innerWidth <= 900;
+  }
+
+  logOut() {
+    this.logoutService.logOut();
   }
 }

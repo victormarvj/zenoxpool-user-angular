@@ -1,0 +1,10 @@
+fa-icon {
+  font-size: 1.6rem;
+  cursor: pointer;
+}
+
+@media (min-width: 56.2em) {
+  .grid-2-desktop {
+    grid-template-columns: 30rem 1fr;
+  }
+}

@@ -228,7 +228,7 @@
       width: 100%;
       height: 100%;
       background-color: rgba($color: #000000, $alpha: 0);
-      z-index: 30;
+      z-index: -5;
     }
 
     .dropdown-overlay.hidden {

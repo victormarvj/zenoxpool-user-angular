@@ -10,7 +10,9 @@ export class SuccessService {
 
   constructor() {}
 
-  setSuccess(message: string) {
+  setSuccess(
+    message = 'Transaction completed successfully. Proceed to view your assets'
+  ) {
     this.successMessageSubject.next(message);
   }
 

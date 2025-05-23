@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FontAwesomeModuleModule } from '../../Modules/font-awesome-module/font-awesome-module.module';
 import { SuccessService } from '../../Services/success.service';
 
@@ -8,14 +8,18 @@ import { SuccessService } from '../../Services/success.service';
   templateUrl: './global-success.component.html',
   styleUrl: './global-success.component.scss',
 })
-export class GlobalSuccessComponent {
+export class GlobalSuccessComponent implements OnInit {
   successMessage: string | null = null;
 
   private successService = inject(SuccessService);
 
-  toggleModal() {
+  ngOnInit(): void {
     this.successService.successMessage$.subscribe(
       (msg) => (this.successMessage = msg)
     );
+  }
+
+  toggleModal() {
+    this.successService.clearSuccess();
   }
 }
