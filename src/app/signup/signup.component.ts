@@ -10,6 +10,7 @@ import {
 } from '@angular/forms';
 import { ErrorService } from '../Services/error.service';
 import { ConfirmationDialogComponent } from '../layouts/confirmation-dialog/confirmation-dialog.component';
+import { LoaderService } from '../Services/loader.service';
 @Component({
   selector: 'app-signup',
   imports: [RouterModule, ReactiveFormsModule, ConfirmationDialogComponent],
@@ -18,11 +19,14 @@ import { ConfirmationDialogComponent } from '../layouts/confirmation-dialog/conf
 })
 export class SignupComponent implements OnInit {
   isConfirm: boolean = false;
+  isLoading: boolean = false;
+
   date: number = new Date().getFullYear();
 
   private userService = inject(UsersService);
   private formBuilder = inject(FormBuilder);
   private errorService = inject(ErrorService);
+  private loaderService = inject(LoaderService);
 
   constructor() {}
 
@@ -39,10 +43,11 @@ export class SignupComponent implements OnInit {
 
   onSubmit() {
     this.userService.register(this.signupForm.value).subscribe({
-      next: (value) => {
+      next: (value: any) => {
         console.log(value);
+        this.toggleConfirmModal();
       },
-      error: (err) => {
+      error: (err: any) => {
         this.toggleConfirmModal();
         this.errorService.setError(err.message);
       },
@@ -51,5 +56,6 @@ export class SignupComponent implements OnInit {
 
   toggleConfirmModal() {
     this.isConfirm = !this.isConfirm;
+    this.loaderService.onLoader(false);
   }
 }
