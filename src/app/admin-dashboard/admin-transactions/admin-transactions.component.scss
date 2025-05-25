@@ -1,0 +1,10 @@
+.summary {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 56.2em) {
+  .grid-2-desktop {
+    grid-template-columns: 30rem 1fr;
+  }
+}
