@@ -1,0 +1,126 @@
+<section>
+  <div class="container-fluid grid-2-desktop">
+    <div class="card">
+      <div class="card-header">
+        <p class="fw-600">Edit Zone</p>
+      </div>
+
+      <hr />
+
+      <form
+        class="margin-top"
+        [formGroup]="editZoneForm"
+        (ngSubmit)="onSubmit()"
+      >
+        <div class="body">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input
+              type="text"
+              name="name"
+              class="border-radius-5 bg-transparent w-100"
+              placeholder="Zone name"
+              id="name"
+              formControlName="name"
+            />
+          </div>
+
+          <div class="form-group margin-top-2">
+            <label for="description">Description</label>
+            <textarea
+              type="text"
+              name="description"
+              class="bg-transparent w-100"
+              placeholder="Description"
+              id="description"
+              formControlName="description"
+            ></textarea>
+          </div>
+
+          <div class="form-group flex gap-1 margin-top-2 align-items-center">
+            <label for="duration_1">Duration (Days)</label>
+            <input
+              type="number"
+              name="duration_1"
+              min="1"
+              class="border-radius-5 bg-transparent w-100"
+              placeholder="Zone duration 1"
+              id="duration_1"
+              formControlName="duration_1"
+            />
+            <label for="roi_1">ROI (%)</label>
+            <input
+              type="number"
+              name="roi_1"
+              min="0"
+              max="100"
+              class="border-radius-5 bg-transparent w-100"
+              placeholder="ROI 1"
+              id="roi_1"
+              formControlName="roi_1"
+            />
+          </div>
+
+          <div class="form-group flex gap-1 margin-top-2 align-items-center">
+            <label for="duration_2">Duration (Days)</label>
+            <input
+              type="number"
+              name="duration_2"
+              min="1"
+              class="border-radius-5 bg-transparent w-100"
+              placeholder="Zone duration 2"
+              id="duration_2"
+              formControlName="duration_2"
+            />
+            <label for="roi_2">ROI (%)</label>
+            <input
+              type="number"
+              name="roi_2"
+              min="0"
+              max="100"
+              class="border-radius-5 bg-transparent w-100"
+              placeholder="ROI 2"
+              id="roi_2"
+              formControlName="roi_2"
+            />
+          </div>
+
+          <div class="form-group flex gap-1 margin-top-2 align-items-center">
+            <label for="duration_3">Duration (Days)</label>
+            <input
+              type="number"
+              name="duration_3"
+              min="1"
+              class="border-radius-5 bg-transparent w-100"
+              placeholder="Zone duration 3"
+              id="duration_3"
+              formControlName="duration_3"
+            />
+            <label for="roi_3">ROI (%)</label>
+            <input
+              type="number"
+              name="roi_3"
+              min="0"
+              max="100"
+              class="border-radius-5 bg-transparent w-100"
+              placeholder="ROI 3"
+              id="roi_3"
+              formControlName="roi_3"
+            />
+          </div>
+
+          <button
+            [disabled]="!editZoneForm.valid"
+            type="button"
+            (click)="this.toggleConfirmModal()"
+            class="btn btn-pill btn-primary margin-top-2 w-100"
+          >
+            Update Zone
+          </button>
+        </div>
+
+        <app-confirmation-dialog [(isConfirm)]="isConfirm" />
+      </form>
+    </div>
+  </div>
+</section>

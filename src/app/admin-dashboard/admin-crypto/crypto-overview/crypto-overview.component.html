@@ -1,0 +1,83 @@
+<section>
+  <div class="container-fluid">
+    <div class="card transaction-div">
+      <p class="fw-600">All Cryptos</p>
+
+      <hr />
+
+      <!-- <table datatable [dtOptions]="dtOptions" class="row-border hover"> -->
+      <div class="table-responsive">
+        @if (!isFetching && cryptos.length) {
+        <table datatable class="row-border hover">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Image</th>
+              <th>Name</th>
+              <th>Abbr.</th>
+              <th>Network</th>
+              <th>Address</th>
+              <th>Value</th>
+              <th>Status</th>
+              <th>Date</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (crypto of cryptos; track $index) {
+            <tr>
+              <td>{{ $index + 1 }}</td>
+              <td>
+                <img
+                  [src]="
+                    crypto.image !== ''
+                      ? imageUrl + '/' + crypto.image
+                      : 'btc.png'
+                  "
+                  alt=""
+                  class="assets-logo"
+                />
+              </td>
+              <td>{{ crypto.name }}</td>
+              <td>{{ crypto.abbreviation }}</td>
+              <td>{{ crypto.network }}</td>
+              <td>{{ crypto.address }}</td>
+              <td>${{ crypto.value }}</td>
+              <td>
+                <span
+                  class="label"
+                  [ngClass]="{
+                    'bg-success': crypto.status === 1,
+                    'bg-warning': crypto.status === 0
+                  }"
+                  >{{ crypto.status == 1 ? "Active" : "Inactive" }}</span
+                >
+              </td>
+              <td class="text-truncate">
+                {{ crypto.created_at | date : "MMMM d, y h:mm a" }}
+              </td>
+              <td>
+                <div class="flex gap-1 align-items-center">
+                  <fa-icon
+                    [routerLink]="['edit-crypto', crypto.id]"
+                    [icon]="['far', 'pen-to-square']"
+                    class="color-primary"
+                    title="Edit crypto"
+                    role="button"
+                    aria-label="Edit crypto"
+                  ></fa-icon>
+                </div>
+              </td>
+            </tr>
+            }
+          </tbody>
+        </table>
+        }@else {
+        <p class="text-center">
+          {{ isFetching ? "Loading data..." : "No record found!" }}
+        </p>
+        }
+      </div>
+    </div>
+  </div>
+</section>

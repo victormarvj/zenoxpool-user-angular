@@ -41,9 +41,13 @@ export class AppComponent implements OnInit {
     }
 
     if (user.data.privilege !== 6) {
-      this.router.navigate(['/admin/dashboard']);
+      if (window.location.href === '/login') {
+        this.router.navigate(['/admin/dashboard']);
+      }
     } else {
-      this.router.navigate(['/dashboard']);
+      if (window.location.href === '/login') {
+        this.router.navigate(['/dashboard']);
+      }
     }
 
     this.userService.setAuthUser(user.data);

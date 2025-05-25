@@ -39,10 +39,14 @@
             class="profile-div desktop border-radius padding-1"
             (click)="toggleDropdown()"
           >
-            <img src="avatar.png" alt="profile img" class="profile-img" />
+            <img
+              [src]="imageUrl + '/' + authUser.image"
+              alt="profile img"
+              class="profile-img"
+            />
             <div>
-              <p class="fullname">Victor Marvj</p>
-              <p class="email">{{ "victormarvj@gmail.com" }}</p>
+              <p class="fullname">{{ authUser?.fullname }}</p>
+              <p class="email">{{ authUser?.email }}</p>
             </div>
 
             <fa-icon [icon]="['fas', 'caret-down']"></fa-icon>
@@ -99,9 +103,15 @@
           ></fa-icon>
         </header>
         <div class="profile-div">
-          <img src="avatar.png" alt="profile img" class="profile-img" />
-          <p class="fullname">Victor Marvj</p>
-          <p class="email">{{ "victormarvj@gmail.com" }}</p>
+          <img
+            [src]="imageUrl + '/' + authUser.image"
+            alt="profile img"
+            class="profile-img"
+          />
+          <div>
+            <p class="fullname">{{ authUser?.fullname }}</p>
+            <p class="email">{{ authUser?.email }}</p>
+          </div>
         </div>
         <ul class="navbar-nav">
           <li class="nav-item" (click)="toggleNav()">
@@ -194,11 +204,13 @@
           </li>
         </ul>
 
-        <div class="create-space" (click)="logOut()">
-          <div class="logout border-radius-5 color-danger">
-            <fa-icon [icon]="['fas', 'right-from-bracket']"></fa-icon>
-            <label>Log out</label>
-          </div>
+        <div class="create-space">
+          <button (click)="logOut()" class="btn">
+            <div class="logout border-radius-5 color-danger">
+              <fa-icon [icon]="['fas', 'right-from-bracket']"></fa-icon>
+              <label>Log out</label>
+            </div>
+          </button>
         </div>
       </nav>
     </section>

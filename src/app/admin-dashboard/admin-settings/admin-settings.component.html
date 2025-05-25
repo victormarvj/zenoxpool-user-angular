@@ -7,43 +7,56 @@
 
       <hr />
 
-      <form class="margin-top">
+      <form
+        class="margin-top"
+        [formGroup]="settingsForm"
+        (ngSubmit)="onSubmit()"
+      >
         <div class="group">
           <label for="old_password" class="fw-600">Old Password</label>
           <input
-            type="text"
+            type="password"
             name="old_password"
             id="old_password"
             class="border-radius-5 w-100"
             placeholder="Enter old password"
+            formControlName="old_password"
           />
         </div>
 
         <div class="group margin-top">
-          <label for="new_password" class="fw-600">New Password</label>
+          <label for="password" class="fw-600">New Password</label>
           <input
-            type="text"
-            name="new_password"
-            id="new_password"
+            type="password"
+            name="password"
+            id="password"
             class="border-radius-5 w-100"
             placeholder="Enter new password"
+            formControlName="password"
+            (input)="checkPasswordLength()"
           />
         </div>
+        <small [ngClass]="!passwordMinLength ? 'color-danger' : 'color-success'"
+          >Minimum of 6 characters</small
+        >
 
         <div class="group margin-top">
-          <label for="old_password" class="fw-600">Confirm Password</label>
+          <label for="password_confirmation" class="fw-600"
+            >Confirm Password</label
+          >
           <input
-            type="text"
-            name="confirm_password"
-            id="confirm_password"
+            type="password"
+            name="password_confirmation"
+            id="password_confirmation"
             class="border-radius-5 w-100"
-            placehconfirmer="Enter confirm password"
+            placeholder="Enter confirm password"
+            formControlName="password_confirmation"
           />
         </div>
 
         <button
           type="button"
-          (click)="toggleConfirmationDialog()"
+          (click)="toggleConfirmModal()"
           class="btn btn-primary btn-pill margin-top w-100 margin-bottom-1"
         >
           Update

@@ -1,0 +1,18 @@
+fa-icon {
+  font-size: 1.6rem;
+  cursor: pointer;
+}
+
+.text-truncate.description {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 30rem; /* or some fixed width */
+  display: block; /* or inline-block */
+}
+
+@media (min-width: 56.2em) {
+  .grid-2-desktop {
+    grid-template-columns: 30rem 1fr;
+  }
+}

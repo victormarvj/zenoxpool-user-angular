@@ -3,51 +3,91 @@
     <div
       class="liquidity-bar bg-gradient-1 color-white text-center border-radius padding-1 drop-shadow-y-1"
     >
-      <h3>ZP LOOP</h3>
+      <h3>ZP {{ loopData?.zone.name }}</h3>
     </div>
   </div>
 
   <div class="container-fluid grid grid-2 gap-1 grid-2-desktop margin-top">
     <div class="card drop-shadow-2">
-      <span class="fw-600">Circulation</span>
+      <span class="fw-600">New Circulation</span>
       <hr />
       <div class="flex margin-top justify-content-space gap-1">
-        <button class="btn btn-outline btn-primary btn-sm active">1 Day</button>
-        <button class="btn btn-outline btn-primary btn-sm">7 Days</button>
-        <button class="btn btn-outline btn-primary btn-sm">30 Days</button>
+        <button
+          (click)="setDuration(loopData?.zone.duration_1)"
+          class="btn btn-outline btn-primary btn-sm"
+          [class.active]="percentage === loopData?.zone.roi_1"
+        >
+          {{ loopData?.zone.duration_1 }} Day
+        </button>
+        <button
+          (click)="setDuration(loopData?.zone.duration_2)"
+          class="btn btn-outline btn-primary btn-sm"
+          [class.active]="percentage === loopData?.zone.roi_2"
+        >
+          {{ loopData?.zone.duration_2 }} Day
+        </button>
+        <button
+          (click)="setDuration(loopData?.zone.duration_3)"
+          class="btn btn-outline btn-primary btn-sm"
+          [class.active]="percentage === loopData?.zone.roi_3"
+        >
+          {{ loopData?.zone.duration_3 }} Day
+        </button>
       </div>
-      <form class="margin-top">
+      <form class="margin-top" [formGroup]="loopForm" (ngSubmit)="onSubmit()">
         <div
           class="flex align-items-center justify-content-space gap loop-content"
         >
           <small>Amount</small>
-          <small>Balance: 100.00 USDT</small>
-          <button class="btn btn-outline btn-primary btn-sm">Max</button>
+          <small [ngClass]="{ 'color-danger': loopData?.user.usdt === 0 }"
+            >Balance: {{ loopData?.user.balance }} USDT</small
+          >
+          <button class="btn btn-outline btn-primary btn-sm" (click)="setMax()">
+            Max
+          </button>
         </div>
         <div class="input-group">
           <input
-            type="amount"
+            type="number"
             name="amount"
-            id=""
+            id="amount"
             class="border-radius-5 w-100"
             placeholder="Enter amount"
+            formControlName="amount"
+            (input)="setTotal()"
           />
-          <button class="btn btn-primary btn-pill">Circulate</button>
+          <button
+            [disabled]="
+              loopData?.user.usdt === 0 ||
+              loopForm.invalid ||
+              amount > loopData?.user.usdt
+            "
+            type="button"
+            (click)="toggleConfirmModal()"
+            class="btn btn-primary btn-pill"
+          >
+            Circulate
+          </button>
         </div>
+        <small class="color-danger">{{
+          loopData?.user.usdt === 0 ? "Insufficient Balance" : ""
+        }}</small>
         <div class="summary flex align-items-center justify-content-space">
           <small>1 Day</small>
-          <small class="fw-600">104 USDT</small>
+          <small class="fw-600">{{ total }} USDT</small>
         </div>
+
+        <app-confirmation-dialog [(isConfirm)]="isConfirm" />
       </form>
     </div>
 
     <div class="card transaction-div">
-      <p class="fw-600">ORDERS</p>
+      <p class="fw-600">CIRCULATIONS</p>
 
       <hr />
 
-      <!-- <table datatable [dtOptions]="dtOptions" class="row-border hover"> -->
       <div class="table-responsive">
+        @if (!isFetching && loopData?.circulations.length) {
         <table datatable class="row-border hover">
           <thead>
             <tr>
@@ -59,22 +99,35 @@
             </tr>
           </thead>
           <tbody>
+            @for (circulation of loopData?.circulations; track $index) {
             <tr>
-              <td>1</td>
-              <td class="fw-600 color-success">28 Days</td>
-              <td class="fw-600 color-danger">-250 USDT</td>
-              <td class="fw-600 color-success">350 USDT</td>
-              <td>04D 03H 14M 15S</td>
+              <td>{{ $index + 1 }}</td>
+              <td>{{ circulation.duration }}</td>
+              <td>{{ circulation.amount }}</td>
+              <td>{{ circulation.total }}</td>
+              <td>
+                {{ remainingTimes[circulation.id] || "Loading..." }}
+                <span
+                  [ngClass]="{
+                    'label bg-success': circulation.status === 1,
+                    'color-warning': circulation.status === 0
+                  }"
+                  >{{
+                    circulation.status == 0
+                      ? remainingTimes[circulation.id]
+                      : "Completed"
+                  }}</span
+                >
+              </td>
             </tr>
-            <tr>
-              <td>2</td>
-              <td class="fw-600 color-success">1 Days</td>
-              <td class="fw-600 color-danger">-250 USDT</td>
-              <td class="fw-600 color-success">254 USDT</td>
-              <td><span class="label bg-success">Completed</span></td>
-            </tr>
+            }
           </tbody>
         </table>
+        }@else {
+        <p class="text-center">
+          {{ isFetching ? "Loading data..." : "No record found!" }}
+        </p>
+        }
       </div>
     </div>
   </div>

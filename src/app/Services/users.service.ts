@@ -4,6 +4,7 @@ import { BehaviorSubject, catchError, Observable, throwError } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { Users } from '../Interfaces/users';
 import { LocalStorageService } from './local-storage.service';
+import { LogoutService } from './logout.service';
 
 @Injectable({
   providedIn: 'root',
@@ -56,6 +57,7 @@ export class UsersService {
 
   private handleError(error: any) {
     console.error('API Error', error);
+
     return throwError(function () {
       if (error.status === 422) {
         return error.error;

@@ -1,3 +1,30 @@
+.img-group {
+  position: relative;
+
+  .icon {
+    position: absolute;
+    top: 60%;
+    left: 60%;
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: 50%;
+    display: grid;
+    place-content: center;
+
+    label {
+      cursor: pointer;
+    }
+
+    fa-icon {
+      font-size: 1.6rem;
+    }
+  }
+}
+
+.profile-img-input {
+  visibility: hidden;
+}
+
 @media (min-width: 75em) {
   .grid-2-desktop {
     display: grid;

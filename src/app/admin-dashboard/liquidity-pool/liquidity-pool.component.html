@@ -1,0 +1,40 @@
+<section>
+  <div class="container-fluid grid-2-desktop">
+    <div class="card">
+      <div class="card-header">
+        <p class="fw-600">Liquidity Pool</p>
+      </div>
+
+      <hr />
+
+      <form
+        class="margin-top"
+        [formGroup]="editLiquidityPoolForm"
+        (ngSubmit)="onSubmit()"
+      >
+        <div class="group">
+          <label for="amount" class="fw-600">Liquidity Pool Amount</label>
+          <input
+            type="text"
+            name="amount"
+            id="amount"
+            class="border-radius-5 w-100"
+            placeholder="Enter liquidity pool amount"
+            formControlName="amount"
+          />
+        </div>
+
+        <button
+          type="button"
+          [disabled]="editLiquidityPoolForm.invalid"
+          (click)="toggleConfirmModal()"
+          class="btn btn-primary btn-pill margin-top w-100 margin-bottom-1"
+        >
+          Update
+        </button>
+
+        <app-confirmation-dialog [(isConfirm)]="isConfirm" />
+      </form>
+    </div>
+  </div>
+</section>

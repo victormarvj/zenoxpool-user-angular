@@ -1,3 +1,15 @@
+h1 {
+  font-size: 2.6rem;
+}
+
+h3 {
+  font-size: 1.4rem;
+}
+
+button {
+  font-size: 1.2rem;
+}
+
 .bg-shape {
   position: relative;
   overflow: hidden;
@@ -61,7 +73,7 @@
   .bg-grid::before {
     position: absolute;
     top: 50%;
-    right: -5%;
+    left: -5%;
     content: "";
     width: 22.2rem;
     height: 16.2rem;
@@ -73,7 +85,7 @@
   .bg-grid::after {
     position: absolute;
     top: 10%;
-    right: -10%;
+    left: -10%;
     content: "";
     width: 20rem;
     height: 12.6rem;
@@ -91,7 +103,7 @@
   .particle-1::before {
     position: absolute;
     top: -10%;
-    left: -20%;
+    right: -20%;
     content: "";
     width: 22.8rem;
     height: 22.8rem;
@@ -103,7 +115,7 @@
   .particle-1::after {
     position: absolute;
     top: 70%;
-    left: -40%;
+    right: -40%;
     content: "";
     width: 32.8rem;
     height: 30.8rem;

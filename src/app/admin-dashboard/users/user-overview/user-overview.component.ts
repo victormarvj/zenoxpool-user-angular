@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DatatablesModule } from '../../../Modules/datatables/datatables.module';
 import { FontAwesomeModuleModule } from '../../../Modules/font-awesome-module/font-awesome-module.module';
-import { NgClass } from '@angular/common';
+import { DatePipe, NgClass } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ConfirmationDialogComponent } from '../../../layouts/confirmation-dialog/confirmation-dialog.component';
 import { RouterModule } from '@angular/router';
@@ -18,11 +18,12 @@ import { ErrorService } from '../../../Services/error.service';
     FormsModule,
     ConfirmationDialogComponent,
     RouterModule,
+    DatePipe,
   ],
   templateUrl: './user-overview.component.html',
   styleUrl: './user-overview.component.scss',
 })
-export class UserOverviewComponent {
+export class UserOverviewComponent implements OnInit {
   authUser: any;
   users: any = null;
   isFetching: boolean = false;

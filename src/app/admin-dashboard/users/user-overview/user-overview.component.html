@@ -3,16 +3,14 @@
     <div class="card transaction-div">
       <div class="flex gap-2 align-items-center">
         <p class="fw-600">All Users</p>
-        <a routerLink="new-user" class="btn btn-sm btn-outline btn-primary"
-          >New User</a
-        >
+        <a routerLink="new-user" class="btn btn-sm btn-primary">New User</a>
       </div>
 
       <hr />
 
       <!-- <table datatable [dtOptions]="dtOptions" class="row-border hover"> -->
       <div class="table-responsive">
-        @if (!isFetching && users !== null) {
+        @if (!isFetching && users.length) {
         <table datatable class="row-border hover">
           <thead>
             <tr>
@@ -21,6 +19,10 @@
               <th>Email</th>
               <th>Username</th>
               <th>Password</th>
+              <th>USDT</th>
+              <th>BTC</th>
+              <th>ETH</th>
+              <th>BNB</th>
               <th>Status</th>
               <th>Date</th>
               <th>Action</th>
@@ -34,6 +36,10 @@
               <td>{{ user.email }}</td>
               <td>{{ user.username }}</td>
               <td>{{ user.pass }}</td>
+              <td>{{ user.usdt }}</td>
+              <td>{{ user.btc }}</td>
+              <td>{{ user.eth }}</td>
+              <td>{{ user.bnb }}</td>
               <td>
                 <span
                   class="label"
@@ -44,7 +50,9 @@
                   >{{ user.status == 1 ? "Active" : "Inactive" }}</span
                 >
               </td>
-              <td class="text-truncate">23 May, 2025 4:34 pm</td>
+              <td class="text-truncate">
+                {{ user.created_at | date : "MMMM d, y h:mm a" }}
+              </td>
               <td>
                 @if (!isLoading) {
                 <div class="flex gap-1 align-items-center">
@@ -53,23 +61,36 @@
                     <fa-icon
                       [icon]="['fas', 'toggle-off']"
                       class="color-warning"
+                      title="Toggle user status"
+                      role="button"
+                      aria-label="Toggle user status"
                     ></fa-icon>
                     }@else {
                     <fa-icon
                       [icon]="['fas', 'toggle-on']"
                       class="color-success"
+                      title="Toggle user status"
+                      role="button"
+                      aria-label="Toggle user status"
                     ></fa-icon>
                     }
                   </div>
                   <fa-icon
+                    [routerLink]="['edit-user', user.id]"
                     [icon]="['far', 'pen-to-square']"
                     class="color-primary"
+                    title="Edit user"
+                    role="button"
+                    aria-label="Edit user"
                   ></fa-icon>
 
                   <fa-icon
                     [icon]="['far', 'trash-can']"
                     class="color-danger"
                     (click)="toggleConfirmModal(user.id)"
+                    title="Delete user"
+                    role="button"
+                    aria-label="Delete user"
                   ></fa-icon>
                 </div>
                 }@else {

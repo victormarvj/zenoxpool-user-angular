@@ -7,21 +7,27 @@
 
       <hr />
 
-      <form class="margin-top">
+      <form
+        class="margin-top"
+        [formGroup]="editGasFeeForm"
+        (ngSubmit)="onSubmit()"
+      >
         <div class="group">
-          <label for="amount" class="fw-600">Fee Amount</label>
+          <label for="amount" class="fw-600">Gas Fee Amount</label>
           <input
             type="text"
             name="amount"
             id="amount"
             class="border-radius-5 w-100"
             placeholder="Enter gas fee amount"
+            formControlName="amount"
           />
         </div>
 
         <button
           type="button"
-          (click)="toggleConfirmationDialog()"
+          [disabled]="editGasFeeForm.invalid"
+          (click)="toggleConfirmModal()"
           class="btn btn-primary btn-pill margin-top w-100 margin-bottom-1"
         >
           Update

@@ -1,1 +1,63 @@
-<p>edit-bank works!</p>
+<section>
+  <div class="container-fluid grid-2-desktop">
+    <div class="card">
+      <div class="card-header">
+        <p class="fw-600">Edit Crypto</p>
+      </div>
+
+      <hr />
+
+      <form
+        class="margin-top"
+        [formGroup]="editBankForm"
+        (ngSubmit)="onSubmit()"
+      >
+        <div class="body">
+          <div class="form-group">
+            <input
+              type="text"
+              name="bank_name"
+              class="border-radius-5 bg-transparent w-100"
+              placeholder="Bank name"
+              id="bank_name"
+              formControlName="bank_name"
+            />
+          </div>
+
+          <div class="form-group margin-top-2">
+            <input
+              type="text"
+              name="account_name"
+              class="border-radius-5 bg-transparent w-100"
+              placeholder="Account name"
+              id="account_name"
+              formControlName="account_name"
+            />
+          </div>
+
+          <div class="form-group margin-top-2">
+            <input
+              type="number"
+              name="account_number"
+              class="border-radius-5 bg-transparent w-100"
+              placeholder="Account number"
+              id="account_number"
+              formControlName="account_number"
+            />
+          </div>
+
+          <button
+            [disabled]="editBankForm.invalid"
+            type="button"
+            (click)="toggleConfirmModal()"
+            class="btn btn-pill btn-primary margin-top-2 w-100"
+          >
+            Update Bank
+          </button>
+        </div>
+
+        <app-confirmation-dialog [isConfirm]="isConfirm" />
+      </form>
+    </div>
+  </div>
+</section>

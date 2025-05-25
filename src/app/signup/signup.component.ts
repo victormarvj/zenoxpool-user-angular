@@ -59,6 +59,7 @@ export class SignupComponent implements OnInit {
       this.signupForm.get('password')?.setValue('');
       this.signupForm.get('password_confirmation')?.setValue('');
       this.toggleConfirmModal();
+      this.passwordMinLength = false;
       this.errorService.setError("Passwords don't match!");
     } else {
       this.toggleLoader(true);

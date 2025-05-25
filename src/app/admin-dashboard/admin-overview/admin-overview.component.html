@@ -2,7 +2,12 @@
 
 <section>
   <div class="container-fluid flex justify-content-space align-items-center">
-    <p>Welcome, {{ authUser?.username }}</p>
+    <p>
+      Welcome,
+      {{
+        authUser?.username.charAt(0).toUpperCase() + authUser?.username.slice(1)
+      }}
+    </p>
     <div class="bg-primary-1 padding-1 border-radius">
       <small> {{ date | date : "MMMM d, y h:mm a" }}</small>
     </div>
@@ -15,20 +20,26 @@
       class="main-balance-overview bg-gradient-1 padding border-radius drop-shadow-1"
     >
       <span>Overview</span>
-      <h2>$17,835.55</h2>
+      <h2>${{ overviewData?.totalSum }}</h2>
       <span>Total available balance</span>
       <div class="flex gap-2 justify-content-center margin-top">
-        <a routerLink="#" class="btn flex align-items-center">
+        <a
+          routerLink="/admin/dashboard/bank"
+          class="btn flex align-items-center"
+        >
           <!-- <ion-icon name="arrow-up-outline"></ion-icon> -->
 
-          <fa-icon [icon]="['fas', 'arrow-up']"></fa-icon>
-          <p class="margin-left">Transfer</p>
+          <fa-icon [icon]="['fas', 'building-columns']"></fa-icon>
+          <p class="margin-left">Bank Pay</p>
         </a>
-        <a routerLink="#" class="btn flex align-items-center">
+        <a
+          routerLink="/admin/dashboard/crypto"
+          class="btn flex align-items-center"
+        >
           <!-- <ion-icon name="arrow-down-outline"></ion-icon> -->
 
-          <fa-icon [icon]="['fas', 'arrow-down']"></fa-icon>
-          <p class="margin-left">Receive</p>
+          <fa-icon [icon]="['fas', 'bitcoin-sign']"></fa-icon>
+          <p class="margin-left">Crypto Pay</p>
         </a>
       </div>
     </div>
@@ -39,7 +50,7 @@
         <div class="flex justify-content-space">
           <fa-icon [icon]="['fas', 'users']"></fa-icon>
           <div>
-            <h3 class="text-right">5</h3>
+            <h3 class="text-right">{{ overviewData?.userCount }}</h3>
           </div>
         </div>
       </div>
@@ -48,8 +59,7 @@
         <div class="flex justify-content-space">
           <fa-icon [icon]="['fas', 'building-columns']"></fa-icon>
           <div>
-            <h3 class="text-right">1</h3>
-            <span class="text-right">$14,727.83</span>
+            <h3 class="text-right">{{ overviewData?.bankCount }}</h3>
           </div>
         </div>
       </div>
@@ -58,8 +68,7 @@
         <div class="flex justify-content-space">
           <fa-icon [icon]="['fas', 'bitcoin-sign']"></fa-icon>
           <div>
-            <h3 class="text-right">4</h3>
-            <span class="text-right">$53.98</span>
+            <h3 class="text-right">{{ overviewData?.cryptoCount }}</h3>
           </div>
         </div>
       </div>
@@ -68,7 +77,7 @@
         <div class="flex justify-content-space">
           <fa-icon [icon]="['fas', 'globe']"></fa-icon>
           <div>
-            <h3 class="text-right">1</h3>
+            <h3 class="text-right">{{ overviewData?.zoneCount }}</h3>
           </div>
         </div>
       </div>
@@ -77,9 +86,9 @@
 
   <div class="container-fluid grid-2-desktop gap-1 margin-top">
     <div class="card drop-shadow-2">
-      <span>Active Zones</span>
+      <span>Running Zones</span>
       <div class="flex justify-content-space">
-        <fa-icon [icon]="['fas', 'globe']"></fa-icon>
+        <fa-icon [icon]="['fas', 'chart-line']"></fa-icon>
         <div>
           <h3 class="text-right">1</h3>
           <span class="text-right">$53.98</span>

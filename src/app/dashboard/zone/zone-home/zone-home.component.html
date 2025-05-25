@@ -3,7 +3,7 @@
     <div
       class="liquidity-bar bg-gradient-1 color-white text-center border-radius padding-1"
     >
-      <h3>456,983,232.45</h3>
+      <h3>{{ zoneData?.liquidityPool.amount }}</h3>
       <small>Liquidity</small>
     </div>
   </div>
@@ -34,53 +34,23 @@
 
   <div class="container-fluid">
     <div class="grid grid-3 gap-1">
+      @for (zone of zoneData?.zones; track $index) {
       <div
         class="col bg-gradient-1 color-white padding-2 border-radius margin-top"
       >
-        <h2>ZP Loop</h2>
+        <h2>ZP {{ zone.name.charAt(0).toUpperCase() + zone.name.slice(1) }}</h2>
         <p>
-          A circulation yield protocol based on the Ethereum Virtual Machine
-          (EVM) enables individuals to provide cryptocurrency liquidity
-          risk-free and earn returns.
-        </p>
-        <button routerLink="loop" class="btn btn-pill btn-outline margin-top">
-          Join Now
-        </button>
-      </div>
-      <div
-        class="col bg-gradient-1 color-white padding-2 border-radius margin-top"
-      >
-        <h2>ZP Savings</h2>
-        <p>
-          A circulation yield protocol based on the Ethereum Virtual Machine
-          (EVM) enables individuals to provide cryptocurrency liquidity
-          risk-free and earn returns.
+          {{ zone.description }}
         </p>
         <button
-          routerLink="loop"
+          [routerLink]="['loop', zone.id]"
+          [disabled]="zone.status === 0"
           class="btn btn-pill btn-outline margin-top"
-          disabled
         >
           Join Now
         </button>
       </div>
-      <div
-        class="col bg-gradient-1 color-white padding-2 border-radius margin-top"
-      >
-        <h2>ZP Games</h2>
-        <p>
-          A circulation yield protocol based on the Ethereum Virtual Machine
-          (EVM) enables individuals to provide cryptocurrency liquidity
-          risk-free and earn returns.
-        </p>
-        <button
-          routerLink="loop"
-          class="btn btn-pill btn-outline margin-top"
-          disabled
-        >
-          Join Now
-        </button>
-      </div>
+      }
     </div>
   </div>
 </section>

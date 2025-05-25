@@ -9,12 +9,9 @@ import { FontAwesomeModuleModule } from '../Modules/font-awesome-module/font-awe
 import { TitleService } from '../Services/title.service';
 import { filter, map } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
-import { LocalStorageService } from '../Services/local-storage.service';
 import { UsersService } from '../Services/users.service';
-import { ErrorService } from '../Services/error.service';
-import { LoaderService } from '../Services/loader.service';
-import { SuccessService } from '../Services/success.service';
 import { LogoutService } from '../Services/logout.service';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -27,6 +24,9 @@ export class AdminDashboardComponent implements OnInit {
   isNavbarHidden: boolean = true;
   isDropdown: boolean = false;
   isMobile: boolean = false;
+
+  imgSrc: string = '';
+  imageUrl: string = environment.imageUrl;
 
   date: number = new Date().getFullYear();
 
@@ -41,7 +41,10 @@ export class AdminDashboardComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.checkScreenSize();
+
     this.userService.authUser$.subscribe((user) => (this.authUser = user));
+
     this.router.events
       .pipe(
         filter((event) => event instanceof NavigationEnd),
@@ -72,9 +75,9 @@ export class AdminDashboardComponent implements OnInit {
     this.isDropdown = !this.isDropdown;
   }
 
-  @HostListener('window:resize') onResize() {
-    this.checkScreenSize();
-  }
+  // @HostListener('window:resize') onResize() {
+  //   this.checkScreenSize();
+  // }
 
   checkScreenSize() {
     this.isMobile = window.innerWidth <= 900;

@@ -7,7 +7,6 @@ import { UsersService } from '../Services/users.service';
 import { SuccessService } from '../Services/success.service';
 import { ErrorService } from '../Services/error.service';
 import { LocalStorageService } from '../Services/local-storage.service';
-import { Users } from '../Interfaces/users';
 
 @Component({
   selector: 'app-login',

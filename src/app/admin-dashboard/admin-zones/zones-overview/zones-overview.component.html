@@ -1,0 +1,129 @@
+<section>
+  <div class="container-fluid">
+    <div class="card transaction-div">
+      <div class="flex gap-2 align-items-center">
+        <p class="fw-600">All Zones</p>
+        <a routerLink="new-zone" class="btn btn-sm btn-primary">New Zone</a>
+      </div>
+
+      <hr />
+
+      <!-- <table datatable [dtOptions]="dtOptions" class="row-border hover"> -->
+      <div class="table-responsive">
+        @if (!isFetching && zones.length) {
+        <table datatable class="row-border hover">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Duration1 / ROI</th>
+              <th>Duration2 / ROI</th>
+              <th>Duration3 / ROI</th>
+              <th>Status</th>
+              <th>Date</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (zone of zones; track $index) {
+            <tr>
+              <td>{{ $index + 1 }}</td>
+              <td class="text-truncate">{{ zone.name }}</td>
+              <td class="text-truncate description">{{ zone.description }}</td>
+              <td class="text-truncate">
+                <div class="flex flex-column">
+                  <p>{{ zone.duration_1 }} Days</p>
+                  <p class="fw-600">{{ zone.roi_1 }}%</p>
+                </div>
+              </td>
+              <td class="text-truncate">
+                <div class="flex flex-column">
+                  <p>{{ zone.duration_2 }} Days</p>
+                  <p class="fw-600">{{ zone.roi_2 }}%</p>
+                </div>
+              </td>
+              <td class="text-truncate">
+                <div class="flex flex-column">
+                  <p>{{ zone.duration_3 }} Days</p>
+                  <p class="fw-600">{{ zone.roi_3 }}%</p>
+                </div>
+              </td>
+              <td>
+                <span
+                  class="label"
+                  [ngClass]="{
+                    'bg-success': zone.status === 1,
+                    'bg-warning': zone.status === 0
+                  }"
+                  >{{ zone.status == 1 ? "Active" : "Inactive" }}</span
+                >
+              </td>
+              <td class="text-truncate">
+                {{ zone.created_at | date : "MMMM d, y h:mm a" }}
+              </td>
+              <td>
+                @if (!isLoading) {
+                <div class="flex gap-1 align-items-center">
+                  <div class="status" (click)="changeStatus(zone.id)">
+                    @if (zone.status === 0) {
+                    <fa-icon
+                      [icon]="['fas', 'toggle-off']"
+                      class="color-warning"
+                      title="Toggle zone status"
+                      role="button"
+                      aria-label="Toggle zone status"
+                    ></fa-icon>
+                    }@else {
+                    <fa-icon
+                      [icon]="['fas', 'toggle-on']"
+                      class="color-success"
+                      title="Toggle zone status"
+                      role="button"
+                      aria-label="Toggle zone status"
+                    ></fa-icon>
+                    }
+                  </div>
+                  <fa-icon
+                    [routerLink]="['edit-zone', zone.id]"
+                    [icon]="['far', 'pen-to-square']"
+                    class="color-primary"
+                    title="Edit zone"
+                    role="button"
+                    aria-label="Edit zone"
+                  ></fa-icon>
+
+                  <fa-icon
+                    [icon]="['far', 'trash-can']"
+                    class="color-danger"
+                    (click)="toggleConfirmModal(zone.id)"
+                    title="Delete zone"
+                    role="button"
+                    aria-label="Delete zone"
+                  ></fa-icon>
+                </div>
+                }@else {
+                <fa-icon
+                  [icon]="['fas', 'spinner']"
+                  class="load-spinner"
+                ></fa-icon>
+                }
+              </td>
+            </tr>
+            }
+          </tbody>
+        </table>
+        }@else {
+        <p class="text-center">
+          {{ isFetching ? "Loading data..." : "No record found!" }}
+        </p>
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<form (ngSubmit)="onSubmit()" #form="ngForm">
+  <input type="hidden" name="zone_id" id="zone_id" [(ngModel)]="zone_id" />
+  <app-confirmation-dialog [(isConfirm)]="isConfirm" />
+</form>

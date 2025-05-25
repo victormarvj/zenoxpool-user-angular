@@ -25,6 +25,7 @@ import { AdminSettingsComponent } from './admin-dashboard/admin-settings/admin-s
 import { AdminProfileComponent } from './admin-dashboard/admin-profile/admin-profile.component';
 import { AdminCryptoComponent } from './admin-dashboard/admin-crypto/admin-crypto.component';
 import { GasFeeComponent } from './admin-dashboard/gas-fee/gas-fee.component';
+import { LiquidityPoolComponent } from './admin-dashboard/liquidity-pool/liquidity-pool.component';
 
 export const routes: Routes = [
   {
@@ -65,10 +66,10 @@ export const routes: Routes = [
             data: { title: 'ZP Zone | ZenoxPool' },
           },
           {
-            path: 'loop',
+            path: 'loop/:id',
             component: LoopComponent,
-            title: 'ZP Loop | ZenoxPool',
-            data: { title: 'ZP Loop | ZenoxPool' },
+            title: 'ZP Action | ZenoxPool',
+            data: { title: 'ZP Action | ZenoxPool' },
           },
         ],
       },
@@ -160,7 +161,7 @@ export const routes: Routes = [
             data: { title: 'New User | ZenoxPool' },
           },
           {
-            path: 'new-user',
+            path: 'edit-user/:id',
             loadComponent: () =>
               import(
                 './admin-dashboard/users/edit-user/edit-user.component'
@@ -173,23 +174,92 @@ export const routes: Routes = [
       {
         path: 'zones',
         component: AdminZonesComponent,
-        title: 'Zones | ZenoxPool',
-        data: { title: 'Zones | ZenoxPool' },
+        children: [
+          {
+            path: '',
+            loadComponent: () =>
+              import(
+                './admin-dashboard/admin-zones/zones-overview/zones-overview.component'
+              ).then((c) => c.ZonesOverviewComponent),
+            title: 'Zones | ZenoxPool',
+            data: { title: 'Zones | ZenoxPool' },
+          },
+          {
+            path: 'new-zone',
+            loadComponent: () =>
+              import(
+                './admin-dashboard/admin-zones/new-zone/new-zone.component'
+              ).then((c) => c.NewZoneComponent),
+            title: 'New Zone | ZenoxPool',
+            data: { title: 'New Zone | ZenoxPool' },
+          },
+          {
+            path: 'edit-zone/:id',
+            loadComponent: () =>
+              import(
+                './admin-dashboard/admin-zones/edit-zone/edit-zone.component'
+              ).then((c) => c.EditZoneComponent),
+            title: 'Edit Zone | ZenoxPool',
+            data: { title: 'Edit Zone | ZenoxPool' },
+          },
+        ],
       },
       {
         path: 'crypto',
         component: AdminCryptoComponent,
-        title: 'Crypto | ZenoxPool',
-        data: { title: 'Crypto | ZenoxPool' },
+        children: [
+          {
+            path: '',
+            loadComponent: () =>
+              import(
+                './admin-dashboard/admin-crypto/crypto-overview/crypto-overview.component'
+              ).then((c) => c.CryptoOverviewComponent),
+            title: 'Crypto | ZenoxPool',
+            data: { title: 'Crypto | ZenoxPool' },
+          },
+          {
+            path: 'edit-crypto/:id',
+            loadComponent: () =>
+              import(
+                './admin-dashboard/admin-crypto/edit-crypto/edit-crypto.component'
+              ).then((c) => c.EditCryptoComponent),
+            title: 'Crypto | ZenoxPool',
+            data: { title: 'Crypto | ZenoxPool' },
+          },
+        ],
       },
       {
         path: 'bank',
         component: BankComponent,
-        title: 'Bank | ZenoxPool',
-        data: { title: 'Bank | ZenoxPool' },
+        children: [
+          {
+            path: '',
+            loadComponent: () =>
+              import(
+                './admin-dashboard/bank/bank-overview/bank-overview.component'
+              ).then((c) => c.BankOverviewComponent),
+            title: 'Bank | ZenoxPool',
+            data: { title: 'Bank | ZenoxPool' },
+          },
+          {
+            path: 'edit-bank/:id',
+            loadComponent: () =>
+              import(
+                './admin-dashboard/bank/edit-bank/edit-bank.component'
+              ).then((c) => c.EditBankComponent),
+            title: 'Edit Bank | ZenoxPool',
+            data: { title: 'Edit Bank | ZenoxPool' },
+          },
+        ],
       },
       {
-        path: 'gas-fee',
+        path: 'liquidity-pool/:id',
+        component: LiquidityPoolComponent,
+        title: 'Liquidity Pool | ZenoxPool',
+        data: { title: 'Liquidity Pool | ZenoxPool' },
+      },
+      {
+        path: 'gas-fee/:id',
         component: GasFeeComponent,
         title: 'Gas Fee | ZenoxPool',
         data: { title: 'Gas Fee | ZenoxPool' },
