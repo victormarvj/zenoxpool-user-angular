@@ -23,7 +23,9 @@
 }
 
 html {
-  font-size: 87.5%;
+  // font-size: 100%;
+  font-size: 87.5%; // already made a mistake, cause mobile needs 1.6rem = 16px = 62.5%
+  // font-size: 62.5%;
   overflow-x: hidden;
 }
 
@@ -47,7 +49,7 @@ body {
 // p,
 // a,
 // label {
-//   font-size: 1.4rem;
+//   font-size: 1.6rem;
 // }
 
 h1 {
@@ -227,6 +229,18 @@ fa-icon {
 .color-warning {
   color: var(--color-warning);
   opacity: 0.5;
+}
+
+.color-grey {
+  color: var(--color-grey-1);
+}
+
+.color-primary {
+  color: var(--color-primary-1);
+}
+
+.color-primary-2 {
+  color: var(--color-primary-2);
 }
 
 .bg-warning {

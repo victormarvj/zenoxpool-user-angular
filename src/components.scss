@@ -245,6 +245,36 @@ table.dataTable > tbody > tr {
   border: 0.85px solid var(--color-danger);
 }
 
+// Badge component
+.badge {
+  font-size: 0.8rem;
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 50%;
+  display: inline-block;
+  text-align: center;
+}
+
+.badge.bg-success {
+  color: var(--color-white);
+  background-color: var(--color-success);
+}
+
+.badge.bg-warning {
+  color: var(--color-white);
+  background-color: var(--color-warning);
+}
+
+.badge.bg-danger {
+  color: var(--color-white);
+  background-color: var(--color-danger);
+}
+
+.badge.bg-primary {
+  color: var(--color-white);
+  background-color: var(--color-primary-1);
+}
+
 // Modal component
 .modal {
   display: none;
@@ -298,6 +328,7 @@ textarea {
   padding: 1rem 1.6rem;
   outline: 1px solid var(--color-primary-1);
   border: none;
+  font-size: 16px;
 }
 
 textarea {

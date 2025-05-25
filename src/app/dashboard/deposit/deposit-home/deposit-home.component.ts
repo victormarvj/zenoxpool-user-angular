@@ -27,6 +27,8 @@ export class DepositHomeComponent implements OnInit {
 
   bankDetails: any;
 
+  transactionsSignal: any[] = [];
+
   private errorService = inject(ErrorService);
   private successService = inject(SuccessService);
   private userBankService = inject(UserBankService);

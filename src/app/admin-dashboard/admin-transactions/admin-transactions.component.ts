@@ -19,7 +19,7 @@ export class AdminTransactionsComponent {
   transactionsData: any;
 
   private errorService = inject(ErrorService);
-  private adminTransactionsServices = inject(AdminTransactionsService);
+  private adminTransactionsService = inject(AdminTransactionsService);
   private loaderService = inject(LoaderService);
 
   constructor(private userService: UsersService) {}
@@ -32,7 +32,7 @@ export class AdminTransactionsComponent {
 
   getTransactions() {
     this.isFetching = true;
-    this.adminTransactionsServices.getTransactions().subscribe({
+    this.adminTransactionsService.getTransactions().subscribe({
       next: (res) => {
         this.isFetching = false;
         this.transactionsData = res.data;
