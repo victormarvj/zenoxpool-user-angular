@@ -1,7 +1,9 @@
 <section>
   <div class="container-fluid grid-2-desktop">
     <div class="card">
-      <p class="fw-600">You Pay</p>
+      <p class="fw-600">
+        You Pay :: <span class="fw-600 color-danger">Coming soon</span>
+      </p>
 
       <hr />
 
@@ -14,7 +16,9 @@
                 <fa-icon [icon]="['fas', 'wallet']"></fa-icon>
                 <span>4.043</span>
               </div>
-              <button class="btn btn-outline btn-primary btn-sm">Max</button>
+              <button type="button" class="btn btn-outline btn-primary btn-sm">
+                Max
+              </button>
             </div>
             <div class="option flex justify-content-space align-items-start">
               <div class="flex align-items-center">
@@ -24,6 +28,7 @@
               <div class="flex flex-column align-items-end">
                 <input
                   type="amount"
+                  readonly
                   name="amount"
                   id=""
                   class="border-radius-5 bg-transparent"
@@ -41,7 +46,9 @@
                 <fa-icon [icon]="['fas', 'wallet']"></fa-icon>
                 <span>4.043</span>
               </div>
-              <button class="btn btn-outline btn-primary btn-sm">Max</button>
+              <button type="button" class="btn btn-outline btn-primary btn-sm">
+                Max
+              </button>
             </div>
             <div class="option flex justify-content-space align-items-start">
               <div class="flex align-items-center">
@@ -51,6 +58,7 @@
               <div class="flex flex-column align-items-end">
                 <input
                   type="amount"
+                  readonly
                   name="amount"
                   id=""
                   class="border-radius-5 bg-transparent"
@@ -66,10 +74,11 @@
         </div>
         <button
           type="button"
+          disabled
           class="btn btn-pill btn-primary margin-block-1 w-100"
           (click)="toggleConfirmationDialoq()"
         >
-          Swap Now
+          Coming soon
         </button>
 
         <app-confirmation-dialog [(isConfirm)]="isConfirm" />
