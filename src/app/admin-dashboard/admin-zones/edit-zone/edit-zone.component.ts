@@ -30,27 +30,33 @@ export class EditZoneComponent {
   ngOnInit(): void {
     this.toggleLoader(true);
     this.route.paramMap.subscribe((params) => {
-      const zone_id = +params.get('id')!;
-      this.adminZoneService.getZone(zone_id).subscribe({
-        next: (res: any) => {
-          this.editZoneForm.patchValue({
-            zone_id: res.data?.id,
-            name: res.data?.name,
-            description: res.data?.description,
-            duration_1: res.data?.duration_1,
-            roi_1: res.data?.roi_1,
-            duration_2: res.data?.duration_2,
-            roi_2: res.data?.roi_2,
-            duration_3: res.data?.duration_3,
-            roi_3: res.data?.roi_3,
-          });
-          this.toggleLoader(false);
-        },
-        error: (err: any) => {
-          this.toggleLoader(false);
-          this.errorService.setError(err.message);
-        },
-      });
+      const zone_id = params.get('id')!;
+      this.getZone(zone_id);
+    });
+  }
+
+  getZone(zone_id: string) {
+    const formData = new FormData();
+    formData.append('zone_id', zone_id);
+    this.adminZoneService.getZone(formData).subscribe({
+      next: (res: any) => {
+        this.editZoneForm.patchValue({
+          zone_id: res.data?.id,
+          name: res.data?.name,
+          description: res.data?.description,
+          duration_1: res.data?.duration_1,
+          roi_1: res.data?.roi_1,
+          duration_2: res.data?.duration_2,
+          roi_2: res.data?.roi_2,
+          duration_3: res.data?.duration_3,
+          roi_3: res.data?.roi_3,
+        });
+        this.toggleLoader(false);
+      },
+      error: (err: any) => {
+        this.toggleLoader(false);
+        this.errorService.setError(err.message);
+      },
     });
   }
 

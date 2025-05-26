@@ -33,25 +33,31 @@ export class EditUserComponent implements OnInit {
   ngOnInit(): void {
     this.toggleLoader(true);
     this.route.paramMap.subscribe((params) => {
-      const user_id = +params.get('id')!;
-      this.adminUserService.getUser(user_id).subscribe({
-        next: (res: any) => {
-          this.editUserForm.patchValue({
-            user_id: res.data?.id,
-            fullname: res.data?.fullname,
-            username: res.data?.username,
-            email: res.data?.email,
-            phone: res.data?.phone,
-            password: res.data?.pass,
-            password_confirmation: res.data?.pass,
-          });
-          this.toggleLoader(false);
-        },
-        error: (err: any) => {
-          this.toggleLoader(false);
-          this.errorService.setError(err.message);
-        },
-      });
+      const user_id = params.get('id')!;
+      this.getUser(user_id);
+    });
+  }
+
+  getUser(user_id: string) {
+    const formData = new FormData();
+    formData.append('user_id', user_id);
+    this.adminUserService.getUser(formData).subscribe({
+      next: (res: any) => {
+        this.editUserForm.patchValue({
+          user_id: res.data?.id,
+          fullname: res.data?.fullname,
+          username: res.data?.username,
+          email: res.data?.email,
+          phone: res.data?.phone,
+          password: res.data?.pass,
+          password_confirmation: res.data?.pass,
+        });
+        this.toggleLoader(false);
+      },
+      error: (err: any) => {
+        this.toggleLoader(false);
+        this.errorService.setError(err.message);
+      },
     });
   }
 

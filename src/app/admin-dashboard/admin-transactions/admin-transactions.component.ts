@@ -14,7 +14,6 @@ import { UsersService } from '../../Services/users.service';
   styleUrl: './admin-transactions.component.scss',
 })
 export class AdminTransactionsComponent {
-  authUser: any;
   isFetching: boolean = false;
   transactionsData: any;
 
@@ -22,11 +21,9 @@ export class AdminTransactionsComponent {
   private adminTransactionsService = inject(AdminTransactionsService);
   private loaderService = inject(LoaderService);
 
-  constructor(private userService: UsersService) {}
+  constructor() {}
 
   ngOnInit(): void {
-    this.userService.authUser$.subscribe((user) => (this.authUser = user));
-
     this.getTransactions();
   }
 

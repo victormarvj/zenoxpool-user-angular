@@ -59,7 +59,7 @@ export class AdminZonesService {
       .pipe(catchError(this.handleError));
   }
 
-  getZone(id: number) {
+  getZone(id: FormData) {
     const token = this.localStorageService.get('zenoxpool');
     return this.http
       .get<Zones>(`${this.baseUrl}/zones/edit-zone/${id}`, {

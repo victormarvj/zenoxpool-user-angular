@@ -60,9 +60,16 @@
               class="label"
               [ngClass]="{
                 'bg-success': transaction.status === 1,
-                'bg-warning': transaction.status === 0
+                'bg-warning': transaction.status === 0,
+                'bg-danger': transaction.status === 2,
               }"
-              >{{ transaction.status == 1 ? "Active" : "Inactive" }}</span
+              >{{
+                transaction.status === 1
+                  ? "Completed"
+                  : transaction.status === 0
+                  ? "Pending"
+                  : "Rejected"
+              }}</span
             >
           </td>
           <td class="text-truncate">

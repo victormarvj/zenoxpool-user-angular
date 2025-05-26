@@ -21,7 +21,7 @@ import { SuccessService } from '../../Services/success.service';
 export class LiquidityPoolComponent {
   isConfirm: boolean = false;
 
-  liquiditypool_id: number = 0;
+  liquiditypool_id: string = '';
 
   private formBuilder = inject(FormBuilder);
   private route = inject(ActivatedRoute);
@@ -34,27 +34,27 @@ export class LiquidityPoolComponent {
   ngOnInit(): void {
     this.toggleLoader(true);
     this.route.paramMap.subscribe((params) => {
-      this.liquiditypool_id = +params.get('id')!;
+      this.liquiditypool_id = params.get('id')!;
       return this.getGasFee();
     });
   }
 
   getGasFee() {
-    this.adminLiquidityPoolService
-      .getLiquidityPool(this.liquiditypool_id)
-      .subscribe({
-        next: (res: any) => {
-          this.editLiquidityPoolForm.patchValue({
-            liquiditypool_id: res.data?.id || '1',
-            amount: res.data?.amount,
-          });
-          this.toggleLoader(false);
-        },
-        error: (err: any) => {
-          this.toggleLoader(false);
-          this.errorService.setError(err.message);
-        },
-      });
+    const formData = new FormData();
+    formData.append('liquiditypool_id', this.liquiditypool_id);
+    this.adminLiquidityPoolService.getLiquidityPool(formData).subscribe({
+      next: (res: any) => {
+        this.editLiquidityPoolForm.patchValue({
+          liquiditypool_id: res.data?.id || '1',
+          amount: res.data?.amount,
+        });
+        this.toggleLoader(false);
+      },
+      error: (err: any) => {
+        this.toggleLoader(false);
+        this.errorService.setError(err.message);
+      },
+    });
   }
 
   editLiquidityPoolForm = this.formBuilder.group({

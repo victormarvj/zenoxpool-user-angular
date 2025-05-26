@@ -30,25 +30,31 @@ export class EditCryptoComponent implements OnInit {
   ngOnInit(): void {
     this.toggleLoader(true);
     this.route.paramMap.subscribe((params) => {
-      const crypto_id = +params.get('id')!;
-      return this.adminCryptoService.getCrypto(crypto_id).subscribe({
-        next: (res: any) => {
-          this.editCryptoForm.patchValue({
-            crypto_id: res.data?.id,
-            name: res.data?.name,
-            abbreviation: res.data?.abbreviation,
-            network: res.data?.network,
-            address: res.data?.address,
-            value: res.data?.value,
-          });
-          this.imgSrc = this.imageUrl + '/' + res.data?.image;
-          this.toggleLoader(false);
-        },
-        error: (err: any) => {
-          this.toggleLoader(false);
-          this.errorService.setError(err.message);
-        },
-      });
+      const crypto_id = params.get('id')!;
+      this.getCrypto(crypto_id);
+    });
+  }
+
+  getCrypto(crypto_id: string) {
+    const formData = new FormData();
+    formData.append('crypto_id', crypto_id);
+    return this.adminCryptoService.getCrypto(formData).subscribe({
+      next: (res: any) => {
+        this.editCryptoForm.patchValue({
+          crypto_id: res.data?.id,
+          name: res.data?.name,
+          abbreviation: res.data?.abbreviation,
+          network: res.data?.network,
+          address: res.data?.address,
+          value: res.data?.value,
+        });
+        this.imgSrc = this.imageUrl + '/' + res.data?.image;
+        this.toggleLoader(false);
+      },
+      error: (err: any) => {
+        this.toggleLoader(false);
+        this.errorService.setError(err.message);
+      },
     });
   }
 

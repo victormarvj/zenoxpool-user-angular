@@ -25,7 +25,7 @@ export class AdminCryptoService {
       .pipe(catchError(this.handleError));
   }
 
-  getCrypto(id: number) {
+  getCrypto(id: FormData) {
     const token = this.localStorageService.get('zenoxpool');
     return this.http
       .get<Crypto>(`${this.baseUrl}/cryptos/edit-crypto/${id}`, {

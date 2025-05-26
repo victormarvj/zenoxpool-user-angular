@@ -7,17 +7,39 @@ import { catchError, Observable, throwError } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class UserLoopService {
+export class UserCryptoService {
   private http = inject(HttpClient);
   private localStorageService = inject(LocalStorageService);
   private baseUrl: string = `${environment.apiUrl}/user`;
 
   constructor() {}
 
-  getLoop(id: FormData): Observable<any> {
+  getCryptos(): Observable<any> {
     const token = this.localStorageService.get('zenoxpool');
     return this.http
-      .get(`${this.baseUrl}/loop/${id}`, {
+      .get(`${this.baseUrl}/crypto`, {
+        headers: {
+          Authorization: `Bearer ${token?.access_token}`,
+        },
+      })
+      .pipe(catchError(this.handleError));
+  }
+
+  getCrypto(formData: FormData): Observable<any> {
+    const token = this.localStorageService.get('zenoxpool');
+    return this.http
+      .post(`${this.baseUrl}/crypto`, formData, {
+        headers: {
+          Authorization: `Bearer ${token?.access_token}`,
+        },
+      })
+      .pipe(catchError(this.handleError));
+  }
+
+  deposit(formData: any): Observable<any> {
+    const token = this.localStorageService.get('zenoxpool');
+    return this.http
+      .post(`${this.baseUrl}/crypto/deposit`, formData, {
         headers: {
           Authorization: `Bearer ${token?.access_token}`,
         },

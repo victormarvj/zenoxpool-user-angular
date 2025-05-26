@@ -16,42 +16,29 @@
 
       <nav class="navbar">
         <ul class="navbar-nav">
-          <li class="nav-item flex flex-column" (click)="toggleModal()">
-            <div class="flex w-100 align-items-center">
-              <img src="btc.png" alt="btc logo" class="assets-logo" />
-              <div class="margin-left">
-                <h3>BTC <span class="label bg-success">Bitcoin</span></h3>
-                <span>0xsdjflasejdfohieesdldj</span>
+          @for (crypto of cryptoData; track $index) {
+          <li
+            class="nav-item flex flex-column"
+            (click)="getCryptoDetails(crypto?.id)"
+          >
+            <a class="nav-link">
+              <div class="flex w-100 align-items-center">
+                <img
+                  [src]="imgUrl + '/' + crypto?.image"
+                  alt="btc logo"
+                  class="assets-logo"
+                />
+                <div class="margin-left">
+                  <h3>
+                    {{ crypto?.abbreviation }}
+                    <span class="label bg-success">{{ crypto?.name }}</span>
+                  </h3>
+                  <span>{{ crypto?.address }}</span>
+                </div>
               </div>
-            </div>
+            </a>
           </li>
-          <li class="nav-item flex flex-column" (click)="toggleModal()">
-            <div class="flex w-100 align-items-center">
-              <img src="eth.png" alt="btc logo" class="assets-logo" />
-              <div class="margin-left">
-                <h3>ETH <span class="label bg-success">Ethereum</span></h3>
-                <span>0xsdjflasejdfohieesdldj</span>
-              </div>
-            </div>
-          </li>
-          <li class="nav-item flex flex-column" (click)="toggleModal()">
-            <div class="flex w-100 align-items-center">
-              <img src="usdt-eth.png" alt="btc logo" class="assets-logo" />
-              <div class="margin-left">
-                <h3>USDT <span class="label bg-success">Tether</span></h3>
-                <span>0xsdjflasejdfohieesdldj</span>
-              </div>
-            </div>
-          </li>
-          <li class="nav-item flex flex-column" (click)="toggleModal()">
-            <div class="flex w-100 align-items-center">
-              <img src="bnb.png" alt="btc logo" class="assets-logo" />
-              <div class="margin-left">
-                <h3>BNB <span class="label bg-success">Binance</span></h3>
-                <span>0xsdjflasejdfohieesdldj</span>
-              </div>
-            </div>
-          </li>
+          }
         </ul>
       </nav>
 
@@ -108,38 +95,44 @@
         <p>Only click the pay button after making deposit</p>
       </div>
 
-      <form class="margin-top">
+      <form
+        class="margin-top"
+        [formGroup]="cryptoDepositForm"
+        (ngSubmit)="onSubmit()"
+      >
         <div
           class="flex align-items-center justify-content-space gap loop-content"
         >
           <small>Amount</small>
-          <small>Balance: 100.00 USDT</small>
-          <button class="btn btn-outline btn-primary btn-sm">Max</button>
         </div>
 
         <div class="input-group">
           <input
-            type="amount"
+            type="number"
             name="amount"
-            id=""
+            min="0"
+            id="amount"
+            (input)="setValue()"
             class="border-radius-5 w-100"
-            placeholder="Enter amount"
+            placeholder="Enter amount in {{ cryptoData?.abbreviation }}"
+            formControlName="amount"
           />
           <button
+            [disabled]="cryptoDepositForm.invalid"
             type="button"
+            (click)="toggleConfirmModal()"
             class="btn btn-primary btn-pill"
-            (click)="toggleConfirmationDialog()"
           >
-            Circulate
+            I have paid
           </button>
         </div>
 
         <div class="summary flex align-items-center justify-content-space">
           <small>Value</small>
-          <small class="fw-600">104 USDT</small>
+          <small class="fw-600">{{ usdValue }} USDT</small>
         </div>
 
-        <app-confirmation-dialog [(isConfirm)]="isConfirm" />
+        <app-confirmation-dialog [isConfirm]="isConfirm" />
       </form>
     </div>
   </div>

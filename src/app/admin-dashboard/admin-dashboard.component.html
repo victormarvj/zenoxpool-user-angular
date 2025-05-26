@@ -125,6 +125,10 @@
               <span>Overview</span>
             </a>
           </li>
+
+          <span class="fw-600 color-primary-2 margin-top">Controls</span>
+          <hr />
+
           <li class="nav-item" (click)="toggleNav()">
             <a
               routerLink="/admin/dashboard/users"
@@ -191,17 +195,33 @@
               <span>Gas Fee</span>
             </a>
           </li>
+
           <span class="fw-600 color-primary-2 margin-top">Transactions</span>
           <hr />
+
           <li class="nav-item" (click)="toggleNav()">
             <a
-              routerLink="/admin/dashboard/pending-transactions"
+              routerLink="/admin/dashboard/pending-crypto-deposits"
               routerLinkActive="active"
               ariaCurrentWhenActive="page"
               class="nav-link"
             >
-              <fa-icon [icon]="['fas', 'clock-rotate-left']"></fa-icon>
-              <span>Pending Deposits </span>
+              <fa-icon [icon]="['fas', 'money-bill-transfer']"></fa-icon>
+              <span>Pending Crypto Deposits </span>
+              <!-- <span class="badge bg-warning fw-600">{{
+                transactionsSignal?.length
+              }}</span> -->
+            </a>
+          </li>
+          <li class="nav-item" (click)="toggleNav()">
+            <a
+              routerLink="/admin/dashboard/pending-bank-deposits"
+              routerLinkActive="active"
+              ariaCurrentWhenActive="page"
+              class="nav-link"
+            >
+              <fa-icon [icon]="['fas', 'money-bill-transfer']"></fa-icon>
+              <span>Pending Bank Deposits </span>
               <!-- <span class="badge bg-warning fw-600">{{
                 transactionsSignal?.length
               }}</span> -->
@@ -218,6 +238,10 @@
               <span>History</span>
             </a>
           </li>
+
+          <span class="fw-600 color-primary-2 margin-top">Account</span>
+          <hr />
+
           <li class="nav-item" (click)="toggleNav()">
             <a
               routerLink="/admin/dashboard/settings"

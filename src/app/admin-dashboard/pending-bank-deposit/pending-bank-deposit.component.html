@@ -1,15 +1,17 @@
 <div class="card transaction-div">
-  <p class="fw-600">Transactions</p>
+  <p class="fw-600">Pending Bank Deposits</p>
 
   <hr />
 
   <div class="table-responsive">
-    @if (!isFetching && transactionsData?.length) {
+    @if (!isFetching && pendingDepositsData?.length) {
     <table datatable class="row-border hover">
       <thead>
         <tr>
           <th>#</th>
           <th>Transaction ID</th>
+          <th>User</th>
+          <th>Email</th>
           <th>Type</th>
           <th>Name</th>
           <th>Amount - Cryto</th>
@@ -17,13 +19,16 @@
           <th>Address</th>
           <th>Status</th>
           <th>Date</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody>
-        @for (transaction of transactionsData; track $index) {
+        @for (transaction of pendingDepositsData; track $index) {
         <tr>
           <td class="text-truncate">{{ $index + 1 }}</td>
           <td class="text-truncate">{{ transaction.transaction_id }}</td>
+          <td class="text-truncate">{{ transaction.username }}</td>
+          <td class="text-truncate">{{ transaction.email }}</td>
           <td class="text-truncate">
             @switch (transaction.type) { @case (0) { Bank Deposit }@case (1) {
             Crypto Deposit }@case (2) {Transfer} @case (4)
@@ -71,6 +76,30 @@
           <td class="text-truncate">
             {{ transaction.created_at | date : "MMMM d, y h:mm a" }}
           </td>
+          <td>
+            @if (!isLoading) {
+            <div class="flex gap-1 align-items-center">
+              <fa-icon
+                [icon]="['far', 'circle-check']"
+                class="color-success"
+                (click)="toggleAcceptConfirmModal(transaction.id)"
+                title="Accept transaction"
+                role="button"
+                aria-label="Accept transaction"
+              ></fa-icon
+              ><fa-icon
+                [icon]="['far', 'rectangle-xmark']"
+                class="color-danger"
+                (click)="toggleRejectConfirmModal(transaction.id)"
+                title="Reject transaction"
+                role="button"
+                aria-label="Reject transaction"
+              ></fa-icon>
+            </div>
+            }@else {
+            <fa-icon [icon]="['fas', 'spinner']" class="load-spinner"></fa-icon>
+            }
+          </td>
         </tr>
         }
       </tbody>
@@ -82,3 +111,23 @@
     }
   </div>
 </div>
+
+<form (ngSubmit)="onSubmitAccept()" #form="ngForm">
+  <input
+    type="hidden"
+    name="transaction_id"
+    id="transaction_id"
+    [(ngModel)]="transaction_id"
+  />
+  <app-confirmation-dialog [(isConfirm)]="isAcceptConfirm" />
+</form>
+
+<form (ngSubmit)="onSubmitReject()" #form="ngForm">
+  <input
+    type="hidden"
+    name="transaction_id"
+    id="transaction_id"
+    [(ngModel)]="transaction_id"
+  />
+  <app-confirmation-dialog [(isConfirm)]="isRejectConfirm" />
+</form>

@@ -52,26 +52,32 @@ export class LoopComponent implements OnInit {
 
     this.toggleLoader(true);
     this.route.paramMap.subscribe((params) => {
-      const loop_id = +params.get('id')!;
-      this.userLoopService.getLoop(loop_id).subscribe({
-        next: (res: any) => {
-          this.loopData = res.data;
-          this.loopForm.patchValue({
-            loop_id: this.loopData.zone.id,
-            duration: this.loopData.zone.duration_1,
-            roi: this.loopData.zone.roi_1,
-          });
-          this.toggleLoader(false);
+      const loop_id = params.get('id')!;
+      this.getLoop(loop_id);
+    });
+  }
 
-          this.percentage = this.loopData.zone.roi_1;
-          this.duration = this.loopData.zone.duration_1;
-          this.total = this.calcTotal();
-        },
-        error: (err: any) => {
-          this.toggleLoader(false);
-          this.errorService.setError(err.message);
-        },
-      });
+  getLoop(loop_id: string) {
+    const formData = new FormData();
+    formData.append('loop_id', loop_id);
+    this.userLoopService.getLoop(formData).subscribe({
+      next: (res: any) => {
+        this.loopData = res.data;
+        this.loopForm.patchValue({
+          loop_id: this.loopData.zone.id,
+          duration: this.loopData.zone.duration_1,
+          roi: this.loopData.zone.roi_1,
+        });
+        this.toggleLoader(false);
+
+        this.percentage = this.loopData.zone.roi_1;
+        this.duration = this.loopData.zone.duration_1;
+        this.total = this.calcTotal();
+      },
+      error: (err: any) => {
+        this.toggleLoader(false);
+        this.errorService.setError(err.message);
+      },
     });
   }
 

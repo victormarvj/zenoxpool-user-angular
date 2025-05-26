@@ -26,7 +26,7 @@ export class AdminBankService {
       .pipe(catchError(this.handleError));
   }
 
-  getBank(id: number) {
+  getBank(id: FormData) {
     const token = this.localStorageService.get('zenoxpool');
     return this.http
       .get<Bank>(`${this.baseUrl}/banks/edit-bank/${id}`, {

@@ -57,6 +57,7 @@
         <button
           type="button"
           (click)="toggleConfirmModal()"
+          [disabled]="settingsForm.invalid"
           class="btn btn-primary btn-pill margin-top w-100 margin-bottom-1"
         >
           Update

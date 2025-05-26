@@ -22,7 +22,7 @@ import { SuccessService } from '../../Services/success.service';
 export class GasFeeComponent implements OnInit {
   isConfirm: boolean = false;
 
-  gasfee_id: number = 0;
+  gasfee_id: string = '';
 
   private formBuilder = inject(FormBuilder);
   private route = inject(ActivatedRoute);
@@ -35,13 +35,15 @@ export class GasFeeComponent implements OnInit {
   ngOnInit(): void {
     this.toggleLoader(true);
     this.route.paramMap.subscribe((params) => {
-      this.gasfee_id = +params.get('id')!;
+      this.gasfee_id = params.get('id')!;
       return this.getGasFee();
     });
   }
 
   getGasFee() {
-    this.adminGasFeeService.getGasFee(this.gasfee_id).subscribe({
+    const formData = new FormData();
+    formData.append('gasfee_id', this.gasfee_id);
+    this.adminGasFeeService.getGasFee(formData).subscribe({
       next: (res: any) => {
         this.editGasFeeForm.patchValue({
           gasfee_id: res.data?.id || '1',

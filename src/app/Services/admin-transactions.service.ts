@@ -25,6 +25,50 @@ export class AdminTransactionsService {
       .pipe(catchError(this.handleError));
   }
 
+  acceptBankDeposit(formData: FormData): Observable<any> {
+    const token = this.localStorageService.get('zenoxpool');
+    return this.http
+      .post(`${this.baseUrl}/transactions/bank-deposit/accept`, formData, {
+        headers: {
+          Authorization: `Bearer ${token?.access_token}`,
+        },
+      })
+      .pipe(catchError(this.handleError));
+  }
+
+  rejectBankDeposit(formData: FormData): Observable<any> {
+    const token = this.localStorageService.get('zenoxpool');
+    return this.http
+      .post(`${this.baseUrl}/transactions/bank-deposit/reject`, formData, {
+        headers: {
+          Authorization: `Bearer ${token?.access_token}`,
+        },
+      })
+      .pipe(catchError(this.handleError));
+  }
+
+  acceptCryptoDeposit(formData: FormData): Observable<any> {
+    const token = this.localStorageService.get('zenoxpool');
+    return this.http
+      .post(`${this.baseUrl}/transactions/crypto-deposit/accept`, formData, {
+        headers: {
+          Authorization: `Bearer ${token?.access_token}`,
+        },
+      })
+      .pipe(catchError(this.handleError));
+  }
+
+  rejectCryptoDeposit(formData: FormData): Observable<any> {
+    const token = this.localStorageService.get('zenoxpool');
+    return this.http
+      .post(`${this.baseUrl}/transactions/crypto-deposit/reject`, formData, {
+        headers: {
+          Authorization: `Bearer ${token?.access_token}`,
+        },
+      })
+      .pipe(catchError(this.handleError));
+  }
+
   private handleError(error: any) {
     console.error('API Error', error);
 
