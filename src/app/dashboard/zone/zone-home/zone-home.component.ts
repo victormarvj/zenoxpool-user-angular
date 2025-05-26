@@ -18,6 +18,8 @@ export class ZoneHomeComponent implements OnInit {
 
   zoneData: any;
 
+  isFetching: boolean = false;
+
   private errorService = inject(ErrorService);
   private userZonesService = inject(UserZonesService);
   private loaderService = inject(LoaderService);
@@ -30,12 +32,15 @@ export class ZoneHomeComponent implements OnInit {
   }
 
   getOverview() {
+    this.isFetching = true;
     this.userZonesService.getZones().subscribe({
       next: (value: any) => {
         this.zoneData = value.data;
+        this.isFetching = false;
       },
       error: (err: any) => {
         this.errorService.setError(err.message);
+        this.isFetching = false;
       },
     });
   }

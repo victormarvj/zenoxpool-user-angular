@@ -1,6 +1,6 @@
 <section>
   <div class="container-fluid grid-2-desktop">
-    <div class="card">
+    <div class="card form-card">
       <div class="card-header">
         <p class="fw-600">Password Manager</p>
       </div>
@@ -94,6 +94,7 @@
 
         <button
           type="button"
+          [disabled]="settingsForm.invalid"
           (click)="toggleConfirmModal()"
           class="btn btn-primary btn-pill margin-top w-100 margin-bottom-1"
         >

@@ -349,13 +349,19 @@ input::placeholder {
   color: var(--color-primary-1);
 }
 
+.ng-invalid:not(form).ng-touched:not(form)::placeholder {
+  color: var(--color-danger);
+}
+
 .ng-invalid:not(form) {
   outline: 1px solid var(--color-danger);
+  color: var(--color-danger);
 }
 
 .ng-valid:not(form),
 .ng-untouched:not(form) {
   outline: 1px solid var(--color-primary-1);
+  color: var(--color-primary-1);
 }
 
 .input-group {

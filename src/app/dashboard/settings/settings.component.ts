@@ -24,6 +24,7 @@ export class SettingsComponent implements OnInit {
 
   passwordMinLength: boolean = false;
   password: string = '';
+  isPassword: boolean = false;
 
   private formBuilder = inject(FormBuilder);
   private userSettingsService = inject(UserSettingsService);
@@ -66,6 +67,10 @@ export class SettingsComponent implements OnInit {
           },
         });
     }
+  }
+
+  togglePassword() {
+    this.isPassword = !this.isPassword;
   }
 
   toggleConfirmModal() {

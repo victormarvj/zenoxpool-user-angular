@@ -33,6 +33,7 @@
   </div>
 
   <div class="container-fluid">
+    @if(!isFetching) {
     <div class="grid grid-3 gap-1">
       @for (zone of zoneData?.zones; track $index) {
       <div
@@ -52,5 +53,8 @@
       </div>
       }
     </div>
+    }@else {
+    <p class="text-center fw-600">Loading zones. Please Wait ...</p>
+    }
   </div>
 </section>

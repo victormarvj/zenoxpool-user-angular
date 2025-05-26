@@ -27,8 +27,8 @@
           <td class="text-truncate">{{ transaction.transaction_id }}</td>
           <td class="text-truncate">
             @switch (transaction.type) { @case (0) { Bank Deposit }@case (1) {
-            Crypto Deposit }@case (2) {Transfer} @case (4)
-            {Swap::Swaped}@default {Gas Fee} }
+            Crypto Deposit }@case (2) {Transfer} @case (4) {Swap::Swaped}@case
+            (5) { Circle }@default {Gas Fee} }
           </td>
           <td class="text-truncate">
             {{ transaction.name.split("/")[0] }}
@@ -40,21 +40,46 @@
           <td
             class="text-truncate color-success fw-600"
             [ngClass]="{
-              'color-danger': transaction.type === 2 || transaction.type === 5
+              'color-danger':
+                transaction.type === 2 ||
+                transaction.type === 5 ||
+                transaction.type === 6,
+              'color-success':
+                transaction.type === 0 ||
+                transaction.type === 1 ||
+                transaction.type === 3 ||
+                transaction.type === 4
             }"
           >
-            {{ transaction.type === 2 || transaction.type === 5 ? "-" : "+"
+            {{
+              transaction.type === 2 ||
+              transaction.type === 5 ||
+              transaction.type === 6
+                ? "-"
+                : "+"
             }}{{ transaction.type_amount }}
             {{ transaction.type_name | uppercase }}
           </td>
           <td
-            class="text-truncate color-success fw-600"
+            class="text-truncate fw-600"
             [ngClass]="{
-              'color-danger': transaction.type === 2 || transaction.type === 5
+              'color-danger':
+                transaction.type === 2 ||
+                transaction.type === 5 ||
+                transaction.type === 6,
+              'color-success':
+                transaction.type === 0 ||
+                transaction.type === 1 ||
+                transaction.type === 3 ||
+                transaction.type === 4
             }"
           >
             {{
-              transaction.type === 2 || transaction.type === 5 ? "-" : "+"
+              transaction.type === 2 ||
+              transaction.type === 5 ||
+              transaction.type === 6
+                ? "-"
+                : "+"
             }}${{ transaction.amount }}
           </td>
           <td class="text-truncate">{{ transaction.address }}</td>

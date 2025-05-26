@@ -333,6 +333,22 @@ fa-icon {
   margin-block: 1rem;
 }
 
+.form-card {
+  z-index: 30;
+}
+
+.input-group-password {
+  position: relative;
+  cursor: pointer;
+
+  fa-icon {
+    font-size: 1.6rem;
+    position: absolute;
+    top: 20%;
+    right: 5%;
+  }
+}
+
 .load-spinner {
   display: inline-block;
   animation: rotate 0.7s linear infinite;

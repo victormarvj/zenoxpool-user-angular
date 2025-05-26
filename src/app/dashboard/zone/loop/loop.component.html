@@ -8,7 +8,7 @@
   </div>
 
   <div class="container-fluid grid grid-2 gap-1 grid-2-desktop margin-top">
-    <div class="card drop-shadow-2">
+    <div class="card drop-shadow-2 form-card">
       <span class="fw-600">New Circulation</span>
       <hr />
       <div class="flex margin-top justify-content-space gap-1">
@@ -17,32 +17,41 @@
           class="btn btn-outline btn-primary btn-sm"
           [class.active]="percentage === loopData?.zone.roi_1"
         >
-          {{ loopData?.zone.duration_1 }} Day
+          {{ loopData?.zone.duration_1 }} Day(s)
         </button>
         <button
           (click)="setDuration(loopData?.zone.duration_2)"
           class="btn btn-outline btn-primary btn-sm"
           [class.active]="percentage === loopData?.zone.roi_2"
         >
-          {{ loopData?.zone.duration_2 }} Day
+          {{ loopData?.zone.duration_2 }} Day(s)
         </button>
         <button
           (click)="setDuration(loopData?.zone.duration_3)"
           class="btn btn-outline btn-primary btn-sm"
           [class.active]="percentage === loopData?.zone.roi_3"
         >
-          {{ loopData?.zone.duration_3 }} Day
+          {{ loopData?.zone.duration_3 }} Day(s)
         </button>
       </div>
+
       <form class="margin-top" [formGroup]="loopForm" (ngSubmit)="onSubmit()">
         <div
           class="flex align-items-center justify-content-space gap loop-content"
         >
           <small>Amount</small>
-          <small [ngClass]="{ 'color-danger': loopData?.user.usdt === 0 }"
+          <small
+            [ngClass]="{
+              'color-danger':
+                loopData?.user.usdt === 0 || loopData?.user.usdt < this.amount
+            }"
             >Balance: {{ loopData?.user.balance }} USDT</small
           >
-          <button class="btn btn-outline btn-primary btn-sm" (click)="setMax()">
+          <button
+            type="button"
+            class="btn btn-outline btn-primary btn-sm"
+            (click)="setMax()"
+          >
             Max
           </button>
         </div>
@@ -51,16 +60,20 @@
             type="number"
             name="amount"
             id="amount"
+            min="0"
+            step="0.01"
             class="border-radius-5 w-100"
             placeholder="Enter amount"
             formControlName="amount"
+            [class.error]="loopForm.invalid"
             (input)="setTotal()"
           />
           <button
             [disabled]="
               loopData?.user.usdt === 0 ||
               loopForm.invalid ||
-              amount > loopData?.user.usdt
+              amount > loopData?.user.usdt ||
+              loopData?.gasFee + amount > loopData?.user.usdt
             "
             type="button"
             (click)="toggleConfirmModal()"
@@ -73,8 +86,20 @@
           loopData?.user.usdt === 0 ? "Insufficient Balance" : ""
         }}</small>
         <div class="summary flex align-items-center justify-content-space">
-          <small>1 Day</small>
-          <small class="fw-600">{{ total }} USDT</small>
+          <small>Gas Fee: {{ loopData?.gasFee | number : "1.2-2" }} USDT</small>
+          <small>{{ duration | number : "1." }} Day(s)</small>
+          <small class="fw-600">{{ total | number : "1.2-2" }} USDT</small>
+        </div>
+        <div class="flex justify-content-start">
+          <small
+            class="fw-600 color-danger"
+            [ngClass]="{
+              'color-success':
+                amount + loopData?.gasFee <= loopData?.user.usdt && amount > 0
+            }"
+            >Gas + Amount:
+            {{ amount + loopData?.gasFee | number : "1.2-2" }} USDT</small
+          >
         </div>
 
         <app-confirmation-dialog [(isConfirm)]="isConfirm" />
@@ -101,24 +126,22 @@
           <tbody>
             @for (circulation of loopData?.circulations; track $index) {
             <tr>
-              <td>{{ $index + 1 }}</td>
-              <td>{{ circulation.duration }}</td>
-              <td>{{ circulation.amount }}</td>
-              <td>{{ circulation.total }}</td>
-              <!-- <td>
-                {{ remainingTimes[circulation.id] || "Loading..." }}
-                <span
-                  [ngClass]="{
-                    'label bg-success': circulation.status === 1,
-                    'color-warning': circulation.status === 0
-                  }"
-                  >{{
-                    circulation.status == 0
-                      ? remainingTimes[circulation.id]
-                      : "Completed"
-                  }}</span
-                >
-              </td> -->
+              <td class="text-truncate">{{ $index + 1 }}</td>
+              <td class="text-truncate">{{ circulation.duration }} Days</td>
+              <td class="text-truncate">
+                {{ circulation.amount | number : "1.2-2" }} USDT
+              </td>
+              <td class="text-truncate">
+                {{ circulation.total | number : "1.2-2" }} USDT
+              </td>
+              <td class="text-truncate">
+                <app-countdown
+                  [status]="circulation.status"
+                  [duration]="circulation.duration"
+                  [itemId]="circulation.id"
+                  [creationDate]="circulation.created_at"
+                />
+              </td>
             </tr>
             }
           </tbody>
