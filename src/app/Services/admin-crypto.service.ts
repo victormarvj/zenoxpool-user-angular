@@ -25,7 +25,7 @@ export class AdminCryptoService {
       .pipe(catchError(this.handleError));
   }
 
-  getCrypto(id: FormData) {
+  getCrypto(id: number) {
     const token = this.localStorageService.get('zenoxpool');
     return this.http
       .get<Crypto>(`${this.baseUrl}/cryptos/edit-crypto/${id}`, {
@@ -47,10 +47,10 @@ export class AdminCryptoService {
       .pipe(catchError(this.handleError));
   }
 
-  uploadImage(formData: any): Observable<Crypto> {
+  uploadImage(formData: FormData): Observable<any> {
     const token = this.localStorageService.get('zenoxpool');
     return this.http
-      .post<Crypto>(`${this.baseUrl}/cryptos/image-upload`, formData, {
+      .post<any>(`${this.baseUrl}/cryptos/image-upload`, formData, {
         headers: {
           Authorization: `Bearer ${token?.access_token}`,
         },

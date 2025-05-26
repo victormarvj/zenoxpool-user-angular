@@ -84,7 +84,7 @@
 
         <div class="summary flex align-items-center justify-content-space">
           <small>Value</small>
-          <small class="fw-600">{{ amount }} USDT</small>
+          <small class="fw-600">{{ amount | number : "1.2-2" }} USDT</small>
         </div>
 
         <app-confirmation-dialog [isConfirm]="isConfirm" />

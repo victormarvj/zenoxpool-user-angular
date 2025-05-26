@@ -17,6 +17,7 @@
               <th>Abbr.</th>
               <th>Network</th>
               <th>Address</th>
+              <th>QR Code</th>
               <th>Value</th>
               <th>Status</th>
               <th>Date</th>
@@ -29,11 +30,7 @@
               <td>{{ $index + 1 }}</td>
               <td>
                 <img
-                  [src]="
-                    crypto.image !== ''
-                      ? imageUrl + '/' + crypto.image
-                      : 'btc.png'
-                  "
+                  [src]="imageUrl + '/' + crypto.image"
                   alt=""
                   class="assets-logo"
                 />
@@ -42,6 +39,13 @@
               <td>{{ crypto.abbreviation }}</td>
               <td>{{ crypto.network }}</td>
               <td>{{ crypto.address }}</td>
+              <td>
+                <img
+                  [src]="imageUrl + '/' + crypto.qr_code"
+                  alt=""
+                  class="assets-logo"
+                />
+              </td>
               <td>${{ crypto.value }}</td>
               <td>
                 <span

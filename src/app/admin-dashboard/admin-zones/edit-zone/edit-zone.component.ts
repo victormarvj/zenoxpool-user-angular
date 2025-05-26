@@ -28,17 +28,15 @@ export class EditZoneComponent {
   constructor() {}
 
   ngOnInit(): void {
-    this.toggleLoader(true);
     this.route.paramMap.subscribe((params) => {
-      const zone_id = params.get('id')!;
+      const zone_id = +params.get('id')!;
       this.getZone(zone_id);
     });
   }
 
-  getZone(zone_id: string) {
-    const formData = new FormData();
-    formData.append('zone_id', zone_id);
-    this.adminZoneService.getZone(formData).subscribe({
+  getZone(zone_id: number) {
+    this.toggleLoader(true);
+    this.adminZoneService.getZone(zone_id).subscribe({
       next: (res: any) => {
         this.editZoneForm.patchValue({
           zone_id: res.data?.id,

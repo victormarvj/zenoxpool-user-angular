@@ -4,10 +4,3 @@
     grid-template-columns: repeat(2, 1fr);
   }
 }
-
-@media (min-width: 75em) {
-  .grid-2-desktop {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-  }
-}

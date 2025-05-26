@@ -10,6 +10,17 @@ button {
   font-size: 1.2rem;
 }
 
+.input-group-password {
+  position: relative;
+
+  fa-icon {
+    font-size: 1.6rem;
+    position: absolute;
+    top: 20%;
+    right: 5%;
+  }
+}
+
 .bg-shape {
   position: relative;
   overflow: hidden;

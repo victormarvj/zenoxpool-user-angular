@@ -25,17 +25,15 @@ export class EditBankComponent implements OnInit {
   private router = inject(Router);
 
   ngOnInit(): void {
-    this.toggleLoader(true);
     this.route.paramMap.subscribe((params) => {
-      const bank_id = params.get('id')!;
+      const bank_id = +params.get('id')!;
       this.getBank(bank_id);
     });
   }
 
-  getBank(bank_id: string) {
-    const formData = new FormData();
-    formData.append('bank_id', bank_id);
-    return this.adminBankService.getBank(formData).subscribe({
+  getBank(bank_id: number) {
+    this.toggleLoader(true);
+    return this.adminBankService.getBank(bank_id).subscribe({
       next: (res: any) => {
         this.editBankForm.patchValue({
           bank_id: res.data?.id,

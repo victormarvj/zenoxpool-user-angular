@@ -26,7 +26,7 @@ export class AdminGasFeeService {
   //     .pipe(catchError(this.handleError));
   // }
 
-  getGasFee(id: FormData) {
+  getGasFee(id: number) {
     const token = this.localStorageService.get('zenoxpool');
     return this.http
       .get<GasFee>(`${this.baseUrl}/gas-fee/edit-gas-fee/${id}`, {

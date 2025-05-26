@@ -22,15 +22,15 @@
             (click)="getCryptoDetails(crypto?.id)"
           >
             <a class="nav-link">
-              <div class="flex w-100 align-items-center">
+              <div class="flex w-100 align-items-center asset-detail">
                 <img
                   [src]="imgUrl + '/' + crypto?.image"
-                  alt="btc logo"
+                  alt="{{ crypto?.name }} logo"
                   class="assets-logo"
                 />
                 <div class="margin-left">
                   <h3>
-                    {{ crypto?.abbreviation }}
+                    {{ crypto?.abbreviation | uppercase }}
                     <span class="label bg-success">{{ crypto?.name }}</span>
                   </h3>
                   <span>{{ crypto?.address }}</span>
@@ -41,14 +41,6 @@
           }
         </ul>
       </nav>
-
-      <hr />
-
-      <div class="learn-more-div margin-top">
-        <a routerLink="#" class="learn-more">Load More</a>
-
-        <fa-icon [icon]="['fas', 'arrow-right']" class="margin-left"></fa-icon>
-      </div>
     </div>
   </div>
 </section>
@@ -67,26 +59,49 @@
     <div class="modal-body margin-top text-center">
       <div class="bg-warning padding-2 border-radius text-left">
         <small>
-          Only send Tether USD (BEP20) assets to this address. Other assets will
-          be lost forever.
+          Only send {{ cryptoDetails?.name }}
+          {{ cryptoDetails?.abbreviation | uppercase }} ({{
+            cryptoDetails?.network | uppercase
+          }}) assets to this address. Other assets will be lost forever.
         </small>
       </div>
 
       <div class="flex justify-content-center align-items-center">
-        <img src="usdt-eth.png" alt="assets-logo" class="assets-logo" />
-        <p class="fw-600 margin-left">Tether USDT (BEP20)</p>
+        <img
+          [src]="imgUrl + '/' + cryptoDetails?.image"
+          alt="{{ cryptoDetails?.name }} logo"
+          class="assets-logo"
+        />
+        <p class="fw-600 margin-left">
+          {{ cryptoDetails?.name }}
+          {{ cryptoDetails?.abbreviation | uppercase }} ({{
+            cryptoDetails?.network | uppercase
+          }})
+        </p>
       </div>
 
       <div class="margin-top flex flex-column align-items-center">
-        <img src="usdt-eth.png" alt="assets-logo" class="assets-logo" />
-        <small>0xdsldfjoilesjflsd</small>
+        <img
+          [src]="imgUrl + '/' + cryptoDetails?.qr_code"
+          alt="assets-logo"
+          class="qr-logo"
+        />
+        <small>{{ cryptoDetails?.address }}</small>
 
-        <div class="copy">
+        <button
+          class="copy-btn copy"
+          (click)="copyText(cryptoDetails?.address)"
+        >
           <div class="icon border-radius">
             <fa-icon [icon]="['fas', 'copy']"></fa-icon>
           </div>
+          @if (!isCopied) {
           <small>Copy</small>
-        </div>
+          }
+          <p class="color-success fw-600 margin-top-1">
+            {{ isCopied ? "Copied!" : "" }}
+          </p>
+        </button>
       </div>
 
       <div class="note margin-top color-danger text-left">
@@ -114,8 +129,10 @@
             id="amount"
             (input)="setValue()"
             class="border-radius-5 w-100"
-            placeholder="Enter amount in {{ cryptoData?.abbreviation }}"
-            formControlName="amount"
+            placeholder="Enter amount in {{
+              cryptoDetails?.abbreviation | uppercase
+            }}"
+            formControlName="type_amount"
           />
           <button
             [disabled]="cryptoDepositForm.invalid"
@@ -129,7 +146,7 @@
 
         <div class="summary flex align-items-center justify-content-space">
           <small>Value</small>
-          <small class="fw-600">{{ usdValue }} USDT</small>
+          <small class="fw-600">{{ amount | number : "1.2-2" }} USDT</small>
         </div>
 
         <app-confirmation-dialog [isConfirm]="isConfirm" />

@@ -14,6 +14,7 @@
           <th>Email</th>
           <th>Type</th>
           <th>Name</th>
+          <th>Network / Bill</th>
           <th>Amount - Cryto</th>
           <th>Amount - USD</th>
           <th>Address</th>
@@ -33,16 +34,22 @@
             Crypto Deposit }@case (2) {Transfer} @case (4)
             {Swap::Swaped}@default {Gas Fee} }
           </td>
-          <td class="text-truncate">{{ transaction.name }}</td>
+          <td class="text-truncate">
+            {{ transaction.name.split("/")[0] }}
+            {{ transaction.abbreviation | uppercase }}
+          </td>
+          <td class="text-truncate">
+            {{ transaction.name.split("/")[1] | uppercase }}
+          </td>
           <td
             class="text-truncate color-success fw-600"
             [ngClass]="{
               'color-danger': transaction.type === 2 || transaction.type === 5
             }"
           >
-            {{
-              transaction.type === 2 || transaction.type === 5 ? "-" : "+"
-            }}${{ transaction.type_amount }}
+            {{ transaction.type === 2 || transaction.type === 5 ? "-" : "+"
+            }}{{ transaction.type_amount }}
+            {{ transaction.type_name | uppercase }}
           </td>
           <td
             class="text-truncate color-success fw-600"

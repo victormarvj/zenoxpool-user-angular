@@ -64,7 +64,7 @@ export class AdminUsersService {
       .pipe(catchError(this.handleError));
   }
 
-  getUser(id: FormData) {
+  getUser(id: number) {
     const token = this.localStorageService.get('zenoxpool');
     return this.http
       .get<Users>(`${this.baseUrl}/users/edit-user/${id}`, {

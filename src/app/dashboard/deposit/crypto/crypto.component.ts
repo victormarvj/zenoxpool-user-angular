@@ -8,6 +8,8 @@ import { LoaderService } from '../../../Services/loader.service';
 import { environment } from '../../../../environments/environment';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SuccessService } from '../../../Services/success.service';
+import { DecimalPipe, UpperCasePipe } from '@angular/common';
+import { ClipboardService } from '../../../Services/clipboard.service';
 
 @Component({
   selector: 'app-crypto',
@@ -16,6 +18,8 @@ import { SuccessService } from '../../../Services/success.service';
     FontAwesomeModuleModule,
     ConfirmationDialogComponent,
     ReactiveFormsModule,
+    UpperCasePipe,
+    DecimalPipe,
   ],
   templateUrl: './crypto.component.html',
   styleUrls: ['./crypto.component.scss'],
@@ -31,28 +35,45 @@ export class CryptoComponent implements OnInit {
   imgUrl: string = environment.imageUrl;
 
   cryptoDetails: any;
+  isCopied: boolean = false;
 
-  usdValue: any = 0;
+  type_amount: any = 0;
+  value: any = 0;
+  amount: any = 0;
 
   private formBuilder = inject(FormBuilder);
   private errorService = inject(ErrorService);
   private successService = inject(SuccessService);
   private userCryptoService = inject(UserCryptoService);
   private loaderService = inject(LoaderService);
+  private clipboardService = inject(ClipboardService);
 
   ngOnInit(): void {
     this.getTransactions();
   }
 
+  async copyText(text: string) {
+    const success = await this.clipboardService.copyToClipboard(text);
+    if (success) {
+      this.isCopied = true;
+      setTimeout(() => (this.isCopied = false), 2000);
+    }
+  }
+
   cryptoDepositForm = this.formBuilder.group({
     abbreviation: ['', Validators.required],
-    amount: ['', Validators.required],
+    amount: ['', [Validators.required, Validators.min(0)]],
     type_amount: ['', Validators.required],
   });
 
   setValue() {
-    this.usdValue =
-      +this.cryptoData.get('amount')?.value * +this.cryptoData.value;
+    this.type_amount = this.cryptoDepositForm.get('type_amount')?.value;
+    this.amount = this.type_amount * this.value;
+    this.cryptoDepositForm.patchValue({
+      abbreviation: this.cryptoDetails?.abbreviation,
+      amount: this.amount,
+      type_amount: this.type_amount,
+    });
   }
 
   getTransactions() {
@@ -70,15 +91,13 @@ export class CryptoComponent implements OnInit {
   }
 
   getCryptoDetails(crypto_id: number) {
-    const formData = new FormData();
-    formData.append('crypto_id', crypto_id.toString());
-
     this.toggleLoader(true);
-    this.userCryptoService.getCrypto(formData).subscribe({
+    this.userCryptoService.getCrypto(crypto_id).subscribe({
       next: (res: any) => {
         this.cryptoDetails = res.data;
         this.toggleLoader(false);
         this.toggleModal();
+        this.value = this.cryptoDetails.value;
         this.cryptoDepositForm.patchValue({
           abbreviation: this.cryptoDetails.abbreviation,
           amount: '',
@@ -100,6 +119,8 @@ export class CryptoComponent implements OnInit {
       next: (res: any) => {
         this.toggleLoader(false);
         this.successService.setSuccess(res.message);
+        this.cryptoDepositForm.reset();
+        this.amount = 0;
       },
       error: (err: any) => {
         this.toggleLoader(false);

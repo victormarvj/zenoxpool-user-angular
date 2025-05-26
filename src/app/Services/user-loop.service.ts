@@ -14,7 +14,7 @@ export class UserLoopService {
 
   constructor() {}
 
-  getLoop(id: FormData): Observable<any> {
+  getLoop(id: number): Observable<any> {
     const token = this.localStorageService.get('zenoxpool');
     return this.http
       .get(`${this.baseUrl}/loop/${id}`, {

@@ -8,7 +8,7 @@ import { UsersService } from '../../../Services/users.service';
 import { ActivatedRoute } from '@angular/router';
 import { ConfirmationDialogComponent } from '../../../layouts/confirmation-dialog/confirmation-dialog.component';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { JsonPipe, NgClass } from '@angular/common';
+import { NgClass } from '@angular/common';
 import { interval, Subscription } from 'rxjs';
 
 @Component({
@@ -47,29 +47,23 @@ export class LoopComponent implements OnInit {
 
   ngOnInit(): void {
     this.userService.authUser$.subscribe((user) => (this.authUser = user));
-
-    this.startCountdowns();
-
-    this.toggleLoader(true);
     this.route.paramMap.subscribe((params) => {
-      const loop_id = params.get('id')!;
-      this.getLoop(loop_id);
+      const zone_id = +params.get('id')!;
+      this.getLoop(zone_id);
     });
   }
 
-  getLoop(loop_id: string) {
-    const formData = new FormData();
-    formData.append('loop_id', loop_id);
-    this.userLoopService.getLoop(formData).subscribe({
+  getLoop(zone_id: number) {
+    this.toggleLoader(true);
+    this.userLoopService.getLoop(zone_id).subscribe({
       next: (res: any) => {
         this.loopData = res.data;
         this.loopForm.patchValue({
-          loop_id: this.loopData.zone.id,
+          zone_id: this.loopData.zone.id,
           duration: this.loopData.zone.duration_1,
           roi: this.loopData.zone.roi_1,
         });
         this.toggleLoader(false);
-
         this.percentage = this.loopData.zone.roi_1;
         this.duration = this.loopData.zone.duration_1;
         this.total = this.calcTotal();
@@ -82,7 +76,7 @@ export class LoopComponent implements OnInit {
   }
 
   loopForm = this.formBuilder.group({
-    loop_id: ['', Validators.required],
+    zone_id: ['', Validators.required],
     duration: [0, Validators.required],
     roi: [0, Validators.required],
     amount: ['', Validators.required],
@@ -158,7 +152,7 @@ export class LoopComponent implements OnInit {
   }
 
   updateCountdowns() {
-    if (!this.loopData?.circulations) return;
+    if (this.loopData?.circulations.length) return;
 
     this.loopData.circulations.forEach((circulation: any) => {
       const startTime = new Date(circulation.created_at).getTime();

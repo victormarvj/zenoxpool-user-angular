@@ -69,18 +69,33 @@
             />
           </div>
 
-          <div class="form-group margin-top-2">
-            <img [src]="imgSrc" alt="" class="assets-logo" />
-          </div>
-
-          <div class="form-group margin-top-2">
-            <label for="image">Upload Image</label>
-            <input
-              type="file"
-              id="image"
-              (change)="onFileSelected($event)"
-              class="border-radius-5 bg-transparent w-100"
-            />
+          <div class="flex align-items-center gap-1">
+            <div class="form-group margin-top-2">
+              <img [src]="imgSrc1" alt="" class="assets-logo" />
+            </div>
+            <div class="form-group margin-top-2">
+              <label for="logo_image">Logo Image</label>
+              <input
+                type="file"
+                id="logo_image"
+                name="image"
+                (change)="onFileSelected($event, 1)"
+                class="border-radius-5 bg-transparent w-100"
+              />
+            </div>
+            <div class="form-group margin-top-2">
+              <img [src]="imgSrc2" alt="" class="assets-logo" />
+            </div>
+            <div class="form-group margin-top-2">
+              <label for="qr_code">QR Code</label>
+              <input
+                type="file"
+                id="qr_code"
+                name="qr_code"
+                (change)="onFileSelected($event, 2)"
+                class="border-radius-5 bg-transparent w-100"
+              />
+            </div>
           </div>
 
           <button

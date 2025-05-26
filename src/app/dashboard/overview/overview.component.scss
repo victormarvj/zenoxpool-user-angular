@@ -18,6 +18,17 @@
     grid-template-columns: 30rem 1fr;
   }
 
+  .card {
+    position: relative;
+
+    .transaction-div {
+      position: absolute;
+      width: 100%;
+      margin: 0 auto;
+      top: 5%;
+    }
+  }
+
   .margin-top-desktop {
     margin-top: 0rem;
   }

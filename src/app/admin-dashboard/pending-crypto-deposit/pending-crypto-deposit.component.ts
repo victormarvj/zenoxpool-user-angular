@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FontAwesomeModuleModule } from '../../Modules/font-awesome-module/font-awesome-module.module';
 import { DatatablesModule } from '../../Modules/datatables/datatables.module';
-import { DatePipe, NgClass } from '@angular/common';
+import { DatePipe, NgClass, UpperCasePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ConfirmationDialogComponent } from '../../layouts/confirmation-dialog/confirmation-dialog.component';
 import { ErrorService } from '../../Services/error.service';
@@ -18,6 +18,7 @@ import { LoaderService } from '../../Services/loader.service';
     NgClass,
     FormsModule,
     ConfirmationDialogComponent,
+    UpperCasePipe,
   ],
   templateUrl: './pending-crypto-deposit.component.html',
   styleUrl: './pending-crypto-deposit.component.scss',

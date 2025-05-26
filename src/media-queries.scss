@@ -23,3 +23,10 @@
     grid-template-columns: repeat(3, 1fr);
   }
 }
+
+// Laptops above: 900px and above
+@media (min-width: 75em) {
+  html {
+    font-size: 87.5%;
+  }
+}

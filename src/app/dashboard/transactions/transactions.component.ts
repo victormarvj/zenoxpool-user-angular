@@ -3,7 +3,7 @@ import { FontAwesomeModuleModule } from '../../Modules/font-awesome-module/font-
 import { DatatablesModule } from '../../Modules/datatables/datatables.module';
 import { ConfirmationDialogComponent } from '../../layouts/confirmation-dialog/confirmation-dialog.component';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { DatePipe, NgClass } from '@angular/common';
+import { DatePipe, NgClass, UpperCasePipe } from '@angular/common';
 import { ErrorService } from '../../Services/error.service';
 import { UserTransactionsService } from '../../Services/user-transactions.service';
 import { LoaderService } from '../../Services/loader.service';
@@ -11,7 +11,13 @@ import { UsersService } from '../../Services/users.service';
 
 @Component({
   selector: 'app-transactions',
-  imports: [FontAwesomeModuleModule, DatatablesModule, DatePipe, NgClass],
+  imports: [
+    FontAwesomeModuleModule,
+    DatatablesModule,
+    DatePipe,
+    NgClass,
+    UpperCasePipe,
+  ],
   templateUrl: './transactions.component.html',
   styleUrl: './transactions.component.scss',
 })

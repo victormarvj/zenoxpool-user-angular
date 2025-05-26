@@ -181,11 +181,11 @@
 
     .dropdown {
       position: absolute;
-      top: -350%;
+      top: -600%;
       left: 0;
       background-color: var(--color-white);
       display: flex;
-      opacity: 0;
+      opacity: 1;
       width: 100%;
       transition: all 0.3s;
       border-radius: 5px;

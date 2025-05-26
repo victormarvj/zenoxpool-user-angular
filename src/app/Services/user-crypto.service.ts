@@ -25,10 +25,10 @@ export class UserCryptoService {
       .pipe(catchError(this.handleError));
   }
 
-  getCrypto(formData: FormData): Observable<any> {
+  getCrypto(id: number): Observable<any> {
     const token = this.localStorageService.get('zenoxpool');
     return this.http
-      .post(`${this.baseUrl}/crypto`, formData, {
+      .get(`${this.baseUrl}/crypto/${id}`, {
         headers: {
           Authorization: `Bearer ${token?.access_token}`,
         },

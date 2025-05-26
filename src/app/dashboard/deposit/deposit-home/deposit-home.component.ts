@@ -7,6 +7,7 @@ import { LoaderService } from '../../../Services/loader.service';
 import { ConfirmationDialogComponent } from '../../../layouts/confirmation-dialog/confirmation-dialog.component';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SuccessService } from '../../../Services/success.service';
+import { DecimalPipe } from '@angular/common';
 
 @Component({
   selector: 'app-deposit-home',
@@ -15,6 +16,7 @@ import { SuccessService } from '../../../Services/success.service';
     FontAwesomeModuleModule,
     ConfirmationDialogComponent,
     ReactiveFormsModule,
+    DecimalPipe,
   ],
   templateUrl: './deposit-home.component.html',
   styleUrls: ['./deposit-home.component.scss'],
@@ -49,6 +51,8 @@ export class DepositHomeComponent implements OnInit {
       next: (res: any) => {
         this.toggleLoader(false);
         this.successService.setSuccess(res.message);
+        this.bankDepositForm.reset();
+        this.amount = 0;
       },
       error: (err: any) => {
         this.toggleLoader(false);

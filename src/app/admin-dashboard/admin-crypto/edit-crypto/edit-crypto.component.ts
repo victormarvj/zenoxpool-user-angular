@@ -7,6 +7,7 @@ import { LoaderService } from '../../../Services/loader.service';
 import { ErrorService } from '../../../Services/error.service';
 import { SuccessService } from '../../../Services/success.service';
 import { environment } from '../../../../environments/environment';
+import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-edit-crypto',
@@ -16,7 +17,8 @@ import { environment } from '../../../../environments/environment';
 })
 export class EditCryptoComponent implements OnInit {
   isConfirm: boolean = false;
-  imgSrc: string = '';
+  imgSrc1: string = '';
+  imgSrc2: string = '';
   imageUrl: string = environment.imageUrl;
 
   private formBuilder = inject(FormBuilder);
@@ -28,17 +30,15 @@ export class EditCryptoComponent implements OnInit {
   private router = inject(Router);
 
   ngOnInit(): void {
-    this.toggleLoader(true);
     this.route.paramMap.subscribe((params) => {
-      const crypto_id = params.get('id')!;
+      const crypto_id = +params.get('id')!;
       this.getCrypto(crypto_id);
     });
   }
 
-  getCrypto(crypto_id: string) {
-    const formData = new FormData();
-    formData.append('crypto_id', crypto_id);
-    return this.adminCryptoService.getCrypto(formData).subscribe({
+  getCrypto(crypto_id: number) {
+    this.toggleLoader(true);
+    return this.adminCryptoService.getCrypto(crypto_id).subscribe({
       next: (res: any) => {
         this.editCryptoForm.patchValue({
           crypto_id: res.data?.id,
@@ -47,8 +47,11 @@ export class EditCryptoComponent implements OnInit {
           network: res.data?.network,
           address: res.data?.address,
           value: res.data?.value,
+          image: res.data?.image,
+          qr_code: res.data?.qr_code,
         });
-        this.imgSrc = this.imageUrl + '/' + res.data?.image;
+        this.imgSrc1 = this.imageUrl + '/' + res.data?.image;
+        this.imgSrc2 = this.imageUrl + '/' + res.data?.qr_code;
         this.toggleLoader(false);
       },
       error: (err: any) => {
@@ -66,34 +69,46 @@ export class EditCryptoComponent implements OnInit {
     address: ['', Validators.required],
     value: ['', Validators.required],
     image: ['', Validators.required],
+    qr_code: ['', Validators.required],
   });
 
-  onFileSelected(event: Event): void {
+  onFileSelected(event: Event, field: number): void {
     const input = event.target as HTMLInputElement;
-    if (input.files && input.files.length > 0) {
+    if (input.files?.length) {
       const file = input.files[0];
-
-      if (this.imgSrc) {
-        URL.revokeObjectURL(this.imgSrc);
-      }
-      this.imgSrc = URL.createObjectURL(file);
 
       const formData = new FormData();
       formData.append('image', file);
-      this.imageUpload(formData);
+
+      if (field === 1) {
+        if (this.imgSrc1) URL.revokeObjectURL(this.imgSrc1);
+        this.imgSrc1 = URL.createObjectURL(file);
+      } else {
+        if (this.imgSrc2) URL.revokeObjectURL(this.imgSrc2);
+        this.imgSrc2 = URL.createObjectURL(file);
+      }
+
+      this.imageUpload(formData, field);
     }
   }
 
-  imageUpload(formData: FormData) {
+  imageUpload(formData: FormData, field: number) {
     this.toggleLoader(true);
     this.adminCryptoService.uploadImage(formData).subscribe({
       next: (value: any) => {
         this.toggleLoader(false);
         this.successService.setSuccess(value.message);
-        this.imgSrc = this.imageUrl + '/' + value.data;
-        this.editCryptoForm.patchValue({
-          image: value.data,
-        });
+        if (field === 1) {
+          this.imgSrc1 = this.imageUrl + '/' + value.data;
+          this.editCryptoForm.patchValue({
+            image: value.data,
+          });
+        } else {
+          this.imgSrc2 = this.imageUrl + '/' + value.data;
+          this.editCryptoForm.patchValue({
+            qr_code: value.data,
+          });
+        }
       },
       error: (err: any) => {
         this.toggleLoader(false);

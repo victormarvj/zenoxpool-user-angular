@@ -14,7 +14,7 @@ export class AdminLiquidityPoolService {
 
   constructor() {}
 
-  getLiquidityPool(id: FormData) {
+  getLiquidityPool(id: number) {
     const token = this.localStorageService.get('zenoxpool');
     return this.http
       .get<any>(`${this.baseUrl}/liquidity-pool/edit-liquidity-pool/${id}`, {

@@ -26,6 +26,7 @@ export class AdminSettingsComponent implements OnInit {
 
   passwordMinLength: boolean = false;
   password: string = '';
+  isPassword: boolean = true;
 
   private formBuilder = inject(FormBuilder);
   private adminSettingService = inject(AdminSettingService);
@@ -69,6 +70,10 @@ export class AdminSettingsComponent implements OnInit {
           },
         });
     }
+  }
+
+  togglePassword() {
+    this.isPassword = !this.isPassword;
   }
 
   toggleConfirmModal() {

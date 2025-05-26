@@ -50,23 +50,48 @@
             </div>
 
             <div class="form-group flex gap-1 margin-top-2">
-              <input
-                type="password"
-                name="password"
-                class="border-radius-5 bg-transparent w-100"
-                placeholder="Password"
-                id="password"
-                formControlName="password"
-                (input)="checkPasswordLength()"
-              />
-              <input
-                type="password"
-                name="password_confirmation"
-                class="border-radius-5 bg-transparent w-100"
-                placeholder="Confirm Password"
-                id="password_confirmation"
-                formControlName="password_confirmation"
-              />
+              <div class="input-group-password">
+                <input
+                  [type]="isPassword ? 'password' : 'text'"
+                  name="password"
+                  class="border-radius-5 bg-transparent w-100"
+                  placeholder="Password"
+                  id="password"
+                  formControlName="password"
+                />
+                @if (isPassword) {
+                <fa-icon
+                  [icon]="['far', 'eye-slash']"
+                  (click)="togglePassword()"
+                ></fa-icon>
+                }@else{
+                <fa-icon
+                  [icon]="['far', 'eye']"
+                  (click)="togglePassword()"
+                ></fa-icon>
+                }
+              </div>
+              <div class="input-group-password">
+                <input
+                  [type]="isPassword ? 'password' : 'text'"
+                  name="password_confirmation"
+                  class="border-radius-5 bg-transparent w-100"
+                  placeholder="Confirm password"
+                  id="password_confirmation"
+                  formControlName="password_confirmation"
+                />
+                @if (isPassword) {
+                <fa-icon
+                  [icon]="['far', 'eye-slash']"
+                  (click)="togglePassword()"
+                ></fa-icon>
+                }@else{
+                <fa-icon
+                  [icon]="['far', 'eye']"
+                  (click)="togglePassword()"
+                ></fa-icon>
+                }
+              </div>
             </div>
             <small
               [ngClass]="!passwordMinLength ? 'color-danger' : 'color-success'"
@@ -91,7 +116,7 @@
         </form>
 
         <p class="text-center">
-          &copy; Copyright ZenoxPool 2024 - {{ date }}. All Rights Reserved
+          &copy; Copyright ZenoxPool {{ date }}. All Rights Reserved
         </p>
       </div>
       <div class="bg-grid">

@@ -14,27 +14,52 @@
       >
         <div class="group">
           <label for="old_password" class="fw-600">Old Password</label>
-          <input
-            type="password"
-            name="old_password"
-            id="old_password"
-            class="border-radius-5 w-100"
-            placeholder="Enter old password"
-            formControlName="old_password"
-          />
+          <div class="input-group-password">
+            <input
+              [type]="isPassword ? 'password' : 'text'"
+              name="old_password"
+              class="border-radius-5 bg-transparent w-100"
+              placeholder="Old password"
+              id="old_password"
+              formControlName="old_password"
+            />
+            @if (isPassword) {
+            <fa-icon
+              [icon]="['far', 'eye-slash']"
+              (click)="togglePassword()"
+            ></fa-icon>
+            }@else{
+            <fa-icon
+              [icon]="['far', 'eye']"
+              (click)="togglePassword()"
+            ></fa-icon>
+            }
+          </div>
         </div>
 
         <div class="group margin-top">
           <label for="password" class="fw-600">New Password</label>
-          <input
-            type="password"
-            name="password"
-            id="password"
-            class="border-radius-5 w-100"
-            placeholder="Enter new password"
-            formControlName="password"
-            (input)="checkPasswordLength()"
-          />
+          <div class="input-group-password">
+            <input
+              [type]="isPassword ? 'password' : 'text'"
+              name="password"
+              class="border-radius-5 bg-transparent w-100"
+              placeholder="Password"
+              id="password"
+              formControlName="password"
+            />
+            @if (isPassword) {
+            <fa-icon
+              [icon]="['far', 'eye-slash']"
+              (click)="togglePassword()"
+            ></fa-icon>
+            }@else{
+            <fa-icon
+              [icon]="['far', 'eye']"
+              (click)="togglePassword()"
+            ></fa-icon>
+            }
+          </div>
         </div>
         <small [ngClass]="!passwordMinLength ? 'color-danger' : 'color-success'"
           >Minimum of 6 characters</small
@@ -44,14 +69,27 @@
           <label for="password_confirmation" class="fw-600"
             >Confirm Password</label
           >
-          <input
-            type="password"
-            name="password_confirmation"
-            id="password_confirmation"
-            class="border-radius-5 w-100"
-            placeholder="Enter confirm password"
-            formControlName="password_confirmation"
-          />
+          <div class="input-group-password">
+            <input
+              [type]="isPassword ? 'password' : 'text'"
+              name="password_confirmation"
+              class="border-radius-5 bg-transparent w-100"
+              placeholder="Confirm password"
+              id="password_confirmation"
+              formControlName="password_confirmation"
+            />
+            @if (isPassword) {
+            <fa-icon
+              [icon]="['far', 'eye-slash']"
+              (click)="togglePassword()"
+            ></fa-icon>
+            }@else{
+            <fa-icon
+              [icon]="['far', 'eye']"
+              (click)="togglePassword()"
+            ></fa-icon>
+            }
+          </div>
         </div>
 
         <button

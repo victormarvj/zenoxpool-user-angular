@@ -7,10 +7,16 @@ import { UsersService } from '../Services/users.service';
 import { SuccessService } from '../Services/success.service';
 import { ErrorService } from '../Services/error.service';
 import { LocalStorageService } from '../Services/local-storage.service';
+import { FontAwesomeModuleModule } from '../Modules/font-awesome-module/font-awesome-module.module';
 
 @Component({
   selector: 'app-login',
-  imports: [RouterModule, ReactiveFormsModule, ConfirmationDialogComponent],
+  imports: [
+    RouterModule,
+    ReactiveFormsModule,
+    ConfirmationDialogComponent,
+    FontAwesomeModuleModule,
+  ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
@@ -20,6 +26,8 @@ export class LoginComponent implements OnInit {
   isConfirm: boolean = false;
 
   authUser: any;
+
+  isPassword: boolean = true;
 
   private formBuilder = inject(FormBuilder);
   private loaderService = inject(LoaderService);
@@ -71,6 +79,10 @@ export class LoginComponent implements OnInit {
         this.errorService.setError(err.message);
       },
     });
+  }
+
+  togglePassword() {
+    this.isPassword = !this.isPassword;
   }
 
   toggleConfirmModal() {

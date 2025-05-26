@@ -13,12 +13,14 @@ import { ConfirmationDialogComponent } from '../layouts/confirmation-dialog/conf
 import { LoaderService } from '../Services/loader.service';
 import { SuccessService } from '../Services/success.service';
 import { NgClass } from '@angular/common';
+import { FontAwesomeModuleModule } from '../Modules/font-awesome-module/font-awesome-module.module';
 @Component({
   selector: 'app-signup',
   imports: [
     RouterModule,
     ReactiveFormsModule,
     ConfirmationDialogComponent,
+    FontAwesomeModuleModule,
     NgClass,
   ],
   templateUrl: './signup.component.html',
@@ -31,6 +33,8 @@ export class SignupComponent implements OnInit {
 
   passwordMinLength: boolean = false;
   password: string = '';
+
+  isPassword: boolean = true;
 
   private userService = inject(UsersService);
   private formBuilder = inject(FormBuilder);
@@ -77,6 +81,10 @@ export class SignupComponent implements OnInit {
         },
       });
     }
+  }
+
+  togglePassword() {
+    this.isPassword = !this.isPassword;
   }
 
   toggleConfirmModal() {

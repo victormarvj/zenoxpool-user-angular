@@ -8,8 +8,16 @@
   }
 }
 
-.hidden {
-  display: none;
+.navbar-nav {
+  gap: 1.4rem;
+
+  .nav-link {
+    cursor: pointer;
+  }
+
+  .asset-detail {
+    padding: 1rem;
+  }
 }
 
 @media (min-width: 56.2em) {

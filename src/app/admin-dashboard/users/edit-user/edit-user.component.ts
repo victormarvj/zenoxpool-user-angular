@@ -31,17 +31,15 @@ export class EditUserComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.toggleLoader(true);
     this.route.paramMap.subscribe((params) => {
-      const user_id = params.get('id')!;
+      const user_id = +params.get('id')!;
       this.getUser(user_id);
     });
   }
 
-  getUser(user_id: string) {
-    const formData = new FormData();
-    formData.append('user_id', user_id);
-    this.adminUserService.getUser(formData).subscribe({
+  getUser(user_id: number) {
+    this.toggleLoader(true);
+    this.adminUserService.getUser(user_id).subscribe({
       next: (res: any) => {
         this.editUserForm.patchValue({
           user_id: res.data?.id,
