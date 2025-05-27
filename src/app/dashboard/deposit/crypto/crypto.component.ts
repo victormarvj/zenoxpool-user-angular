@@ -49,7 +49,7 @@ export class CryptoComponent implements OnInit {
   private clipboardService = inject(ClipboardService);
 
   ngOnInit(): void {
-    this.getTransactions();
+    this.getCryptos();
   }
 
   async copyText(text: string) {
@@ -76,7 +76,7 @@ export class CryptoComponent implements OnInit {
     });
   }
 
-  getTransactions() {
+  getCryptos() {
     this.toggleLoader(true);
     this.userCryptoService.getCryptos().subscribe({
       next: (res) => {

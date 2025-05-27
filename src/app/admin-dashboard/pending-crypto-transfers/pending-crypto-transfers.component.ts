@@ -10,7 +10,7 @@ import { AdminTransactionsService } from '../../Services/admin-transactions.serv
 import { LoaderService } from '../../Services/loader.service';
 
 @Component({
-  selector: 'app-pending-crypto-deposit',
+  selector: 'app-pending-crypto-transfers',
   imports: [
     FontAwesomeModuleModule,
     DatatablesModule,
@@ -20,12 +20,12 @@ import { LoaderService } from '../../Services/loader.service';
     ConfirmationDialogComponent,
     UpperCasePipe,
   ],
-  templateUrl: './pending-crypto-deposit.component.html',
-  styleUrl: './pending-crypto-deposit.component.scss',
+  templateUrl: './pending-crypto-transfers.component.html',
+  styleUrl: './pending-crypto-transfers.component.scss',
 })
-export class PendingCryptoDepositComponent {
+export class PendingCryptoTransfersComponent {
   isFetching: boolean = false;
-  pendingDepositsData: any;
+  pendingTransfersData: any;
   isAcceptConfirm: boolean = false;
   isRejectConfirm: boolean = false;
   isLoading: boolean = false;
@@ -48,8 +48,8 @@ export class PendingCryptoDepositComponent {
     this.adminTransactionsService.getTransactions().subscribe({
       next: (res) => {
         this.isFetching = false;
-        this.pendingDepositsData = res.data.filter(
-          (trans: any) => trans.status === 0 && trans.type === 1
+        this.pendingTransfersData = res.data.filter(
+          (trans: any) => trans.status === 0 && trans.type === 2
         );
       },
       error: (err) => {
@@ -65,12 +65,12 @@ export class PendingCryptoDepositComponent {
 
     this.isAcceptConfirm = false;
     this.isLoading = true;
-    this.adminTransactionsService.acceptCryptoDeposit(formData).subscribe({
+    this.adminTransactionsService.acceptCryptoTransfer(formData).subscribe({
       next: (res) => {
         this.isLoading = false;
         this.getTransactions();
         this.successService.setSuccess('Transaction accepted successfully!');
-        this.pendingDepositsData = res.data.length > 0 ? res.data : null;
+        this.pendingTransfersData = res.data.length > 0 ? res.data : null;
       },
       error: (err) => {
         this.isLoading = false;
@@ -85,12 +85,12 @@ export class PendingCryptoDepositComponent {
 
     this.isRejectConfirm = false;
     this.isLoading = true;
-    this.adminTransactionsService.rejectCryptoDeposit(formData).subscribe({
+    this.adminTransactionsService.rejectCryptoTransfer(formData).subscribe({
       next: (res) => {
         this.isLoading = false;
         this.getTransactions();
         this.successService.setSuccess('Transaction rejected successfully!');
-        this.pendingDepositsData = res.data.length > 0 ? res.data : null;
+        this.pendingTransfersData = res.data.length > 0 ? res.data : null;
       },
       error: (err) => {
         this.isLoading = false;

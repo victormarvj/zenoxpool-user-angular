@@ -47,6 +47,17 @@ export class UserCryptoService {
       .pipe(catchError(this.handleError));
   }
 
+  transfer(formData: any): Observable<any> {
+    const token = this.localStorageService.get('zenoxpool');
+    return this.http
+      .post(`${this.baseUrl}/crypto/transfer`, formData, {
+        headers: {
+          Authorization: `Bearer ${token?.access_token}`,
+        },
+      })
+      .pipe(catchError(this.handleError));
+  }
+
   private handleError(error: any) {
     console.error('API Error', error);
 

@@ -69,6 +69,28 @@ export class AdminTransactionsService {
       .pipe(catchError(this.handleError));
   }
 
+  acceptCryptoTransfer(formData: FormData): Observable<any> {
+    const token = this.localStorageService.get('zenoxpool');
+    return this.http
+      .post(`${this.baseUrl}/transactions/crypto-transfer/accept`, formData, {
+        headers: {
+          Authorization: `Bearer ${token?.access_token}`,
+        },
+      })
+      .pipe(catchError(this.handleError));
+  }
+
+  rejectCryptoTransfer(formData: FormData): Observable<any> {
+    const token = this.localStorageService.get('zenoxpool');
+    return this.http
+      .post(`${this.baseUrl}/transactions/crypto-transfer/reject`, formData, {
+        headers: {
+          Authorization: `Bearer ${token?.access_token}`,
+        },
+      })
+      .pipe(catchError(this.handleError));
+  }
+
   private handleError(error: any) {
     console.error('API Error', error);
 

@@ -1,0 +1,28 @@
+.summary {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+fa-icon {
+  font-size: 1.6rem;
+  cursor: pointer;
+}
+
+@media (min-width: 56.2em) {
+  .grid-2-desktop {
+    grid-template-columns: 30rem 1fr;
+  }
+
+  .card {
+    position: relative;
+    width: 98%;
+    margin: 0 auto;
+
+    .transaction-div {
+      position: absolute;
+      width: 100%;
+      margin: 0 auto;
+      top: 5%;
+    }
+  }
+}

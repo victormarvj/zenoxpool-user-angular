@@ -201,6 +201,17 @@
 
           <li class="nav-item" (click)="toggleNav()">
             <a
+              routerLink="/admin/dashboard/pending-crypto-transfers"
+              routerLinkActive="active"
+              ariaCurrentWhenActive="page"
+              class="nav-link"
+            >
+              <fa-icon [icon]="['fas', 'wallet']"></fa-icon>
+              <span>Pending Crypto Transfers </span>
+            </a>
+          </li>
+          <li class="nav-item" (click)="toggleNav()">
+            <a
               routerLink="/admin/dashboard/pending-crypto-deposits"
               routerLinkActive="active"
               ariaCurrentWhenActive="page"

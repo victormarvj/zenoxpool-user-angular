@@ -28,6 +28,7 @@ import { GasFeeComponent } from './admin-dashboard/gas-fee/gas-fee.component';
 import { LiquidityPoolComponent } from './admin-dashboard/liquidity-pool/liquidity-pool.component';
 import { PendingCryptoDepositComponent } from './admin-dashboard/pending-crypto-deposit/pending-crypto-deposit.component';
 import { PendingBankDepositComponent } from './admin-dashboard/pending-bank-deposit/pending-bank-deposit.component';
+import { PendingCryptoTransfersComponent } from './admin-dashboard/pending-crypto-transfers/pending-crypto-transfers.component';
 
 export const routes: Routes = [
   {
@@ -265,6 +266,12 @@ export const routes: Routes = [
         component: GasFeeComponent,
         title: 'Gas Fee | ZenoxPool',
         data: { title: 'Gas Fee | ZenoxPool' },
+      },
+      {
+        path: 'pending-crypto-transfers',
+        component: PendingCryptoTransfersComponent,
+        title: 'Crypto Transfers | ZenoxPool',
+        data: { title: 'Pending Transfers | ZenoxPool' },
       },
       {
         path: 'pending-crypto-deposits',
