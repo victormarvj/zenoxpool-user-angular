@@ -71,7 +71,7 @@
                       routerLink="/dashboard/profile"
                       routerLinkActive="active"
                       ariaCurrentWhenActive="page"
-                      class="dropdown-nav-link"
+                      class="dropdown-nav-link nav-link"
                     >
                       <fa-icon [icon]="['fas', 'user']"></fa-icon>
                       <span>Profile</span>
@@ -171,6 +171,17 @@
             >
               <fa-icon [icon]="['fas', 'building-columns']"></fa-icon>
               <span>Bank Payment</span>
+            </a>
+          </li>
+          <li class="nav-item" (click)="toggleNav()">
+            <a
+              routerLink="/admin/dashboard/codes"
+              routerLinkActive="active"
+              ariaCurrentWhenActive="page"
+              class="nav-link"
+            >
+              <fa-icon [icon]="['fas', 'hexagon-nodes']"></fa-icon>
+              <span>Codes</span>
             </a>
           </li>
           <li class="nav-item" (click)="toggleNav()">

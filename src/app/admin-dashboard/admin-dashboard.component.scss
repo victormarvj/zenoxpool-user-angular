@@ -195,7 +195,7 @@
       .create-space {
         width: 100%;
         margin: 0;
-        padding: 0 2.4rem;
+        padding: 0 2rem;
 
         .logout {
           display: flex;
@@ -214,6 +214,12 @@
           display: flex;
           align-items: center;
           gap: 1rem;
+          padding: 0 1rem;
+        }
+
+        .dropdown-nav-link:hover {
+          background-color: var(--color-primary-1);
+          color: var(--color-white);
         }
       }
     }
@@ -233,6 +239,7 @@
       height: 100%;
       background-color: rgba($color: #000000, $alpha: 0);
       z-index: -5;
+      cursor: default;
     }
 
     .dropdown-overlay.hidden {

@@ -23,6 +23,32 @@
               <th>BTC</th>
               <th>ETH</th>
               <th>BNB</th>
+              <th>No of Codes</th>
+              <th>
+                {{
+                  codes[4].name.charAt(0).toUpperCase() + codes[4].name.slice(1)
+                }}
+              </th>
+              <th>
+                {{
+                  codes[3].name.charAt(0).toUpperCase() + codes[3].name.slice(1)
+                }}
+              </th>
+              <th>
+                {{
+                  codes[2].name.charAt(0).toUpperCase() + codes[2].name.slice(1)
+                }}
+              </th>
+              <th>
+                {{
+                  codes[1].name.charAt(0).toUpperCase() + codes[1].name.slice(1)
+                }}
+              </th>
+              <th>
+                {{
+                  codes[0].name.charAt(0).toUpperCase() + codes[0].name.slice(1)
+                }}
+              </th>
               <th>Status</th>
               <th>Date</th>
               <th>Action</th>
@@ -40,6 +66,12 @@
               <td>{{ user.btc }}</td>
               <td>{{ user.eth }}</td>
               <td>{{ user.bnb }}</td>
+              <td>{{ user.no_of_codes }}</td>
+              <td>{{ user.code_5 }}</td>
+              <td>{{ user.code_4 }}</td>
+              <td>{{ user.code_3 }}</td>
+              <td>{{ user.code_2 }}</td>
+              <td>{{ user.code_1 }}</td>
               <td>
                 <span
                   class="label"

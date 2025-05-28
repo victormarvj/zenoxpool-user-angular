@@ -33,6 +33,7 @@ export class NewUserComponent {
     phone: ['', Validators.required],
     password: ['', Validators.required],
     password_confirmation: ['', Validators.required],
+    no_of_codes: [0, Validators.required],
   });
 
   onSubmit() {

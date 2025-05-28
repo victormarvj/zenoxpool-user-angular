@@ -44,7 +44,7 @@ export class AdminLiquidityPoolService {
     console.error('API Error', error);
 
     return throwError(function () {
-      if (error.status === 422) {
+      if (error.status === 422 || error.status === 500) {
         return error.error;
       }
 

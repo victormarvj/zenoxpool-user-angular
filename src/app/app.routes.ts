@@ -29,6 +29,10 @@ import { LiquidityPoolComponent } from './admin-dashboard/liquidity-pool/liquidi
 import { PendingCryptoDepositComponent } from './admin-dashboard/pending-crypto-deposit/pending-crypto-deposit.component';
 import { PendingBankDepositComponent } from './admin-dashboard/pending-bank-deposit/pending-bank-deposit.component';
 import { PendingCryptoTransfersComponent } from './admin-dashboard/pending-crypto-transfers/pending-crypto-transfers.component';
+import path from 'path';
+import { LoaderComponent } from './layouts/loader/loader.component';
+import { AdminCodesComponent } from './admin-dashboard/admin-codes/admin-codes.component';
+import { TransferHomeComponent } from './dashboard/transfer/transfer-home/transfer-home.component';
 
 export const routes: Routes = [
   {
@@ -103,8 +107,23 @@ export const routes: Routes = [
       {
         path: 'transfer',
         component: TransferComponent,
-        title: 'Transfer | ZenoxPool',
-        data: { title: 'Transfer | ZenoxPool' },
+        children: [
+          {
+            path: '',
+            component: TransferHomeComponent,
+            title: 'Transfer | ZenoxPool',
+            data: { title: 'Transfer | ZenoxPool' },
+          },
+          {
+            path: 'pending-transfer/:id',
+            loadComponent: () =>
+              import(
+                './dashboard/transfer/pending-transfer/pending-transfer.component'
+              ).then((c) => c.PendingTransferComponent),
+            title: 'Pending Transfer | ZenoxPool',
+            data: { title: 'Pending Transfer | ZenoxPool' },
+          },
+        ],
       },
       {
         path: 'transactions',
@@ -252,6 +271,30 @@ export const routes: Routes = [
               ).then((c) => c.EditBankComponent),
             title: 'Edit Bank | ZenoxPool',
             data: { title: 'Edit Bank | ZenoxPool' },
+          },
+        ],
+      },
+      {
+        path: 'codes',
+        component: AdminCodesComponent,
+        children: [
+          {
+            path: '',
+            loadComponent: () =>
+              import(
+                './admin-dashboard/admin-codes/code-overview/code-overview.component'
+              ).then((c) => c.CodeOverviewComponent),
+            title: 'Codes | ZenoxPool',
+            data: { title: 'Codes | ZenoxPool' },
+          },
+          {
+            path: 'edit-code/:id',
+            loadComponent: () =>
+              import(
+                './admin-dashboard/admin-codes/edit-code/edit-code.component'
+              ).then((c) => c.EditCodeComponent),
+            title: 'Codes | ZenoxPool',
+            data: { title: 'Codes | ZenoxPool' },
           },
         ],
       },

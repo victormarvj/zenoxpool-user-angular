@@ -47,6 +47,72 @@ export class UserCryptoService {
       .pipe(catchError(this.handleError));
   }
 
+  checkTempTransaction(): Observable<any> {
+    const token = this.localStorageService.get('zenoxpool');
+    return this.http
+      .get(`${this.baseUrl}/crypto/temp-transfer`, {
+        headers: {
+          Authorization: `Bearer ${token?.access_token}`,
+        },
+      })
+      .pipe(catchError(this.handleError));
+  }
+
+  viewTempTransfer(id: any): Observable<any> {
+    const token = this.localStorageService.get('zenoxpool');
+    return this.http
+      .get(`${this.baseUrl}/crypto/temp-transfer/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token?.access_token}`,
+        },
+      })
+      .pipe(catchError(this.handleError));
+  }
+
+  verifyCode(formData: any): Observable<any> {
+    const token = this.localStorageService.get('zenoxpool');
+    return this.http
+      .post(`${this.baseUrl}/crypto/temp-transfer/verify-code`, formData, {
+        headers: {
+          Authorization: `Bearer ${token?.access_token}`,
+        },
+      })
+      .pipe(catchError(this.handleError));
+  }
+
+  deleteTempTransfer(id: number): Observable<any> {
+    const token = this.localStorageService.get('zenoxpool');
+    return this.http
+      .delete(`${this.baseUrl}/crypto/temp-transfer/${id}/delete/`, {
+        headers: {
+          Authorization: `Bearer ${token?.access_token}`,
+        },
+      })
+      .pipe(catchError(this.handleError));
+  }
+
+  tempTransfer(formData: any): Observable<any> {
+    const token = this.localStorageService.get('zenoxpool');
+    return this.http
+      .post(`${this.baseUrl}/crypto/temp-transfer`, formData, {
+        headers: {
+          Authorization: `Bearer ${token?.access_token}`,
+        },
+      })
+      .pipe(catchError(this.handleError));
+  }
+
+  processTempTransfer(formData: any): Observable<any> {
+    const token = this.localStorageService.get('zenoxpool');
+    return this.http
+      .post(`${this.baseUrl}/crypto/temp-transfer/process`, formData, {
+        headers: {
+          Authorization: `Bearer ${token?.access_token}`,
+        },
+      })
+      .pipe(catchError(this.handleError));
+  }
+
   transfer(formData: any): Observable<any> {
     const token = this.localStorageService.get('zenoxpool');
     return this.http
@@ -62,7 +128,7 @@ export class UserCryptoService {
     console.error('API Error', error);
 
     return throwError(function () {
-      if (error.status === 422) {
+      if (error.status === 422 || error.status === 500) {
         return error.error;
       }
 

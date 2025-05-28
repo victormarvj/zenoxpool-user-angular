@@ -1,4 +1,4 @@
-import { NgClass } from '@angular/common';
+import { JsonPipe, NgClass } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { ConfirmationDialogComponent } from '../../../layouts/confirmation-dialog/confirmation-dialog.component';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -49,6 +49,7 @@ export class EditUserComponent implements OnInit {
           phone: res.data?.phone,
           password: res.data?.pass,
           password_confirmation: res.data?.pass,
+          no_of_codes: res.data?.no_of_codes,
         });
         this.toggleLoader(false);
       },
@@ -67,6 +68,7 @@ export class EditUserComponent implements OnInit {
     phone: ['', Validators.required],
     password: ['', Validators.required],
     password_confirmation: ['', Validators.required],
+    no_of_codes: [0, Validators.required],
   });
 
   onSubmit() {

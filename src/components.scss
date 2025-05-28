@@ -323,7 +323,8 @@ table.dataTable > tbody > tr {
 
 // Input component
 input,
-textarea {
+textarea,
+select {
   color: var(--color-primary-1);
   padding: 1rem 1.6rem;
   outline: 1px solid var(--color-primary-1);

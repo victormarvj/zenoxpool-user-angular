@@ -1,0 +1,41 @@
+<section>
+  <div class="container-fluid grid-2-desktop">
+    <div class="card">
+      <div class="card-header">
+        <p class="fw-600">Edit Code</p>
+      </div>
+
+      <hr />
+
+      <form
+        class="margin-top"
+        [formGroup]="editCodeForm"
+        (ngSubmit)="onSubmit()"
+      >
+        <div class="body">
+          <div class="form-group">
+            <input
+              type="text"
+              name="name"
+              class="border-radius-5 bg-transparent w-100"
+              placeholder="Name"
+              id="name"
+              formControlName="name"
+            />
+          </div>
+
+          <button
+            [disabled]="editCodeForm.invalid"
+            type="button"
+            (click)="toggleConfirmModal()"
+            class="btn btn-pill btn-primary margin-top-2 w-100"
+          >
+            Update Crypto
+          </button>
+        </div>
+
+        <app-confirmation-dialog [isConfirm]="isConfirm" />
+      </form>
+    </div>
+  </div>
+</section>

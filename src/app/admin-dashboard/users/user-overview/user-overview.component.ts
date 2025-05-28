@@ -30,6 +30,7 @@ export class UserOverviewComponent implements OnInit {
   isLoading: boolean = false;
   isConfirm: boolean = false;
 
+  codes: any = null;
   user_id: number = 0;
 
   constructor(
@@ -49,7 +50,8 @@ export class UserOverviewComponent implements OnInit {
     this.adminUserService.getUsers().subscribe({
       next: (res) => {
         this.isFetching = false;
-        this.users = res.data.length > 0 ? res.data : null;
+        this.users = res.data.users.length > 0 ? res.data.users : null;
+        this.codes = res.data.codes;
       },
       error: (err) => {
         this.isFetching = false;

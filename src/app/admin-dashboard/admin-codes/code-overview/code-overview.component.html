@@ -1,0 +1,54 @@
+<section>
+  <div class="container-fluid">
+    <div class="card transaction-div">
+      <p class="fw-600">All Codes</p>
+
+      <hr />
+
+      <!-- <table datatable [dtOptions]="dtOptions" class="row-border hover"> -->
+      <div class="table-responsive">
+        @if (!isFetching && codes.length) {
+        <table datatable class="row-border hover">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Code Position</th>
+              <th>Name</th>
+              <th>Date</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (code of codes; track $index) {
+            <tr>
+              <td>{{ $index + 1 }}</td>
+              <td>{{ code.code_position }}</td>
+              <td>{{ code.name }}</td>
+              <td class="text-truncate">
+                {{ code.created_at | date : "MMMM d, y h:mm a" }}
+              </td>
+              <td>
+                <div class="flex gap-1 align-items-center">
+                  <fa-icon
+                    [routerLink]="['edit-code', code.id]"
+                    [icon]="['far', 'pen-to-square']"
+                    class="color-primary"
+                    title="Edit code"
+                    role="button"
+                    aria-label="Edit code"
+                  ></fa-icon>
+                </div>
+              </td>
+            </tr>
+            }
+          </tbody>
+        </table>
+        }@else {
+        <p class="text-center">
+          {{ isFetching ? "Loading data..." : "No record found!" }}
+        </p>
+        }
+      </div>
+    </div>
+  </div>
+</section>

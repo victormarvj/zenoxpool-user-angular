@@ -6,6 +6,7 @@ import { LocalStorageService } from './Services/local-storage.service';
 import { UsersService } from './Services/users.service';
 import { LoaderComponent } from './layouts/loader/loader.component';
 import { LogoutService } from './Services/logout.service';
+import { TawkLiveChatService } from './Services/tawk-live-chat.service';
 
 @Component({
   selector: 'app-root',
@@ -23,11 +24,13 @@ export class AppComponent implements OnInit {
   private userService = inject(UsersService);
   private router = inject(Router);
   private logoutService = inject(LogoutService);
+  private tawkLiveChatSevice = inject(TawkLiveChatService);
 
   title = 'zenoxpool';
   authUser: any;
 
   ngOnInit(): void {
+    this.tawkLiveChatSevice.loadTawkTo();
     this.userService.authUser$.subscribe((user) => (this.authUser = user));
     this.isAuthenticated();
   }

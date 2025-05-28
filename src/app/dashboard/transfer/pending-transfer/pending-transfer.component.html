@@ -1,0 +1,75 @@
+<section>
+  <div class="container-fluid grid-2-desktop">
+    <div class="card form-card">
+      <div class="card-header">
+        <p class="fw-600">Pending Transaction</p>
+      </div>
+
+      <hr />
+
+      <p>
+        You have a pending transaction from your previous operation. Complete
+        this process to continue
+      </p>
+      <p class="margin-top">
+        Please provide
+        <span class="fw-600 text-success">{{
+          transactionData?.code.name
+        }}</span>
+      </p>
+
+      <form
+        class="margin-top-1"
+        [formGroup]="transactionForm"
+        (ngSubmit)="onSubmit()"
+      >
+        <div class="group">
+          <label for="code" class="fw-600">{{
+            transactionData?.code.name
+          }}</label>
+          <div class="input-group">
+            <input
+              type="text"
+              name="code"
+              (input)="checkIsCorrect()"
+              class="border-radius-5 bg-transparent w-100"
+              placeholder="Enter {{ transactionData?.code.name }}"
+              id="code"
+              formControlName="code"
+            />
+          </div>
+        </div>
+
+        <p class="color-danger fw-bold">Tries Left: {{ throttle }}</p>
+        <div class="bg-warning padding-2 border-radius margin-top">
+          <small class="fw-600"
+            >Please note that after {{ throttle }} tries, this transaction will
+            be terminated.</small
+          >
+        </div>
+
+        @if (!isCorrect) {
+        <button
+          type="button"
+          [disabled]="transactionForm.invalid"
+          (click)="triggerError()"
+          class="btn btn-primary btn-pill margin-top w-100 margin-bottom-1"
+        >
+          Verify {{ transactionData?.code.name }}
+        </button>
+        }@else {
+        <button
+          type="button"
+          [disabled]="transactionForm.invalid"
+          (click)="toggleConfirmModal()"
+          class="btn btn-primary btn-pill margin-top w-100 margin-bottom-1"
+        >
+          Verify {{ transactionData?.code.name }}
+        </button>
+        }
+
+        <app-confirmation-dialog [(isConfirm)]="isConfirm" />
+      </form>
+    </div>
+  </div>
+</section>
