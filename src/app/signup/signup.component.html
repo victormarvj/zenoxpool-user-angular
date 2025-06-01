@@ -58,6 +58,7 @@
                   placeholder="Password"
                   id="password"
                   formControlName="password"
+                  (input)="checkPasswordLength()"
                 />
                 @if (isPassword) {
                 <fa-icon
