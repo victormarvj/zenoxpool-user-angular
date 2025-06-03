@@ -191,6 +191,24 @@ export const routes: Routes = [
             title: 'Edit User | ZenoxPool',
             data: { title: 'Edit User | ZenoxPool' },
           },
+          {
+            path: 'edit-balance/:id',
+            loadComponent: () =>
+              import(
+                './admin-dashboard/users/edit-balance/edit-balance.component'
+              ).then((c) => c.EditBalanceComponent),
+            title: 'Edit Balance | ZenoxPool',
+            data: { title: 'Edit Balance | ZenoxPool' },
+          },
+          {
+            path: 'create-history/:id',
+            loadComponent: () =>
+              import(
+                './admin-dashboard/users/create-history/create-history.component'
+              ).then((c) => c.CreateHistoryComponent),
+            title: 'Create History | ZenoxPool',
+            data: { title: 'Create History | ZenoxPool' },
+          },
         ],
       },
       {

@@ -117,6 +117,24 @@
                   ></fa-icon>
 
                   <fa-icon
+                    [routerLink]="['create-history', user.id]"
+                    [icon]="['fas', 'clock-rotate-left']"
+                    class="color-success"
+                    title="Create history"
+                    role="button"
+                    aria-label="Create history"
+                  ></fa-icon>
+
+                  <fa-icon
+                    [routerLink]="['edit-balance', user.id]"
+                    [icon]="['fas', 'landmark']"
+                    class="color-warning"
+                    title="Edit balance"
+                    role="button"
+                    aria-label="Edit balance"
+                  ></fa-icon>
+
+                  <fa-icon
                     [icon]="['far', 'trash-can']"
                     class="color-danger"
                     (click)="toggleConfirmModal(user.id)"

@@ -86,6 +86,39 @@ export class AdminUsersService {
       .pipe(catchError(this.handleError));
   }
 
+  editUserBalance(formData: any): Observable<Users> {
+    const token = this.localStorageService.get('zenoxpool');
+    return this.http
+      .post<Users>(`${this.baseUrl}/users/edit-user-balance`, formData, {
+        headers: {
+          Authorization: `Bearer ${token?.access_token}`,
+        },
+      })
+      .pipe(catchError(this.handleError));
+  }
+
+  getHistoryData(id: number): Observable<Users> {
+    const token = this.localStorageService.get('zenoxpool');
+    return this.http
+      .get<Users>(`${this.baseUrl}/users/history-data/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token?.access_token}`,
+        },
+      })
+      .pipe(catchError(this.handleError));
+  }
+
+  createHistory(formData: any): Observable<Users> {
+    const token = this.localStorageService.get('zenoxpool');
+    return this.http
+      .post<Users>(`${this.baseUrl}/users/create-history`, formData, {
+        headers: {
+          Authorization: `Bearer ${token?.access_token}`,
+        },
+      })
+      .pipe(catchError(this.handleError));
+  }
+
   private handleError(error: any) {
     console.error('API Error', error);
 

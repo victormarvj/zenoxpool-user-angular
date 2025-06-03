@@ -1,0 +1,78 @@
+<section>
+  <div class="container-fluid grid-2-desktop">
+    <div class="card">
+      <div class="card-header">
+        <p class="fw-600">New User</p>
+      </div>
+
+      <hr />
+
+      <form
+        class="margin-top"
+        [formGroup]="balanceForm"
+        (ngSubmit)="onSubmit()"
+      >
+        <div class="body">
+          <div class="form-group margin-top-2">
+            <label for="btc">BTC balance</label>
+            <input
+              type="number"
+              name="btc"
+              class="border-radius-5 bg-transparent w-100"
+              placeholder="BTC balance"
+              id="btc"
+              formControlName="btc"
+            />
+          </div>
+
+          <div class="form-group margin-top-2">
+            <label for="usdt">USDT balance</label>
+            <input
+              type="number"
+              name="usdt"
+              class="border-radius-5 bg-transparent w-100"
+              placeholder="USDT balance"
+              id="usdt"
+              formControlName="usdt"
+            />
+          </div>
+
+          <div class="form-group margin-top-2">
+            <label for="eth">ETH balance</label>
+            <input
+              type="number"
+              name="eth"
+              class="border-radius-5 bg-transparent w-100"
+              placeholder="Eth balance"
+              id="eth"
+              formControlName="eth"
+            />
+          </div>
+
+          <div class="form-group margin-top-2">
+            <label for="bnb">BNB balance</label>
+            <input
+              type="number"
+              name="bnb"
+              class="border-radius-5 bg-transparent w-100"
+              placeholder="BNB balance"
+              id="bnb"
+              formControlName="bnb"
+            />
+          </div>
+
+          <button
+            [disabled]="!balanceForm.valid"
+            type="button"
+            (click)="this.toggleConfirmModal()"
+            class="btn btn-pill btn-primary margin-top-2 w-100"
+          >
+            Update Balance
+          </button>
+        </div>
+
+        <app-confirmation-dialog [(isConfirm)]="isConfirm" />
+      </form>
+    </div>
+  </div>
+</section>
